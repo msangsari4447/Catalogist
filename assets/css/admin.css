@@ -1,0 +1,70 @@
+/**
+ * Catalogist Admin Styles
+ *
+ * @package Catalogist
+ */
+
+.catalogist-admin-wrap {
+    max-width: 1200px;
+    margin: 20px auto;
+}
+
+.catalogist-admin-header {
+    background: #fff;
+    padding: 20px;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.catalogist-admin-header h1 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+}
+
+.catalogist-admin-content {
+    margin-top: 20px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.catalogist-settings-form .form-table {
+    margin-top: 0;
+}
+
+.catalogist-settings-form th {
+    width: 200px;
+}
+
+.catalogist-notice {
+    background: #fff;
+    border-left: 4px solid #0073aa;
+    padding: 12px;
+    margin: 20px 0;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+}
+
+.catalogist-notice.catalogist-notice-warning {
+    border-left-color: #ffb900;
+}
+
+.catalogist-notice.catalogist-notice-error {
+    border-left-color: #dc3232;
+}
+
+/* RTL support */
+.rtl .catalogist-notice {
+    border-left: none;
+    border-right: 4px solid #0073aa;
+}
+
+.rtl .catalogist-notice.catalogist-notice-warning {
+    border-right-color: #ffb900;
+}
+
+.rtl .catalogist-notice.catalogist-notice-error {
+    border-right-color: #dc3232;
+}

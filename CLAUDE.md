@@ -19,54 +19,38 @@ The master project specification is in `prompt.txt`. Treat it as the authoritati
 
 ## Current Repository State
 
-This repository is currently at the project-start stage. Do not assume an existing implementation or command set until files are scaffolded.
-
-Before writing plugin code, produce and get approval for the architecture requested in `prompt.txt`, especially section 54:
-
-1. Full proposed project architecture
-2. Exact file/folder structure
-3. Main classes/interfaces
-4. Data flow from WooCommerce to Print/PDF
-5. Elementor integration architecture
-6. Catalog storage strategy
-7. Template storage strategy
-8. Product and variation management strategy
-9. Print/A4 architecture
-10. Project dependencies
-11. Key technical risks
-12. Milestones and execution order
-
-After approval, implement milestone by milestone only.
+Milestone 1 (Core Architecture) has been implemented. The plugin scaffold is complete with:
+- PSR-4 autoloading via Composer
+- Service container and provider pattern
+- Custom post type for catalogs (`ctlg_catalog`)
+- Admin menu and settings page
+- Security framework (capabilities, nonces, sanitization)
+- Basic test foundation
 
 ## Development Commands
 
-No build/test tooling exists yet. When scaffolding the project, prefer standard WordPress/PHP tooling and document the exact commands here as soon as they are added.
-
-Expected commands once tooling exists:
-
 ```bash
+# Install dependencies
 composer install
+
+# Regenerate autoloader after adding new classes
 composer dump-autoload
+
+# Run tests
 composer test
-composer lint
-composer format
-```
-
-If PHPUnit is added, include commands for the full suite and single-test execution, for example:
-
-```bash
 vendor/bin/phpunit
-vendor/bin/phpunit --filter TestName
-```
 
-If PHP_CodeSniffer with WordPress Coding Standards is added, include commands such as:
+# Run specific test
+vendor/bin/phpunit --filter PluginTest
 
-```bash
+# Run code sniffer
+composer lint
 vendor/bin/phpcs
+
+# Fix code style issues
+composer format
 vendor/bin/phpcbf
 ```
-
-Do not invent working commands before the corresponding `composer.json`, test config, and tooling files exist.
 
 ## Required Architecture Direction
 

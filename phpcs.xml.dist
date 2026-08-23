@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<ruleset name="Catalogist Coding Standards">
+	<description>Coding standards for the Catalogist WordPress plugin.</description>
+
+	<!-- Check all PHP files in the plugin directory. -->
+	<file>.</file>
+
+	<!-- Exclude patterns. -->
+	<exclude-pattern>/vendor/*</exclude-pattern>
+	<exclude-pattern>/node_modules/*</exclude-pattern>
+	<exclude-pattern>/*.min.js</exclude-pattern>
+	<exclude-pattern>/*.min.css</exclude-pattern>
+
+	<!-- Show colors in output. -->
+	<arg value="-colors"/>
+
+	<!-- Show progress. -->
+	<arg value="p"/>
+
+	<!-- Use WordPress Coding Standards. -->
+	<rule ref="WordPress"/>
+
+	<!-- Use PHPCompatibilityWP. -->
+	<rule ref="PHPCompatibilityWP"/>
+
+	<!-- Minimum PHP version. -->
+	<config name="testVersion" value="8.0-"/>
+
+	<!-- Minimum WordPress version. -->
+	<config name="minimum_supported_wp_version" value="6.0"/>
+
+	<!-- Allow short array syntax. -->
+	<rule ref="WordPress.Arrays.ArrayDeclarationSpacing">
+		<properties>
+			<property name="short_array_syntax" value="true"/>
+		</properties>
+	</rule>
+
+	<!-- Allow short ternary. -->
+	<rule ref="WordPress.PHP.DisallowShortTernary.Found">
+		<severity>0</severity>
+	</rule>
+
+	<!-- Disable the "Short array syntax must be used" error for consistency. -->
+	<rule ref="Universal.Arrays.DisallowShortArraySyntax.Found">
+		<severity>0</severity>
+	</rule>
+
+	<!-- Reduce severity of some WordPress-specific rules during development. -->
+	<rule ref="WordPress.WP.I18n.MissingTranslatorsComment">
+		<severity>5</severity>
+	</rule>
+</ruleset>
