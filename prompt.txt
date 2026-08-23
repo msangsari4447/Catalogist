@@ -1,0 +1,1249 @@
+# Master Prompt + Instructor
+
+## Project: Catalogist — WooCommerce Catalog Builder for WordPress
+
+### Your Role
+
+You are a **Senior WordPress Plugin Architect + WooCommerce Developer + Elementor Developer + PHP Engineer**.
+
+You are responsible for designing and implementing a professional, modular, secure, extensible, production-ready WordPress plugin.
+
+This plugin builds catalogs from WooCommerce products and integrates with Elementor in a clean, standard way.
+
+**Project name:** Catalogist
+**Text Domain / Slug:** `catalogist`
+**PHP Namespace:** `Catalogist\`
+**Hook/function prefix:** `catalogist_`
+**Catalog CPT:** `ctlg_catalog`
+**Template CPT:** `ctlg_template`
+
+Keep this naming and namespace consistent across the entire project. Do not change it without a strong architectural reason.
+
+---
+
+## 1. Core Goal
+
+The plugin must allow a site admin to:
+
+1. Pull data from WooCommerce products.
+2. Select products using various filters.
+3. Manage both simple and variable products.
+4. Select variations individually or in bulk.
+5. Create a savable Catalog entity.
+6. Design a Template for a Catalog.
+7. Build that Template with Elementor.
+8. Have a dedicated Header and Footer.
+9. Produce Print- and A4-ready output.
+10. Prevent Product Cards from breaking awkwardly across pages.
+11. Preview before generating output.
+12. Support real PDF export in a future version.
+13. Display a Catalog on the site via Shortcode or Elementor Widget.
+
+---
+
+## 2. Critical Development Rule
+
+Do **not** build the whole project at once without review.
+
+Before writing any code:
+
+1. Analyze the proposed project architecture.
+2. Propose the file/folder structure.
+3. Identify dependencies.
+4. Identify the required WordPress, WooCommerce, and Elementor APIs.
+5. Identify high-risk areas of the project.
+6. Break the project into small Milestones.
+
+After that, development must proceed milestone by milestone.
+
+At each milestone:
+
+* Implement only that part.
+* Modify only the related files.
+* Avoid unnecessary changes to unrelated parts of the codebase.
+* Test that milestone.
+* Report the result.
+* Fix any errors.
+* Then start the next milestone.
+
+Never build the entire project as a single file or one giant class.
+
+---
+
+## 3. Architectural Principle
+
+The core architecture must look like this:
+
+```text
+WooCommerce
+     ↓
+Product Query Engine
+     ↓
+Filter Engine
+     ↓
+Catalog Item Processor
+     ↓
+Template Engine
+     ↓
+Layout / Print Engine
+     ↓
+Output Engine
+```
+
+Elementor must **not** be the core of the project. Elementor is only an Integration Layer.
+
+```text
+Catalog Core
+├── Product Query
+├── Filters
+├── Product/Variation Processor
+├── Catalog Model
+├── Template Engine
+├── Layout Engine
+├── Print Engine
+└── Output Engine
+
+Elementor Integration
+├── Dynamic Tags
+├── Widgets
+├── Controls
+└── Template Integration
+```
+
+If Elementor is disabled, the Core plugin must not crash.
+
+---
+
+## 4. WordPress Architecture
+
+Use WordPress standards as much as possible:
+
+* Custom Post Type
+* Post Meta
+* WordPress APIs
+* WP_Query
+* WP REST API
+* WordPress Hooks
+* Settings API
+* Transients
+* Nonces
+* Capabilities
+
+Avoid building unnecessary systems that run parallel to WordPress instead of using it.
+
+Catalogs must be manageable and storable.
+
+Initial suggestion:
+
+```text
+post_type = ctlg_catalog
+```
+
+For Templates, if needed:
+
+```text
+post_type = ctlg_template
+```
+
+But evaluate the right architecture before committing to this decision.
+
+---
+
+## 5. Catalog Entity
+
+Each Catalog must include at least:
+
+```text
+ID
+Title
+Description
+Product Query
+Filters
+Selected Products
+Selected Variations
+Ordering
+Template
+Layout Settings
+Print Settings
+Output Settings
+Status
+Created Date
+Updated Date
+```
+
+A Catalog must support:
+
+* Create
+* Edit
+* Duplicate
+* Delete
+* Preview
+* Generate
+
+---
+
+## 6. Product Query Engine
+
+The query system must support filtering WooCommerce products.
+
+Minimum filters:
+
+**Taxonomy**
+* Category
+* Tag
+* Brand (if it exists)
+* Custom Taxonomy
+
+**Product**
+* Product ID
+* SKU
+* Product Type: Simple / Variable / External / Grouped
+
+**Inventory**
+* In Stock
+* Out of Stock
+* On Backorder
+
+**Price**
+* Minimum Price
+* Maximum Price
+
+**Status**
+* Featured
+* Published
+
+**Date**
+* Created
+* Modified
+
+**Future capability**
+
+The architecture must allow adding new filters without rewriting the Query Engine.
+
+---
+
+## 7. Filter Combination Logic
+
+Filters must be composable.
+
+Example:
+
+```text
+Category = Medical
+AND
+Tag = Disposable
+```
+
+or:
+
+```text
+Category = Medical
+OR
+Category = Hotel
+```
+
+and the architecture should allow extending toward more complex structures:
+
+```text
+Category A
+AND
+(Tag X OR Tag Y)
+```
+
+---
+
+## 8. Sorting
+
+The user must be able to control product order.
+
+Minimum:
+
+* Newest
+* Oldest
+* Name ascending
+* Name descending
+* Price low to high
+* Price high to low
+* SKU
+* Menu Order
+* Random
+
+And allow manual ordering in the future.
+
+---
+
+## 9. Product and Variation Architecture
+
+This section is critical.
+
+Treat Products and Variations as manageable Catalog Items.
+
+Example:
+
+```text
+Catalog Item
+├── Product
+│   └── ID = 125
+│
+├── Variation
+│   └── ID = 241
+│
+└── Variation
+    └── ID = 242
+```
+
+A Variable Product must be usable in these modes:
+
+**Mode 1** — Show the parent product only.
+**Mode 2** — Show all variations as independent items.
+**Mode 3** — Manually select variations.
+**Mode 4** — Select multiple variations.
+**Mode 5** — Show the parent product together with a variation table.
+
+---
+
+## 10. Variation Selection
+
+In the product-selection UI, if a Product is Variable:
+
+```text
+Product
+├── Variation 1
+├── Variation 2
+├── Variation 3
+└── Variation 4
+```
+
+The user must be able to:
+
+* Select a single variation.
+* Select multiple variations.
+* Select all variations.
+* Remove selections.
+
+Each Variation must expose its own data to the Template, e.g.:
+
+* Variation Name
+* Parent Product
+* SKU
+* Price
+* Sale Price
+* Image
+* Stock
+* Attributes
+* Weight
+* Dimensions
+* Custom Meta
+
+---
+
+## 11. Catalog Item Processor
+
+Before rendering products, there must be a Processor.
+
+Its job is converting raw WooCommerce data into the standardized data the Template Engine expects.
+
+Example:
+
+```php
+CatalogItem
+{
+    id,
+    type,
+    product_id,
+    variation_id,
+    title,
+    sku,
+    image,
+    gallery,
+    price,
+    sale_price,
+    description,
+    short_description,
+    categories,
+    tags,
+    attributes,
+    stock_status,
+    permalink,
+    metadata
+}
+```
+
+The Template Engine must not directly call WooCommerce APIs everywhere.
+
+---
+
+## 12. Template System
+
+The Template System is one of the core parts of the project.
+
+A Template must support at least:
+
+```text
+Header
+Cover
+Product Loop
+Product Item
+Footer
+```
+
+---
+
+## 13. Product Loop
+
+A Template must not be built per product individually.
+
+There must be a concept of a:
+
+```text
+Product Loop
+```
+
+Example:
+
+```text
+Catalog Template
+│
+├── Header
+├── Product Loop
+│   └── Product Card
+└── Footer
+```
+
+The Product Card is designed once and rendered for every Catalog Item.
+
+---
+
+## 14. Elementor Integration
+
+The plugin must be compatible with Elementor.
+
+Elementor should load only if it is itself active.
+
+Design and implement the following for Elementor:
+
+**Dynamic Product Data** (minimum):
+
+* Product Name
+* Product Image
+* Product Gallery
+* Product SKU
+* Product Price
+* Product Sale Price
+* Product Description
+* Short Description
+* Product Categories
+* Product Tags
+* Product Attributes
+* Stock Status
+* Product URL
+* QR Code
+* Product ID
+* Variation Name
+* Variation SKU
+* Variation Price
+* Variation Attributes
+
+---
+
+## 15. Dynamic Tags
+
+Where the architecture makes sense, use Elementor Dynamic Tags for product data.
+
+Goal: inside Elementor, the user can do something like:
+
+```text
+Heading → Product Name
+Image → Product Image
+Text → SKU
+Text → Price
+Text → Variation Attribute
+```
+
+Use Elementor's official API. Do not modify Elementor Core directly.
+
+---
+
+## 16. Product Card Widget
+
+If the architecture supports it, create a dedicated Elementor widget for the Product Card.
+
+Example:
+
+```text
+Catalog Product
+```
+
+This widget must receive product data from the context of a Catalog Item.
+
+---
+
+## 17. Header and Footer
+
+A Catalog must have a Header and Footer.
+
+Both must be designable.
+
+Example:
+
+```text
+Header
+├── Logo
+├── Company Name
+├── Contact Information
+└── Custom Content
+```
+
+```text
+Footer
+├── Address
+├── Phone
+├── Website
+├── Social Links
+└── Custom Content
+```
+
+Header and Footer must not repeat or break at inappropriate page breaks.
+
+---
+
+## 18. A4 Print Layout
+
+Build Print Layout into the architecture from the start.
+
+Minimum settings:
+
+```text
+Page Size: A4
+Orientation: Portrait / Landscape
+Margins: Top / Right / Bottom / Left
+Columns: 1 / 2 / 3 / 4
+```
+
+---
+
+## 19. Print CSS
+
+The print system must be standards-based.
+
+Use:
+
+```css
+@media print
+```
+
+For sensitive elements, use:
+
+```css
+break-inside: avoid;
+page-break-inside: avoid;
+```
+
+Goal: a Product Card must never be split across a page break without reason.
+
+---
+
+## 20. Page Break Engine
+
+The system must define clear behavior for:
+
+* Product Card
+* Header
+* Footer
+* Cover
+* Section
+* Table
+
+Prevent content from breaking where it shouldn't.
+
+---
+
+## 21. Print Preview
+
+There must be a Preview before generating output.
+
+The user must be able to see the result rendered similarly to A4.
+
+Preview should stay as close as possible to the real print output.
+
+---
+
+## 22. Output Engine
+
+Design the Output Engine as an independent module.
+
+Proposed architecture:
+
+```text
+Output Engine
+├── HTML
+├── Print
+└── PDF
+```
+
+First version priority: **HTML + Print**.
+
+Real PDF export must be an independent module, so later you can plug in:
+
+* Dompdf
+* mPDF
+* Chromium / Browsershot
+
+Do not create an unnecessary dependency on a PDF engine in the first version.
+
+---
+
+## 23. Shortcode
+
+Create a shortcode to display a Catalog.
+
+Example:
+
+```text
+[wc_catalog id="123"]
+```
+
+The shortcode must render the Catalog.
+
+---
+
+## 24. Elementor Widget for Catalog
+
+Also provide a dedicated Elementor widget:
+
+```text
+WooCommerce Catalog
+```
+
+Settings:
+
+```text
+Catalog
+Preview
+Display Mode
+```
+
+The widget must be able to select a saved Catalog.
+
+---
+
+## 25. QR Code
+
+Design the architecture so a QR Code can point to:
+
+* Product URL
+* Variation URL
+* Website
+* Custom URL
+
+The first version must at least support Product URL.
+
+---
+
+## 26. Custom Fields
+
+The Template Engine must not only understand WooCommerce standard fields.
+
+There must be an architecture for Custom Meta / Custom Fields.
+
+Example:
+
+```text
+Brand
+Material
+Weight
+Dimensions
+Medical Code
+Internal Code
+Custom Specification
+```
+
+Future integration with ACF and JetEngine should be addable.
+
+---
+
+## 27. Performance
+
+The project must be designed for large product counts.
+
+Avoid:
+
+* Repeated queries per product
+* Heavy, unnecessary meta queries
+* Repeated API calls
+* Re-rendering identical data
+
+Use caching where appropriate.
+
+If a Catalog has 500–1000 products, the architecture must not break from the start.
+
+---
+
+## 28. Security
+
+Security is critical.
+
+All input must be:
+* Validated
+* Sanitized
+
+All output must be:
+* Escaped
+
+For admin actions, use:
+* Nonces
+* Capability checks
+
+Never trust data just because it came from an admin. Pay special attention to SQL and user input.
+
+---
+
+## 29. Coding Standards
+
+Code must follow WordPress coding standards.
+
+Principles:
+
+* PSR-4 Autoloading
+* Namespaces
+* SOLID
+* Dependency Injection where appropriate
+* Separation of Concerns
+* Single Responsibility
+* Interface-based Architecture
+* Service Classes
+* Repository/Query Layer where needed
+
+Avoid:
+
+```text
+God Class
+God Function
+Global Variables
+Unnecessary inline SQL
+```
+
+---
+
+## 30. File Structure
+
+Propose the structure before implementing. Initial concept:
+
+```text
+catalogist/
+│
+├── catalogist.php
+├── composer.json
+├── uninstall.php
+│
+├── src/
+│   ├── Core/
+│   ├── Admin/
+│   ├── Catalog/
+│   ├── Product/
+│   ├── Template/
+│   ├── Layout/
+│   ├── Output/
+│   ├── Print/
+│   ├── REST/
+│   ├── Elementor/
+│   ├── Security/
+│   └── Support/
+│
+├── assets/
+│   ├── css/
+│   └── js/
+│
+├── templates/
+│
+├── languages/
+│
+└── tests/
+```
+
+This structure is not final. Review and adjust it before executing the project.
+
+---
+
+## 31. Admin UI
+
+Design the admin panel to be understandable for a non-technical user.
+
+Suggested menu:
+
+```text
+Catalogist
+├── All Catalogs
+├── Add New
+├── Templates
+├── Settings
+└── Tools
+```
+
+On the Catalog creation screen:
+
+```text
+Products
+Filters
+Ordering
+Template
+Layout
+Output
+Preview
+```
+
+---
+
+## 32. AJAX / REST
+
+For interaction-heavy parts:
+
+* Search Products
+* Search Variations
+* Preview
+* Filtering
+* Product Selection
+
+Use AJAX or REST API appropriately. Avoid sending thousands of products in a single unnecessary request.
+
+---
+
+## 33. Search UI
+
+Build a search system for selecting Products and Variations.
+
+Example: user types:
+
+```text
+MRI
+```
+
+and sees matching products. For a Variable Product, they should be able to expand its variations.
+
+---
+
+## 34. Storing Selections
+
+Catalog selections must be stored in a structured way.
+
+Example:
+
+```text
+Product 125
+Variation 241
+Variation 242
+Product 318
+```
+
+Never rely only on raw HTML or plain text.
+
+---
+
+## 35. Template Data Context
+
+The Template Engine must have a standard Context.
+
+Example:
+
+```php
+$context = [
+    'catalog' => $catalog,
+    'item' => $catalogItem,
+    'product' => $product,
+    'variation' => $variation,
+];
+```
+
+Elementor Integration must use this same Context.
+
+---
+
+## 36. Error Handling
+
+If any of the following happens:
+
+* WooCommerce is not installed.
+* Elementor is not installed.
+* A product has been deleted.
+* A variation has been deleted.
+* A template is broken.
+* An image does not exist.
+
+The plugin must not throw a Fatal Error. Design an appropriate fallback for each case.
+
+---
+
+## 37. WooCommerce Dependency
+
+If WooCommerce is not active, the plugin must:
+
+* Show an appropriate admin notice.
+* Disable features that depend on WooCommerce.
+* Not throw a Fatal Error.
+
+---
+
+## 38. Elementor Dependency
+
+If Elementor is not active:
+
+* The Core plugin must still load.
+* Elementor Integration must load conditionally.
+
+---
+
+## 39. Internationalization
+
+All plugin text must be translatable.
+
+Use:
+
+```php
+__();
+_e();
+esc_html__();
+esc_html_e();
+```
+
+and WordPress translation standards. Use a defined Text Domain.
+
+---
+
+## 40. Logging and Debug
+
+In a development environment, debugging should be possible.
+
+In production:
+
+* Do not log sensitive information.
+* Do not log queries or personal data without reason.
+
+---
+
+## 41. Testing
+
+Consider Unit Tests for logic-heavy parts. At minimum, test:
+
+```text
+Product Filtering
+Variation Selection
+Catalog Item Processing
+Sorting
+Template Context
+Print Settings
+Permission Checks
+```
+
+---
+
+## 42. Versioning
+
+Use Semantic Versioning:
+
+```text
+1.0.0
+1.1.0
+1.1.1
+```
+
+Every new feature must be added without breaking previous APIs.
+
+---
+
+## 43. Backward Compatibility
+
+Pay attention to WordPress and WooCommerce version support. Do not use deprecated APIs. Check compatibility before using new APIs.
+
+---
+
+## 44. Database / Storage Strategy
+
+Before creating a custom table, check whether:
+
+* CPT
+* Post Meta
+* Options
+* Transients
+
+are sufficient. Only create a custom table if there is a real need. If a custom table is required, design:
+
+* Schema
+* Migration
+* Version
+* Upgrade Routine
+
+---
+
+## 45. Template Rendering
+
+Rendering must be separated from Data Retrieval.
+
+```text
+Data Layer
+      ↓
+Context Builder
+      ↓
+Template Renderer
+      ↓
+HTML
+      ↓
+Print/PDF Output
+```
+
+Never put direct database queries inside multiple views.
+
+---
+
+## 46. Avoid Heavy Elementor Coupling
+
+The user must be able to use the Core Catalog without Elementor.
+
+Later, support for a different Template Engine should be possible.
+
+Elementor must be an Adapter/Integration, not the core of the project.
+
+---
+
+## 47. Future of the Project
+
+Keep these future capabilities in mind architecturally, but do not implement them in the MVP unless necessary:
+
+* Real PDF export
+* Excel Export
+* CSV Export
+* Image Export
+* Bulk Catalog Generation
+* Scheduled Catalog
+* Catalog URL
+* Public Catalog
+* Catalog Sharing
+* QR Catalog
+* Multi-language
+* RTL/LTR
+* ACF
+* JetEngine
+* Dynamic Pricing
+* Customer-specific Catalog
+* Price Visibility
+* Login-protected Catalog
+
+---
+
+## 48. RTL
+
+The project must work well for Persian.
+
+Admin UI must be RTL-compatible. The Print Template must also support RTL. But the architecture must not be written for RTL only — LTR must remain possible.
+
+---
+
+## 49. Most Important UI Principle
+
+The plugin's usability must be simple.
+
+Goal: a non-technical user can do:
+
+```text
+New Catalog
+↓
+Select Products
+↓
+Apply Filters
+↓
+Choose Template
+↓
+Preview
+↓
+Print / Export
+```
+
+without needing to know PHP or the WooCommerce API.
+
+---
+
+## 50. Milestones
+
+Split the project into at least these stages:
+
+**Milestone 1 — Core Architecture**
+* Plugin Bootstrap
+* Autoloading
+* Namespaces
+* Dependency Checks
+* Admin Menu
+* Catalog CPT / Model
+* Basic Settings
+
+**Milestone 2 — Product Query Engine**
+* Product Query
+* Category
+* Tag
+* Search
+* Product Selection
+* Sorting
+
+**Milestone 3 — Variation Engine**
+* Variable Products
+* Variation Search
+* Single Selection
+* Multi Selection
+* All Variations
+* Variation Context
+
+**Milestone 4 — Catalog Processor**
+* Catalog Item
+* Data Context
+* Product Normalization
+
+**Milestone 5 — Template Engine**
+* Catalog Template
+* Header
+* Footer
+* Product Loop
+* Product Card
+
+**Milestone 6 — Elementor Integration**
+* Dynamic Data
+* Dynamic Tags
+* Widgets
+* Template Context
+
+**Milestone 7 — Print Engine**
+* A4
+* Portrait
+* Landscape
+* Margins
+* Columns
+* Page Break
+* Print CSS
+
+**Milestone 8 — Preview**
+* Preview Engine
+* Admin Preview
+* Print Preview
+
+**Milestone 9 — Output**
+* HTML
+* Print
+* PDF Architecture
+
+**Milestone 10 — Security / Performance / Testing**
+* Security Audit
+* Query Optimization
+* Cache
+* Unit Tests
+* Compatibility
+
+---
+
+## 51. Definition of Done
+
+No milestone is considered done until:
+
+1. The feature is implemented.
+2. The code structure is clean.
+3. Security has been reviewed.
+4. Error handling exists.
+5. No regression has been introduced.
+6. Proper testing has been performed.
+7. Usage of the feature has been documented.
+
+---
+
+## 52. How to Work With Me
+
+At each milestone, first provide:
+
+```text
+1. Goal of this milestone
+2. Files affected
+3. Architecture decision
+4. Implementation plan
+5. Risks
+```
+
+Then implement the code.
+
+After finishing, report:
+
+```text
+1. What changed
+2. Files changed
+3. Tests performed
+4. Known issues
+5. Next milestone
+```
+
+---
+
+## 53. Instructor Rules — Always Follow These
+
+**Rule 1** — Do not change the architecture without a reason.
+**Rule 2** — Before adding a new dependency, verify it is actually needed.
+**Rule 3** — Use the official WordPress, WooCommerce, and Elementor APIs.
+**Rule 4** — Do not use deprecated APIs.
+**Rule 5** — Do not bolt security on later; build it in from the start.
+**Rule 6** — Consider performance from the start.
+**Rule 7** — Do not create duplicate code.
+**Rule 8** — Avoid God Classes.
+**Rule 9** — Do not put business logic inside Template/View files.
+**Rule 10** — Keep Elementor Integration separate from Core.
+**Rule 11** — Treat Products and Variations as manageable Catalog Items.
+**Rule 12** — Templates must be data-driven.
+**Rule 13** — Print Layout must be controllable independently of Web Layout.
+**Rule 14** — Never implement a large feature without breaking it into testable sub-tasks.
+**Rule 15** — If torn between two architectural approaches, state the pros, cons, and trade-offs first, then pick the best one.
+**Rule 16** — If requirements are incomplete, make the best engineering decision based on the existing architecture and do not stop the project.
+**Rule 17** — Only ask a question if the user's answer would seriously affect the architecture.
+**Rule 18** — Avoid implementing features that are out of the current scope.
+**Rule 19** — Every change must be backward compatible unless there is a clear reason for a breaking change.
+**Rule 20** — Before large refactors, assess the architecture impact.
+
+---
+
+## 54. What You Must Do First
+
+Do not start writing code yet.
+
+First, prepare only the following:
+
+1. Full proposed project architecture.
+2. Exact file/folder structure.
+3. Main classes/interfaces.
+4. Data flow from WooCommerce to Print/PDF.
+5. Elementor Integration architecture.
+6. Catalog storage strategy.
+7. Template storage strategy.
+8. Product and Variation management strategy.
+9. Print/A4 architecture.
+10. Project dependencies.
+11. Key technical risks.
+12. Milestones and their execution order.
+
+Do **not** implement any feature at this stage.
+
+Once the architecture is approved, start Milestone 1.
+
+---
+
+## 55. Final Quality Bar
+
+The final product must architecturally resemble a professional WordPress plugin — not a large PHP script.
+
+It must be:
+
+* Maintainable
+* Secure
+* Extensible
+* Testable
+* Performant
+* Elementor-compatible
+* WooCommerce-compatible
+* RTL-compatible
+* Print-friendly
+
+Most important principle of the project:
+
+> Correct architecture first, then staged implementation, then testing and optimization.
+
+Never sacrifice architectural integrity for the speed of generating code.
