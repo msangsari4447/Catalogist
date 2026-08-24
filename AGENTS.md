@@ -1,6 +1,6 @@
-# CLAUDE.md
+# AGENTS.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Codex (Codex.ai/code) when working with code in this repository.
 
 ## Project Overview
 
@@ -19,16 +19,14 @@ The master project specification is in `prompt.txt`. Treat it as the authoritati
 
 ## Current Repository State
 
-Milestone 1–4 have been implemented. The plugin scaffold is complete with:
+Milestone 1 (Core Architecture) and Milestone 2 (Product Query Engine) have been implemented. The plugin scaffold is complete with:
 - PSR-4 autoloading via Composer
 - Service container and provider pattern
 - Custom post type for catalogs (`ctlg_catalog`)
 - Admin menu and settings page
 - Security framework (capabilities, nonces, sanitization)
 - Product Query Engine with `ProductRepositoryInterface`, `WooCommerceProductRepository`, `ProductQueryArgs`, `ProductQueryResult`
-- Variation Engine with `VariationRepositoryInterface`, `WooCommerceVariationRepository`, `VariationService`, `VariationMode`, `VariationServiceInterface`
-- Catalog Processor with `CatalogItem` value object, `CatalogItemFactory`, `CatalogProcessor`
-- Support for all5 variation modes (parent, all, selected, multiple, table)
+- Variation Engine with `VariationRepositoryInterface`, `WooCommerceVariationRepository`, `VariationService`, `VariationMode`
 - Basic test foundation
 
 ## Development Commands

@@ -18,7 +18,7 @@ use Catalogist\Product\ProductQueryResult;
  *
  * Bridges ProductRepositoryInterface and VariationRepositoryInterface.
  */
-final class VariationService {
+final class VariationService implements VariationServiceInterface {
 
 	/**
 	 * Variation repository.

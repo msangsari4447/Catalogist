@@ -9,10 +9,9 @@ declare(strict_types=1);
 
 namespace Catalogist\Core;
 
-defined( 'ABSPATH' ) || exit;
-
 use Catalogist\Admin\AdminServiceProvider;
 use Catalogist\Catalog\CatalogServiceProvider;
+use Catalogist\CatalogItem\CatalogServiceProvider as CatalogItemServiceProvider;
 use Catalogist\Product\ProductServiceProvider;
 use Catalogist\Security\SecurityServiceProvider;
 use Catalogist\Variation\VariationServiceProvider;
@@ -144,6 +143,7 @@ final class Plugin {
 			SecurityServiceProvider::class,
 			AdminServiceProvider::class,
 			CatalogServiceProvider::class,
+			CatalogItemServiceProvider::class,
 			ProductServiceProvider::class,
 			VariationServiceProvider::class,
 		);
