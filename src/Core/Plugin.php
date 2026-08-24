@@ -15,6 +15,7 @@ use Catalogist\Admin\AdminServiceProvider;
 use Catalogist\Catalog\CatalogServiceProvider;
 use Catalogist\Product\ProductServiceProvider;
 use Catalogist\Security\SecurityServiceProvider;
+use Catalogist\Variation\VariationServiceProvider;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -144,6 +145,7 @@ final class Plugin {
 			AdminServiceProvider::class,
 			CatalogServiceProvider::class,
 			ProductServiceProvider::class,
+			VariationServiceProvider::class,
 		);
 
 		foreach ( $providers as $provider_class ) {
