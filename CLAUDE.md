@@ -19,7 +19,7 @@ The master project specification is in `prompt.txt`. Treat it as the authoritati
 
 ## Current Repository State
 
-Milestone 1–4 have been implemented. The plugin scaffold is complete with:
+Milestone 1–5 have been implemented. The plugin scaffold is complete with:
 - PSR-4 autoloading via Composer
 - Service container and provider pattern
 - Custom post type for catalogs (`ctlg_catalog`)
@@ -29,6 +29,13 @@ Milestone 1–4 have been implemented. The plugin scaffold is complete with:
 - Variation Engine with `VariationRepositoryInterface`, `WooCommerceVariationRepository`, `VariationService`, `VariationMode`, `VariationServiceInterface`
 - Catalog Processor with `CatalogItem` value object, `CatalogItemFactory`, `CatalogProcessor`
 - Support for all5 variation modes (parent, all, selected, multiple, table)
+- **Template Engine with pluggable template system**
+  - Three-component architecture: `TemplateEngine` → `TemplateLoader` → `TemplateContextBuilder` → `TemplateRenderer`
+  - Fallback chain: theme override → plugin default → built-in fallback
+  - Shortcode: `[catalogist id="123" template="default" columns="2"]`
+  - Helper function: `render_catalog(int $catalogId, ?array $settings = null): string`
+  - Template context with raw data and pre-escaped helpers
+  - Default templates: `catalog.php`, `header.php`, `footer.php`, `product-loop.php`, `product-card.php`, `variation-table.php`
 - Basic test foundation
 
 ## Development Commands

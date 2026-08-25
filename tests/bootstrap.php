@@ -130,5 +130,124 @@ if ( ! function_exists( 'sprintf' ) ) {
 	// Native PHP function, no need to mock.
 }
 
+// Mock WordPress functions for template tests.
+if ( ! function_exists( 'get_post' ) ) {
+	/**
+	 * @param int|WP_Post|string|null $post
+	 * @return WP_Post|null
+	 */
+	function get_post( $post = null ) {
+		return null;
+	}
+}
+
+if ( ! function_exists( 'get_template_directory' ) ) {
+	function get_template_directory(): string {
+		return '/tmp/wordpress/wp-content/themes/default';
+	}
+}
+
+if ( ! function_exists( 'sanitize_file_name' ) ) {
+	function sanitize_file_name( string $filename ): string {
+		return preg_replace( '/[^\w\-\._]+/', '-', $filename ) ?? $filename;
+	}
+}
+
+if ( ! function_exists( 'file_exists' ) ) {
+	// Native function, do not override.
+}
+
+if ( ! function_exists( 'ob_start' ) ) {
+	/**
+	 * @param callable|string|null $callback
+	 * @param int $chunk_size
+	 * @param bool $erase
+	 * @return bool
+	 */
+	function ob_start( $callback = null, int $chunk_size = 0, bool $erase = true ): bool {
+		return \ob_start( $callback, $chunk_size, $erase );
+	}
+}
+
+if ( ! function_exists( 'ob_get_clean' ) ) {
+	function ob_get_clean(): ?string {
+		return \ob_get_clean();
+	}
+}
+
+if ( ! function_exists( 'apply_filters' ) ) {
+	/**
+	 * @param string $tag
+	 * @param mixed $value
+	 * @return mixed
+	 */
+	function apply_filters( string $tag, $value ) {
+		return $value;
+	}
+}
+
+if ( ! function_exists( 'do_action' ) ) {
+	/**
+	 * @param string $tag
+	 * @return void
+	 */
+	function do_action( string $tag ): void {
+		// No-op.
+	}
+}
+
+if ( ! function_exists( 'add_shortcode' ) ) {
+	/**
+	 * @param string $tag
+	 * @param callable $callback
+	 * @return void
+	 */
+	function add_shortcode( string $tag, callable $callback ): void {
+		// No-op for tests.
+	}
+}
+
+if ( ! function_exists( 'shortcode_atts' ) ) {
+	/**
+	 * @param array<string, mixed> $pairs
+	 * @param array<string, mixed> $atts
+	 * @param string $shortcode
+	 * @return array<string, mixed>
+	 */
+	function shortcode_atts( array $pairs, array $atts, string $shortcode = '' ): array {
+		return array_merge( $pairs, $atts );
+	}
+}
+
+if ( ! function_exists( 'wc_price' ) ) {
+	/**
+	 * @param string $price
+	 * @return string
+	 */
+	function wc_price( string $price ): string {
+		return '$' . $price;
+	}
+}
+
+if ( ! function_exists( 'wp_kses_post' ) ) {
+	/**
+	 * @param string $content
+	 * @return string
+	 */
+	function wp_kses_post( string $content ): string {
+		return $content;
+	}
+}
+
+if ( ! function_exists( 'get_permalink' ) ) {
+	/**
+	 * @param int|null $id
+	 * @return string
+	 */
+	function get_permalink( $id = null ): string {
+		return '';
+	}
+}
+
 // Load Composer autoloader.
 require_once __DIR__ . '/../vendor/autoload.php';

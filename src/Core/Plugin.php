@@ -14,6 +14,7 @@ use Catalogist\Catalog\CatalogServiceProvider;
 use Catalogist\CatalogItem\CatalogServiceProvider as CatalogItemServiceProvider;
 use Catalogist\Product\ProductServiceProvider;
 use Catalogist\Security\SecurityServiceProvider;
+use Catalogist\Template\TemplateServiceProvider;
 use Catalogist\Variation\VariationServiceProvider;
 
 defined( 'ABSPATH' ) || exit;
@@ -146,6 +147,7 @@ final class Plugin {
 			CatalogItemServiceProvider::class,
 			ProductServiceProvider::class,
 			VariationServiceProvider::class,
+			new TemplateServiceProvider( CATALOGIST_PLUGIN_DIR ),
 		);
 
 		foreach ( $providers as $provider_class ) {
