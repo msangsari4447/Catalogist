@@ -33,6 +33,9 @@ if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 	require_once __DIR__ . '/vendor/autoload.php';
 }
 
+// Load Elementor functions (conditional - only active when Elementor is loaded).
+require_once __DIR__ . '/src/Elementor/functions.php';
+
 /**
  * Retrieve the plugin instance.
  *

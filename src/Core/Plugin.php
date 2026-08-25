@@ -12,6 +12,7 @@ namespace Catalogist\Core;
 use Catalogist\Admin\AdminServiceProvider;
 use Catalogist\Catalog\CatalogServiceProvider;
 use Catalogist\CatalogItem\CatalogServiceProvider as CatalogItemServiceProvider;
+use Catalogist\Elementor\ElementorServiceProvider;
 use Catalogist\Product\ProductServiceProvider;
 use Catalogist\Security\SecurityServiceProvider;
 use Catalogist\Template\TemplateServiceProvider;
@@ -149,6 +150,11 @@ final class Plugin {
 			VariationServiceProvider::class,
 			new TemplateServiceProvider( CATALOGIST_PLUGIN_DIR ),
 		);
+
+		// Conditionally add Elementor service provider when Elementor is active.
+		if ( class_exists( '\Elementor\Plugin' ) ) {
+			$providers[] = new ElementorServiceProvider( CATALOGIST_PLUGIN_DIR );
+		}
 
 		foreach ( $providers as $provider_class ) {
 			$provider = new $provider_class();

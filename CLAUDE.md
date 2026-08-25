@@ -19,7 +19,7 @@ The master project specification is in `prompt.txt`. Treat it as the authoritati
 
 ## Current Repository State
 
-Milestone 1–5 have been implemented. The plugin scaffold is complete with:
+Milestone 1–6 have been implemented. The plugin scaffold is complete with:
 - PSR-4 autoloading via Composer
 - Service container and provider pattern
 - Custom post type for catalogs (`ctlg_catalog`)
@@ -37,6 +37,12 @@ Milestone 1–5 have been implemented. The plugin scaffold is complete with:
   - Template context with raw data and pre-escaped helpers
   - Default templates: `catalog.php`, `header.php`, `footer.php`, `product-loop.php`, `product-card.php`, `variation-table.php`
 - Basic test foundation
+- **Elementor Integration (Milestone 6)**
+  - Conditional loading via `ElementorServiceProvider` — only loads when `class_exists('\Elementor\Plugin')`
+  - 16 dynamic tags: 10 product, 4 variation, 2 catalog
+  - 2 widgets: `ProductCardWidget`, `CatalogWidget`
+  - Global helper: `catalogist_get_catalog_item( int $product_id, int $parent_product_id = 0 )`
+  - Test mocks: `ElementorMocks.php`, `CatalogistMocks.php`
 
 ## Development Commands
 
