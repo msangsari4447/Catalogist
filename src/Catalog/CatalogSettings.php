@@ -83,10 +83,10 @@ final class CatalogSettings implements HookableInterface {
 			'page_size'   => 'a4',
 			'orientation' => 'portrait',
 			'margins'     => array(
-				'top'    => 15,
-				'right'  => 15,
-				'bottom' => 15,
-				'left'   => 15,
+				'top'    => 20,
+				'right'  => 20,
+				'bottom' => 20,
+				'left'   => 20,
 			),
 			'columns'     => 2,
 		);

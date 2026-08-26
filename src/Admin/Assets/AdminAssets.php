@@ -53,6 +53,17 @@ final class AdminAssets implements HookableInterface {
 			array(),
 			CATALOGIST_VERSION
 		);
+
+		// Preview CSS for preview pages.
+		$hook = get_plugin_page_hookname( 'catalogist-preview', 'admin.php' );
+		if ( isset( $_GET['page'] ) && 'catalogist-preview' === sanitize_text_field( wp_unslash( $_GET['page'] ) ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			wp_enqueue_style(
+				'catalogist-preview',
+				CATALOGIST_PLUGIN_URL . 'assets/css/preview.css',
+				array(),
+				CATALOGIST_VERSION
+			);
+		}
 	}
 
 	/**
@@ -77,5 +88,17 @@ final class AdminAssets implements HookableInterface {
 				'nonce'   => wp_create_nonce( 'catalogist_admin' ),
 			)
 		);
+
+		// Preview script for preview pages.
+		$is_preview = isset( $_GET['page'] ) && 'catalogist-preview' === sanitize_text_field( wp_unslash( $_GET['page'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( $is_preview ) {
+			wp_enqueue_script(
+				'catalogist-preview',
+				CATALOGIST_PLUGIN_URL . 'assets/js/preview.js',
+				array( 'jquery' ),
+				CATALOGIST_VERSION,
+				true
+			);
+		}
 	}
 }

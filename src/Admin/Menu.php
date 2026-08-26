@@ -11,6 +11,9 @@ namespace Catalogist\Admin;
 
 use Catalogist\Core\HookableInterface;
 use Catalogist\Security\Capability;
+use Catalogist\Catalog\CatalogRepositoryInterface;
+use Catalogist\Catalog\CatalogProcessorInterface;
+use Catalogist\Preview\PreviewEngineInterface;
 
 /**
  * Registers the admin menu.

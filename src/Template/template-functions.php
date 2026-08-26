@@ -10,6 +10,12 @@ declare(strict_types=1);
 namespace Catalogist\Template;
 
 use Catalogist\Core\Plugin;
+use Catalogist\Print\PrintEngineInterface;
+use Catalogist\Product\ProductQueryArgs;
+use Catalogist\Product\ProductRepositoryInterface;
+use Catalogist\Catalog\CatalogRepositoryInterface;
+use Catalogist\CatalogItem\CatalogProcessor;
+use Catalogist\Variation\VariationQueryArgs;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -86,4 +92,64 @@ function render_catalog( int $catalogId, ?array $settings = null ): string {
 	$templateEngine = $container->get( TemplateEngineInterface::class );
 
 	return $templateEngine->renderCatalog( $catalog, $catalogItems, $settings );
+}
+
+/**
+ * Render a catalog for print.
+ *
+ * Wrapper around PrintEngineInterface for convenience.
+ *
+ * @param int                          $catalogId      Catalog post ID.
+ * @param array<string, mixed>|null     $settings       Print override settings.
+ *
+ * @return string Rendered print HTML output.
+ */
+function render_catalog_print( int $catalogId, ?array $settings = null ): string {
+	$container = catalogist_get_container();
+
+	if ( ! $container ) {
+		return '<p class="catalogist-error">' .
+		       esc_html__( 'Catalogist is not properly initialized.', 'catalogist' ) .
+		       '</p>';
+	}
+
+	$catalogRepo     = $container->get( CatalogRepositoryInterface::class );
+	$catalog         = $catalogRepo->find( $catalogId );
+
+	if ( ! $catalog ) {
+		return '<p class="catalogist-error">' .
+		       esc_html__( 'Catalog not found.', 'catalogist' ) .
+		       '</p>';
+	}
+
+	$productRepo      = $container->get( ProductRepositoryInterface::class );
+	$catalogProcessor = $container->get( CatalogProcessor::class );
+
+	// Build default product query args.
+	$queryArgs = ProductQueryArgs::from_array(
+		array_merge(
+			array(
+				'order'     => 'ASC',
+				'orderby'   => 'menu_order title',
+			),
+			$catalog->get_product_query()
+		)
+	);
+
+	$productResult  = $productRepo->query( $queryArgs );
+
+	$variationArgs = VariationQueryArgs::from_array(
+		array_merge(
+			array( 'mode' => 'parent' ),
+			isset( $catalog->get_product_query()['variation_mode'] )
+				? array( 'mode' => $catalog->get_product_query()['variation_mode'] )
+				: array()
+		)
+	);
+
+	$catalogItems = $catalogProcessor->process( $productResult, $variationArgs );
+
+	$printEngine = $container->get( PrintEngineInterface::class );
+
+	return $printEngine->generatePrintHTML( $catalog, $catalogItems, $settings );
 }

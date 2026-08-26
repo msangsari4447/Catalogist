@@ -1,0 +1,286 @@
+/*
+ * Catalogist Preview Styles
+ *
+ * A4 paper simulation and preview chrome.
+ * Does NOT use @media print — these styles are for screen preview only.
+ *
+ * @package Catalogist
+ */
+
+/* === Preview Page Layout === */
+
+.catalogist-preview-body {
+	background: #f0f0f1;
+	min-height: 100vh;
+	margin: 0;
+	padding: 0;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+.catalogist-preview-page {
+	position: relative;
+	min-height: 100vh;
+	padding: 40px 20px;
+	box-sizing: border-box;
+}
+
+/* === Paper Container === */
+
+.catalogist-preview-paper {
+	background: #ffffff;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.1);
+	margin: 0 auto;
+	position: relative;
+	box-sizing: border-box;
+	overflow: hidden;
+}
+
+/* Portrait: 210mm x 297mm */
+.catalogist-preview-paper-portrait {
+	width: 210mm;
+	min-height: 297mm;
+}
+
+/* Landscape: 297mm x 210mm */
+.catalogist-preview-paper-landscape {
+	width: 297mm;
+	min-height: 210mm;
+}
+
+/* === Controls === */
+
+.catalogist-preview-controls {
+	position: fixed;
+	top: 32px;
+	right: 20px;
+	background: #ffffff;
+	padding: 12px 16px;
+	border-radius: 4px;
+	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+	z-index: 1000;
+	display: flex;
+	gap: 8px;
+	align-items: center;
+	flex-wrap: wrap;
+	max-width: 320px;
+}
+
+.catalogist-preview-controls .button {
+	margin: 0;
+	white-space: nowrap;
+}
+
+.catalogist-preview-btn-print {
+	background: #2271b1;
+	border-color: #2271b1;
+	color: #fff;
+}
+
+.catalogist-preview-btn-print:hover {
+	background: #135e96;
+	border-color: #135e96;
+	color: #fff;
+}
+
+.catalogist-preview-btn-orientation {
+	background: #f6f7f7;
+	border-color: #2271b1;
+	color: #2271b1;
+}
+
+.catalogist-preview-btn-orientation:hover {
+	background: #2271b1;
+	border-color: #135e96;
+	color: #fff;
+}
+
+.catalogist-preview-btn-close {
+	background: #f6f7f7;
+	border-color: #2271b1;
+	color: #2271b1;
+}
+
+.catalogist-preview-btn-close:hover {
+	background: #2271b1;
+	border-color: #135e96;
+	color: #fff;
+}
+
+/* === Info Bar === */
+
+.catalogist-preview-info {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: #ffffff;
+	padding: 8px 20px;
+	border-top: 1px solid #c3c4c7;
+	z-index: 999;
+	display: flex;
+	gap: 20px;
+	align-items: center;
+	flex-wrap: wrap;
+	font-size: 13px;
+	color: #50575e;
+}
+
+.catalogist-preview-info-item {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+}
+
+.catalogist-preview-info-item strong {
+	color: #1d2327;
+}
+
+/* === Preview Notice === */
+
+.catalogist-preview-notice {
+	background: #fff3cd;
+	border: 1px solid #ffc107;
+	border-radius: 4px;
+	padding: 10px 16px;
+	margin-bottom: 16px;
+	font-size: 13px;
+	color: #664d03;
+	line-height: 1.5;
+}
+
+/* === Catalog Content in Preview === */
+
+.catalogist-preview-paper .catalogist-catalog {
+	width: 100%;
+}
+
+.catalogist-preview-paper .catalogist-product-card {
+	break-inside: avoid;
+	page-break-inside: avoid;
+	margin-bottom: 10px;
+}
+
+.catalogist-preview-paper .catalogist-product-loop {
+	column-gap: 5mm;
+}
+
+/* === Error Page === */
+
+.catalogist-preview-error-page {
+	max-width: 600px;
+	margin: 100px auto;
+	padding: 40px;
+	background: #fff;
+	border-radius: 4px;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+	text-align: center;
+}
+
+.catalogist-preview-error-page h1 {
+	margin-top: 0;
+	color: #d63638;
+}
+
+.catalogist-preview-error-page p {
+	color: #50575e;
+	margin-bottom: 24px;
+}
+
+/* === Responsive Scaling === */
+
+@media (max-width: 1200px) {
+	.catalogist-preview-paper {
+		transform: scale(0.8);
+		transform-origin: top center;
+		margin-bottom: -60mm;
+	}
+}
+
+@media (max-width: 900px) {
+	.catalogist-preview-paper {
+		transform: scale(0.6);
+		transform-origin: top center;
+		margin-bottom: -100mm;
+	}
+
+	.catalogist-preview-controls {
+		top: 10px;
+		right: 10px;
+		left: 10px;
+		max-width: none;
+	}
+
+	.catalogist-preview-info {
+		font-size: 11px;
+		padding: 6px 10px;
+	}
+}
+
+@media (max-width: 600px) {
+	.catalogist-preview-paper {
+		transform: scale(0.45);
+		transform-origin: top center;
+		margin-bottom: -140mm;
+	}
+}
+
+/* === RTL Support === */
+
+[dir="rtl"] .catalogist-preview-controls {
+	right: auto;
+	left: 20px;
+}
+
+@media (max-width: 900px) {
+	[dir="rtl"] .catalogist-preview-controls {
+		left: 10px;
+		right: 10px;
+	}
+}
+
+/* === Print Styles (for actual printing the preview) === */
+
+@media print {
+	body.catalogist-preview-body {
+		background: white;
+	}
+
+	.catalogist-preview-controls,
+	.catalogist-preview-info,
+	.catalogist-preview-notice {
+		display: none !important;
+	}
+
+	.catalogist-preview-paper {
+		box-shadow: none;
+		margin: 0;
+		width: 100%;
+		min-height: auto;
+	}
+
+	.catalogist-preview-paper-portrait {
+		width: auto;
+	}
+
+	.catalogist-preview-paper-landscape {
+		width: auto;
+	}
+}
+
+/* === Spinner / Loading === */
+
+.catalogist-preview-spinner {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	border: 2px solid #c3c4c7;
+	border-top-color: #2271b1;
+	border-radius: 50%;
+	animation: catalogist-spin 0.8s linear infinite;
+	vertical-align: middle;
+	margin-right: 6px;
+}
+
+@keyframes catalogist-spin {
+	to { transform: rotate(360deg); }
+}

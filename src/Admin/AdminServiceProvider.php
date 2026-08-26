@@ -13,6 +13,7 @@ use Catalogist\Core\Container;
 use Catalogist\Core\ServiceProviderInterface;
 use Catalogist\Core\I18n;
 use Catalogist\Core\Assets;
+use Catalogist\Preview\PreviewEngineInterface;
 
 /**
  * Registers admin services.
@@ -51,6 +52,17 @@ final class AdminServiceProvider implements ServiceProviderInterface {
 		$container->set( Notices::class, new Notices() );
 		$container->set( SettingsPage::class, new SettingsPage() );
 		$container->set( Assets\AdminAssets::class, new Assets\AdminAssets() );
+
+		$container->factory(
+			PreviewPage::class,
+			static function ( Container $c ) use ( $container ): PreviewPage {
+				return new PreviewPage(
+					$container->get( \Catalogist\Catalog\CatalogRepositoryInterface::class ),
+					$container->get( \Catalogist\Catalog\CatalogProcessorInterface::class ),
+					$c->get( PreviewEngineInterface::class )
+				);
+			}
+		);
 	}
 
 	/**
@@ -89,6 +101,12 @@ final class AdminServiceProvider implements ServiceProviderInterface {
 
 		if ( $assets instanceof Assets\AdminAssets ) {
 			$assets->register_hooks();
+		}
+
+		$preview_page = $container->get( PreviewPage::class );
+
+		if ( $preview_page instanceof PreviewPage ) {
+			$preview_page->register_hooks();
 		}
 	}
 }

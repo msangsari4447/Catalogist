@@ -280,3 +280,42 @@ A milestone is not complete until the feature is implemented, structure is clean
 - Do not add dependencies without confirming they are needed.
 - If requirements are incomplete, make the best engineering decision from the approved architecture and continue unless the choice would seriously affect the architecture.
 - If choosing between major approaches, state pros, cons, and the recommended approach before implementing.
+
+## Communication Language
+
+All communication with the user must be in English only.
+
+This includes:
+- Progress updates
+- Pre-Milestone Reports
+- Post-Milestone Reports
+- Explanations
+- Test results
+- Errors
+- Warnings
+- Questions
+- Approval requests
+
+Do not use Chinese, Persian, or any other language unless the user explicitly requests it.
+
+## Milestone Workflow
+
+Before implementing each milestone:
+
+1. Inspect the existing codebase and previous milestone implementations.
+2. Create a detailed `pre-milestone-N-report.md`.
+3. Present the report in English.
+4. Wait for explicit user approval.
+5. Implement only after approval.
+6. Run syntax validation and available tests.
+7. Perform an architecture/security review.
+8. Create `post-milestone-N-report.md`.
+9. Wait for user review before committing.
+
+Never skip the Pre-Milestone review unless explicitly instructed by the user.
+
+## Important
+
+Preserve the architecture and decisions established by previous milestones.
+Do not modify completed milestone components unnecessarily.
+Before proposing architectural changes, inspect the existing implementation and explain why the change is required.

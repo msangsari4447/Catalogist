@@ -55,7 +55,14 @@ class Assets implements HookableInterface {
 	 * @return void
 	 */
 	public function enqueue_public_assets(): void {
-		// Public assets will be added in later milestones.
+		// Print stylesheet — always enqueue; @media print gates screen usage.
+		wp_enqueue_style(
+			'catalogist-print',
+			$this->get_asset_url( 'assets/css/print.css' ),
+			array(),
+			$this->get_asset_version( 'assets/css/print.css' ),
+			'all'
+		);
 	}
 
 	/**

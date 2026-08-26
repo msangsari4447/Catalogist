@@ -1,0 +1,145 @@
+/**
+ * Print stylesheet for Catalogist.
+ *
+ * Standards-based print CSS using @media print.
+ * Supports A4, portrait/landscape, configurable margins, 1-4 columns.
+ *
+ * @package Catalogist
+ */
+
+@media print {
+	/* Reset for print. */
+	body {
+		background: none !important;
+		color: #000 !important;
+		font-size: 10pt;
+		line-height: 1.4;
+		margin: 0;
+		padding: 0;
+	}
+
+	/* Force color adjustment for images. */
+	* {
+		-webkit-print-color-adjust: exact !important;
+		print-color-adjust: exact !important;
+	}
+
+	/* Hide non-print elements. */
+	.no-print,
+	.catalogist-print-controls,
+	.noprint,
+	.admin-bar {
+		display: none !important;
+	}
+
+	/* Link URLs after links. */
+	a[href]::after {
+		content: " (" attr(href) ")";
+		font-size: 0.8em;
+		color: #666;
+	}
+
+	a[href^="http"]::after {
+		content: "";
+	}
+
+	/* Images. */
+	img {
+		max-width: 100% !important;
+		height: auto !important;
+		object-fit: contain;
+		page-break-inside: avoid;
+		break-inside: avoid;
+	}
+
+	/* Page break protection for key elements. */
+	.catalogist-product-card {
+		break-inside: avoid;
+		page-break-inside: avoid;
+		border: none;
+		margin-bottom: 8mm;
+	}
+
+	.catalogist-variation-table {
+		break-inside: avoid;
+		page-break-inside: avoid;
+		width: 100%;
+		font-size: 9pt;
+	}
+
+	.catalogist-variation-table th,
+	.catalogist-variation-table td {
+		padding: 2mm 3mm;
+		border: 1px solid #ccc;
+	}
+
+	.catalogist-product-loop {
+		break-inside: avoid;
+		page-break-inside: avoid;
+	}
+
+	.catalogist-header {
+		break-inside: avoid;
+		page-break-inside: avoid;
+		margin-bottom: 10mm;
+	}
+
+	.catalogist-footer {
+		break-inside: avoid;
+		page-break-inside: avoid;
+		margin-top: 10mm;
+	}
+
+	/* Column layout via CSS multi-column. */
+	.catalogist-catalog[data-print-mode="true"] .catalogist-product-loop {
+		column-gap: 5mm;
+	}
+
+	.catalogist-catalog[data-print-mode="true"][data-columns="1"] .catalogist-product-loop {
+		column-count: 1;
+	}
+
+	.catalogist-catalog[data-print-mode="true"][data-columns="2"] .catalogist-product-loop {
+		column-count: 2;
+	}
+
+	.catalogist-catalog[data-print-mode="true"][data-columns="3"] .catalogist-product-loop {
+		column-count: 3;
+	}
+
+	.catalogist-catalog[data-print-mode="true"][data-columns="4"] .catalogist-product-loop {
+		column-count: 4;
+	}
+
+	/* Cover page styling. */
+	.catalogist-cover {
+		page-break-after: always;
+		break-after: page;
+		text-align: center;
+		padding: 40mm 0;
+	}
+
+	.catalogist-cover-title {
+		font-size: 24pt;
+		margin-bottom: 10mm;
+		page-break-after: avoid;
+		break-after: avoid;
+	}
+
+	.catalogist-cover-meta {
+		font-size: 11pt;
+		color: #555;
+		page-break-after: avoid;
+		break-after: avoid;
+	}
+
+	/* RTL support. */
+	.catalogist-catalog[dir="rtl"] .catalogist-product-loop {
+		direction: rtl;
+		unicode-bidi: embed;
+	}
+
+	.catalogist-catalog[dir="rtl"] .catalogist-product-card {
+		text-align: right;
+	}
+}

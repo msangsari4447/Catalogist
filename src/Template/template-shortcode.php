@@ -14,6 +14,7 @@ namespace Catalogist\Template;
 use Catalogist\Catalog\CatalogRepositoryInterface;
 use Catalogist\CatalogItem\CatalogProcessor;
 use Catalogist\Product\ProductQueryArgs;
+use Catalogist\Print\PrintEngineInterface;
 use Catalogist\Product\ProductQueryResult;
 use Catalogist\Product\ProductRepositoryInterface;
 use Catalogist\Variation\VariationQueryArgs;
@@ -42,22 +43,28 @@ function register_shortcode(): void {
 function catalogist_shortcode( array $atts ): string {
 	$atts = shortcode_atts(
 		array(
-			'id'        => '0',
-			'template'  => 'default',
-			'columns'   => '2',
-			'order'     => 'ASC',
-			'orderby'   => 'menu_order title',
+			'id'          => '0',
+			'template'    => 'default',
+			'columns'     => '2',
+			'order'       => 'ASC',
+			'orderby'     => 'menu_order title',
+			'print'       => '0',
+			'orientation' => 'portrait',
+			'page_size'   => 'a4',
 		),
 		$atts,
 		'catalogist'
 	);
 
 	// Validate and sanitize inputs.
-	$catalogId  = absint( $atts['id'] );
-	$template   = sanitize_text_field( $atts['template'] );
-	$columns    = max( 1, min( 4, absint( $atts['columns'] ) ) );
-	$order      = in_array( strtoupper( $atts['order'] ), array( 'ASC', 'DESC' ), true ) ? strtoupper( $atts['order'] ) : 'ASC';
-	$orderby    = sanitize_text_field( $atts['orderby'] );
+	$catalogId   = absint( $atts['id'] );
+	$template    = sanitize_text_field( $atts['template'] );
+	$columns     = max( 1, min( 4, absint( $atts['columns'] ) ) );
+	$order       = in_array( strtoupper( $atts['order'] ), array( 'ASC', 'DESC' ), true ) ? strtoupper( $atts['order'] ) : 'ASC';
+	$orderby     = sanitize_text_field( $atts['orderby'] );
+	$is_print    = filter_var( $atts['print'], FILTER_VALIDATE_BOOLEAN );
+	$orientation = sanitize_text_field( $atts['orientation'] );
+	$page_size   = sanitize_text_field( $atts['page_size'] );
 
 	if ( 0 === $catalogId ) {
 		return '<p class="catalogist-error">' .
@@ -124,7 +131,20 @@ function catalogist_shortcode( array $atts ): string {
 	$catalogProcessor = $container->get( CatalogProcessor::class );
 	$catalogItems     = $catalogProcessor->process( $productResult, $variationArgs );
 
-	// Render via template engine.
+	// Print mode — delegate to PrintEngine.
+	if ( $is_print ) {
+		$printEngine = $container->get( PrintEngineInterface::class );
+
+		$printOverrides = array(
+			'orientation' => $orientation,
+			'page_size'   => $page_size,
+			'columns'     => $columns,
+		);
+
+		return $printEngine->generatePrintHTML( $catalog, $catalogItems, $printOverrides );
+	}
+
+	// Render via template engine (standard web mode).
 	$templateEngine = $container->get( TemplateEngineInterface::class );
 
 	$settings = array(

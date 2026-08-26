@@ -14,6 +14,8 @@ use Catalogist\Catalog\CatalogServiceProvider;
 use Catalogist\CatalogItem\CatalogServiceProvider as CatalogItemServiceProvider;
 use Catalogist\Elementor\ElementorServiceProvider;
 use Catalogist\Product\ProductServiceProvider;
+use Catalogist\Print\PrintServiceProvider;
+use Catalogist\Preview\PreviewServiceProvider;
 use Catalogist\Security\SecurityServiceProvider;
 use Catalogist\Template\TemplateServiceProvider;
 use Catalogist\Variation\VariationServiceProvider;
@@ -149,6 +151,8 @@ final class Plugin {
 			ProductServiceProvider::class,
 			VariationServiceProvider::class,
 			new TemplateServiceProvider( CATALOGIST_PLUGIN_DIR ),
+			new PrintServiceProvider( CATALOGIST_PLUGIN_DIR ),
+			new PreviewServiceProvider(),
 		);
 
 		// Conditionally add Elementor service provider when Elementor is active.
