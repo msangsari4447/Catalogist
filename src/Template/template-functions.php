@@ -10,7 +10,8 @@ declare(strict_types=1);
 namespace Catalogist\Template;
 
 use Catalogist\Core\Plugin;
-use Catalogist\Print\PrintEngineInterface;
+use Catalogist\Output\OutputEngineInterface;
+use Catalogist\Output\OutputFormat;
 use Catalogist\Product\ProductQueryArgs;
 use Catalogist\Product\ProductRepositoryInterface;
 use Catalogist\Catalog\CatalogRepositoryInterface;
@@ -89,9 +90,14 @@ function render_catalog( int $catalogId, ?array $settings = null ): string {
 
 	$catalogItems = $catalogProcessor->process( $productResult, $variationArgs );
 
-	$templateEngine = $container->get( TemplateEngineInterface::class );
+	$outputEngine = $container->get( OutputEngineInterface::class );
 
-	return $templateEngine->renderCatalog( $catalog, $catalogItems, $settings );
+	return $outputEngine->generate(
+		$catalog,
+		$catalogItems,
+		OutputFormat::HTML,
+		$settings ?? array()
+	);
 }
 
 /**
@@ -149,7 +155,12 @@ function render_catalog_print( int $catalogId, ?array $settings = null ): string
 
 	$catalogItems = $catalogProcessor->process( $productResult, $variationArgs );
 
-	$printEngine = $container->get( PrintEngineInterface::class );
+	$outputEngine = $container->get( OutputEngineInterface::class );
 
-	return $printEngine->generatePrintHTML( $catalog, $catalogItems, $settings );
+	return $outputEngine->generate(
+		$catalog,
+		$catalogItems,
+		OutputFormat::PRINT,
+		$settings ?? array()
+	);
 }

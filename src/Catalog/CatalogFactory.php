@@ -138,5 +138,10 @@ final class CatalogFactory {
 		if ( is_array( $print_settings ) ) {
 			$catalog->set_print_settings( $print_settings );
 		}
+
+		$output_settings = get_post_meta( $id, '_catalogist_output_settings', true );
+		if ( is_array( $output_settings ) ) {
+			$catalog->set_output_settings( $output_settings );
+		}
 	}
 }

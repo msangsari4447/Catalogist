@@ -131,5 +131,6 @@ final class CatalogRepository implements CatalogRepositoryInterface {
 		update_post_meta( $id, '_catalogist_template_id', $catalog->get_template_id() );
 		update_post_meta( $id, '_catalogist_layout_settings', $catalog->get_layout_settings() );
 		update_post_meta( $id, '_catalogist_print_settings', $catalog->get_print_settings() );
+		update_post_meta( $id, '_catalogist_output_settings', $catalog->get_output_settings() );
 	}
 }

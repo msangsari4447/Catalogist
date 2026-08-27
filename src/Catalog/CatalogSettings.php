@@ -54,6 +54,7 @@ final class CatalogSettings implements HookableInterface {
 			'template_id'       => 0,
 			'layout_settings'   => $this->get_default_layout_settings(),
 			'print_settings'    => $this->get_default_print_settings(),
+			'output_settings'   => $this->get_default_output_settings(),
 		);
 	}
 
@@ -89,6 +90,18 @@ final class CatalogSettings implements HookableInterface {
 				'left'   => 20,
 			),
 			'columns'     => 2,
+		);
+	}
+
+	/**
+	 * Get default output settings.
+	 *
+	 * @return array<string, mixed>
+	 */
+	public function get_default_output_settings(): array {
+		return array(
+			'default_format' => 'html',
+			'filename'       => 'catalog-{title}-{date}',
 		);
 	}
 }

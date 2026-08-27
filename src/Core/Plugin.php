@@ -19,6 +19,7 @@ use Catalogist\Preview\PreviewServiceProvider;
 use Catalogist\Security\SecurityServiceProvider;
 use Catalogist\Template\TemplateServiceProvider;
 use Catalogist\Variation\VariationServiceProvider;
+use Catalogist\Output\OutputServiceProvider;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -153,6 +154,7 @@ final class Plugin {
 			new TemplateServiceProvider( CATALOGIST_PLUGIN_DIR ),
 			new PrintServiceProvider( CATALOGIST_PLUGIN_DIR ),
 			new PreviewServiceProvider(),
+			new OutputServiceProvider(),
 		);
 
 		// Conditionally add Elementor service provider when Elementor is active.

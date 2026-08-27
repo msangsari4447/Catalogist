@@ -85,6 +85,13 @@ final class Catalog {
 	private array $print_settings = array();
 
 	/**
+	 * Output settings.
+	 *
+	 * @var array<string, mixed>
+	 */
+	private array $output_settings = array();
+
+	/**
 	 * Created timestamp.
 	 *
 	 * @var string
@@ -299,6 +306,26 @@ final class Catalog {
 	}
 
 	/**
+	 * Get output settings.
+	 *
+	 * @return array<string, mixed>
+	 */
+	public function get_output_settings(): array {
+		return $this->output_settings;
+	}
+
+	/**
+	 * Set output settings.
+	 *
+	 * @param array<string, mixed> $settings Settings.
+	 *
+	 * @return void
+	 */
+	public function set_output_settings( array $settings ): void {
+		$this->output_settings = $settings;
+	}
+
+	/**
 	 * Get created timestamp.
 	 *
 	 * @return string
@@ -355,6 +382,7 @@ final class Catalog {
 			'template_id'      => $this->template_id,
 			'layout_settings'  => $this->layout_settings,
 			'print_settings'   => $this->print_settings,
+			'output_settings'  => $this->output_settings,
 			'created_at'       => $this->created_at,
 			'updated_at'       => $this->updated_at,
 		);
