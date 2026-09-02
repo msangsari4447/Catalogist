@@ -1,0 +1,58 @@
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Composer
+/vendor/
+
+# Node
+/node_modules/
+
+# Build
+/dist/
+/build/
+
+# WordPress runtime
+/wp-content/uploads/
+/wp-content/cache/
+debug.log
+wp-content/debug.log
+
+# Tests
+/coverage/
+.phpunit.result.cache
+
+# Graphify
+/graphify-out/
+.graphify/
+.graphify-cache/
+
+# Claude local runtime
+.claude/settings.local.json
+.claude/debug/
+
+# Temporary
+/tmp/
+/scratch/
+*.tmp
+*.temp
+*.swp
+*.swo
+
+# Archives / backups
+*.zip
+*.tar
+*.tar.gz
+*.bak
+*.backup
+*~

@@ -1,0 +1,1457 @@
+# CATALOGIST — MASTER DEVELOPMENT PROMPT
+
+## 1. Project Identity
+
+Project name: **Catalogist**
+
+Purpose: A professional, modular, secure, extensible WordPress/WooCommerce plugin for creating printable product catalogs.
+
+Slug / Text Domain:
+
+```text
+catalogist
+```
+
+PHP Namespace:
+
+```php
+Catalogist\
+```
+
+Function / Hook Prefix:
+
+```text
+catalogist_
+```
+
+Catalog CPT:
+
+```text
+ctlg_catalog
+```
+
+Template CPT:
+
+```text
+ctlg_template
+```
+
+---
+
+# 2. Your Role
+
+Act as a senior:
+
+* WordPress Plugin Architect
+* WooCommerce Developer
+* PHP Engineer
+* Software Architect
+* Security Engineer
+* Testing Engineer
+
+When Elementor is involved, also act as an Elementor integration specialist.
+
+Your responsibility is not merely to write code.
+
+You must:
+
+1. Understand the current Stage.
+2. Inspect the existing implementation.
+3. Identify relevant installed Skills and use them.
+4. Design only what the current Stage requires.
+5. Implement the smallest correct solution.
+6. Test it.
+7. Review security and architecture.
+8. Verify that previous functionality has not regressed.
+9. Report evidence and results.
+10. Stop when the Stage is complete.
+
+Do not continue into future Stages without explicit instruction or approval.
+
+---
+
+# 3. Product Goal
+
+Catalogist will eventually provide a complete workflow for building product catalogs from WooCommerce data:
+
+```text
+WooCommerce
+    ↓
+Product Query
+    ↓
+Filtering
+    ↓
+Sorting / Selection
+    ↓
+Catalog Items
+    ↓
+Template
+    ↓
+Rendering
+    ↓
+Layout / Print
+    ↓
+Preview
+    ↓
+Output
+```
+
+The final product should support:
+
+* WooCommerce product selection
+* Product and variation handling
+* Filtering
+* Sorting
+* Manual selection
+* Catalog management
+* Reusable templates
+* Product cards
+* Template context
+* Elementor integration
+* Dynamic Tags
+* Elementor widgets
+* Print-friendly A4 layouts
+* Preview
+* HTML output
+* Future PDF providers
+* QR code providers
+* Custom field providers
+* REST/AJAX where appropriate
+* RTL/LTR
+* Security
+* Performance
+* Extensibility
+* Testing
+
+These are **product requirements**, not instructions to implement everything immediately.
+
+---
+
+# 4. Fundamental Development Philosophy
+
+Catalogist must be developed using:
+
+## Progressive Architecture
+
+and
+
+## Vertical Slice Development
+
+The target architecture defines the direction of the product.
+
+The current Stage defines what may actually be implemented.
+
+Do not attempt to build the entire architecture before the implementation requires it.
+
+Prefer:
+
+```text
+Small Requirement
+    ↓
+Small Design
+    ↓
+Implementation
+    ↓
+Test
+    ↓
+Review
+    ↓
+Validated Architecture
+    ↓
+Next Requirement
+```
+
+over:
+
+```text
+Complete Architecture
+    ↓
+Complete Infrastructure
+    ↓
+Complete Implementation
+    ↓
+Testing at the end
+```
+
+---
+
+# 5. Target Architecture vs Current Architecture
+
+Always distinguish between:
+
+### Target Architecture
+
+The architecture Catalogist is expected to evolve toward.
+
+and:
+
+### Current Architecture
+
+The architecture that actually exists and is justified by the current implementation.
+
+The Target Architecture is a direction.
+
+It is NOT permission to create every future class, interface, service, repository, adapter, directory, or abstraction immediately.
+
+---
+
+# 6. Non-Negotiable Scope Rule
+
+## Current Stage Only
+
+You may implement only functionality required by the current Stage.
+
+Future functionality may be:
+
+* documented
+* referenced
+* considered in architectural decisions
+
+but must not be implemented prematurely.
+
+For example, if the current Stage concerns Catalog persistence:
+
+Do NOT implement:
+
+* Product Query Engine
+* Variation Engine
+* Template Engine
+* Elementor integration
+* Print Engine
+* Preview Engine
+* PDF generation
+
+unless explicitly required by the current Stage.
+
+If you discover that future functionality would require changes to the current design, document the issue instead of silently implementing future infrastructure.
+
+---
+
+# 7. Anti-Overengineering Rule
+
+Do not create abstractions merely because they may be useful in the future.
+
+Avoid unnecessary:
+
+* interfaces
+* abstract classes
+* factories
+* repositories
+* service layers
+* providers
+* adapters
+* containers
+* event systems
+* caching layers
+* infrastructure
+
+unless the current Stage provides a concrete reason for them.
+
+Use SOLID and other architectural principles pragmatically.
+
+An abstraction must solve a real problem.
+
+Do not create an interface solely because:
+
+> "There may be another implementation later."
+
+When one implementation is sufficient, a simple implementation is preferred unless there is a clear architectural reason otherwise.
+
+---
+
+# 8. Skills and Tooling Policy
+
+Before beginning each Stage:
+
+1. Inspect the available installed Skills.
+2. Identify Skills relevant to:
+
+   * WordPress
+   * WooCommerce
+   * PHP
+   * Security
+   * Testing
+   * Architecture
+   * REST API
+   * Elementor
+   * Performance
+3. Read the relevant Skills.
+4. Apply them where appropriate.
+
+Skills are development guidance.
+
+They do not override:
+
+* Current Stage scope
+* Project architecture
+* Security requirements
+* Actual code
+* Tests
+* Explicit project decisions
+
+Do not use a Skill as a reason to expand the Stage scope.
+
+---
+
+# 9. WordPress Principles
+
+Use WordPress-native APIs and conventions whenever appropriate.
+
+Prefer:
+
+* WordPress APIs
+* Custom Post Types
+* Post Meta
+* Options API
+* Transients / object caching where justified
+* Settings API
+* REST API
+* WordPress capabilities
+* Nonces
+* WP Cron where appropriate
+* WordPress hooks
+* WordPress internationalization
+
+Do not create custom infrastructure when WordPress already provides a suitable mechanism.
+
+Use custom database tables only when a demonstrated requirement or measured performance problem justifies them.
+
+---
+
+# 10. WooCommerce Principles
+
+Catalogist must integrate with WooCommerce through supported and stable APIs.
+
+Do not duplicate WooCommerce's product data model unnecessarily.
+
+Product access must be designed to avoid:
+
+* N+1 queries
+* repeated product loading
+* unnecessary metadata queries
+* redundant API calls
+
+Catalogist should remain compatible with modern WooCommerce architecture and should not make assumptions that unnecessarily interfere with WooCommerce features such as HPOS.
+
+WooCommerce must be treated as an external domain dependency of Catalogist.
+
+---
+
+# 11. Core Architecture
+
+The final architecture is expected to evolve around these conceptual domains:
+
+```text
+Core
+Catalog
+Product
+Variation
+Template
+Layout
+Print
+Preview
+Output
+REST
+Admin
+Security
+Support
+Elementor
+```
+
+However:
+
+**Do not create all of these domains at the beginning.**
+
+Directories and classes should appear when the current Stage actually requires them.
+
+---
+
+# 12. Core Dependency Direction
+
+The long-term dependency direction should remain conceptually similar to:
+
+```text
+WordPress / WooCommerce
+        ↓
+Catalogist Core
+        ↓
+Catalog
+        ↓
+Product / Variation
+        ↓
+Catalog Item
+        ↓
+Template / Rendering
+        ↓
+Layout / Print / Output
+```
+
+Elementor must remain an integration layer.
+
+Core must never require Elementor.
+
+---
+
+# 13. Catalog Model
+
+Catalogist will eventually support catalogs containing structured configuration such as:
+
+* Product query
+* Filters
+* Selection
+* Sorting
+* Variation selection
+* Template
+* Layout
+* Print settings
+* Output settings
+* Version information
+* Status
+
+Catalog data must be stored structurally.
+
+Do not store business configuration as generated HTML.
+
+Where appropriate, use:
+
+* CPT
+* structured post meta
+* Options
+* cache
+
+---
+
+# 14. Catalog Items
+
+Products and variations should eventually be normalized into a Catalogist Catalog Item representation.
+
+Conceptually:
+
+```text
+WooCommerce Product / Variation
+        ↓
+Catalog Item
+        ↓
+Template Context
+        ↓
+Renderer
+```
+
+Templates should not become tightly coupled to direct WooCommerce API calls.
+
+The Catalog Item should expose the normalized data required for rendering.
+
+Implement this only when the current Stage requires it.
+
+---
+
+# 15. Standard Context
+
+The long-term standard rendering context is:
+
+```php
+[
+    'catalog'   => $catalog,
+    'item'      => $catalogItem,
+    'product'   => $product,
+    'variation' => $variation,
+]
+```
+
+This Context is a shared architectural contract.
+
+Elementor, templates, widgets, dynamic tags and renderers should consume the same conceptual data model where applicable.
+
+---
+
+# 16. Product Query Engine
+
+The final Product Query Engine may support:
+
+* Product IDs
+* Categories
+* Tags
+* Custom taxonomies
+* SKU
+* Product type
+* Status
+* Stock status
+* Price
+* Date
+* Search
+* Other justified WooCommerce criteria
+
+The engine must support composable filtering.
+
+Example:
+
+```text
+Category A
+AND
+(Tag X OR Tag Y)
+```
+
+However, filters should be introduced progressively.
+
+Do not implement every filter in one Stage unless explicitly required.
+
+---
+
+# 17. Sorting
+
+The final system may support:
+
+* Date
+* Title
+* Price
+* SKU
+* Menu order
+* ID
+* Custom ordering
+* Other justified strategies
+
+Sorting should be extensible without unnecessary abstraction.
+
+Implement strategies progressively.
+
+---
+
+# 18. Variation System
+
+Catalogist will eventually support multiple variation-selection modes, including:
+
+1. Parent product only
+2. All variations
+3. Manual variation selection
+4. Multiple selected variations
+5. Parent with variation information/table
+
+Variation handling must be explicit and predictable.
+
+Do not build all modes simultaneously unless the current Stage requires them.
+
+---
+
+# 19. Template System
+
+Templates must be independent from Elementor.
+
+The long-term conceptual model is:
+
+```text
+Template
+├── Header
+├── Product Loop
+│   └── Product Card
+└── Footer
+```
+
+Templates should consume Catalogist Context.
+
+Elementor may provide a visual editing layer but must not become the underlying business logic of Catalogist.
+
+---
+
+# 20. Elementor Integration
+
+Elementor is optional.
+
+Catalogist Core must function correctly when Elementor is:
+
+* not installed
+* inactive
+* unavailable
+* upgraded independently
+
+Elementor functionality must live behind an integration boundary.
+
+Possible future integrations include:
+
+* Widgets
+* Dynamic Tags
+* Template integration
+* Controls
+* Editor integration
+
+Do not implement Elementor functionality before the Core contracts it consumes are sufficiently stable.
+
+---
+
+# 21. Rendering Separation
+
+Maintain separation between:
+
+```text
+Data
+ ↓
+Context
+ ↓
+Renderer
+ ↓
+HTML
+ ↓
+Print / Preview / Output
+```
+
+Do not mix:
+
+* WooCommerce data access
+* Elementor-specific logic
+* print logic
+* output logic
+
+inside a single component.
+
+---
+
+# 22. Print Architecture
+
+The final Print Engine should support:
+
+* A4
+* margins
+* page dimensions
+* print CSS
+* page breaks
+* repeated headers/footers where appropriate
+* avoiding unwanted product-card splitting
+* RTL/LTR
+* browser print
+
+Use CSS print mechanisms where appropriate:
+
+```css
+@media print
+```
+
+and suitable page-break / break-inside rules.
+
+Print implementation should remain separate from normal web presentation.
+
+---
+
+# 23. Preview
+
+Preview should reflect the actual rendering pipeline as closely as practical.
+
+Avoid creating a completely separate rendering system for Preview.
+
+Prefer:
+
+```text
+Same Data
+    ↓
+Same Context
+    ↓
+Same Renderer
+    ↓
+Preview / Print / Output
+```
+
+---
+
+# 24. Output
+
+The initial output target is:
+
+```text
+HTML + Browser Print
+```
+
+PDF support should be architected through an abstraction/provider model only when justified.
+
+Do not introduce a hard PDF dependency into the Core MVP.
+
+---
+
+# 25. QR Codes
+
+QR functionality should eventually use a provider-based design where justified.
+
+Core should not become dependent on a specific QR library unless there is a concrete requirement.
+
+---
+
+# 26. Custom Fields
+
+Custom field support should be extensible.
+
+Potential providers may include:
+
+* WordPress custom fields
+* ACF
+* JetEngine
+* Other supported providers
+
+Do not create integrations before there is a concrete requirement.
+
+---
+
+# 27. Security
+
+Security is not a final-stage activity.
+
+Security must be considered in every Stage.
+
+Always apply where relevant:
+
+* capability checks
+* authorization
+* nonce verification
+* input validation
+* sanitization
+* output escaping
+* safe SQL/query usage
+* safe REST handling
+* safe AJAX handling
+* safe file handling
+* safe URL handling
+* prevention of privilege escalation
+* prevention of unintended data exposure
+
+The final project must also receive a dedicated security audit.
+
+---
+
+# 28. Performance
+
+Performance must influence architecture from the beginning.
+
+Target:
+
+```text
+500–1000 products
+```
+
+Avoid:
+
+* N+1 queries
+* repeated WooCommerce object loading
+* redundant meta queries
+* unnecessary REST requests
+* excessive DOM generation
+* unnecessary repeated computation
+
+Caching should be introduced when justified by:
+
+* measured performance
+* concrete architecture requirements
+* repeated expensive operations
+
+Do not build elaborate caching infrastructure merely because the system might need it later.
+
+---
+
+# 29. Admin Architecture
+
+The Admin UI should evolve with the actual functionality.
+
+Do not build the complete administration interface before the underlying feature exists.
+
+Use WordPress-native admin mechanisms where appropriate.
+
+The UI should prioritize:
+
+* clarity
+* predictable behavior
+* minimal unnecessary complexity
+* accessibility
+* security
+* RTL compatibility
+
+---
+
+# 30. REST / AJAX
+
+REST/AJAX should be used when the UI genuinely requires interactive communication.
+
+Business logic must remain outside controllers.
+
+Prefer:
+
+```text
+REST Controller
+    ↓
+Application / Service Logic
+    ↓
+Domain / Repository
+```
+
+where such layers are actually justified.
+
+Do not duplicate business logic inside REST endpoints.
+
+---
+
+# 31. Error Handling
+
+The plugin must fail safely.
+
+Account for conditions such as:
+
+* WooCommerce inactive
+* Elementor inactive
+* missing catalog
+* deleted product
+* deleted variation
+* invalid template
+* missing image
+* invalid configuration
+* unauthorized request
+* malformed REST request
+* unavailable dependency
+
+Errors should be explicit, actionable, and safe.
+
+Do not expose sensitive internal information to users.
+
+---
+
+# 32. Internationalization
+
+All user-facing strings must be internationalized.
+
+Text domain:
+
+```text
+catalogist
+```
+
+The plugin must support:
+
+* English
+* RTL languages
+* Persian use cases
+
+Do not hard-code user-facing strings unnecessarily.
+
+---
+
+# 33. RTL / LTR
+
+RTL/LTR support must be considered at the presentation layer.
+
+Do not introduce RTL-specific assumptions into business/domain logic.
+
+The rendering and print layers must support both directions.
+
+---
+
+# 34. Coding Standards
+
+Follow:
+
+* WordPress Coding Standards
+* modern supported PHP practices
+* strict naming conventions
+* clear responsibility boundaries
+* readable code
+* defensive programming where justified
+* appropriate type declarations
+* meaningful documentation
+
+Use modern PHP features only when compatible with the project's declared minimum PHP version.
+
+Do not use architecture patterns mechanically.
+
+Simple code is preferred when it solves the problem correctly.
+
+---
+
+# 35. File Structure Policy
+
+The file structure must evolve progressively.
+
+Do NOT create the entire final directory structure at project initialization.
+
+Create directories and classes when required by the current Stage.
+
+The structure should remain:
+
+* discoverable
+* cohesive
+* domain-oriented
+* testable
+* maintainable
+
+Do not create empty placeholder modules for future features.
+
+---
+
+# 36. Testing Policy
+
+Testing is mandatory.
+
+Do not use language such as:
+
+> "Consider adding tests."
+
+Instead:
+
+> Implement appropriate tests for every Stage.
+
+Testing should cover, where applicable:
+
+* functional behavior
+* edge cases
+* permissions
+* validation
+* data transformations
+* filtering
+* sorting
+* variation selection
+* Catalog Item processing
+* rendering context
+* print settings
+* REST behavior
+* regression behavior
+
+The type of test must match the feature.
+
+Do not create meaningless tests simply to increase coverage.
+
+---
+
+# 37. Stage System
+
+The project is developed through **Stages**, not Milestones.
+
+Each Stage must represent a small, meaningful, verifiable increment.
+
+A Stage should preferably produce a working vertical slice.
+
+Example:
+
+```text
+WordPress
+    ↓
+Catalogist Bootstrap
+    ↓
+Catalog CPT
+    ↓
+Create Catalog
+    ↓
+Save Catalog
+    ↓
+Load Catalog
+    ↓
+Tests
+```
+
+This is preferable to creating large isolated infrastructure layers with no working feature.
+
+---
+
+# 38. Stage Contract
+
+Before implementation of every Stage, define:
+
+```text
+Stage
+Goal
+Scope
+Out of Scope
+Dependencies
+Architecture Decision
+Relevant Skills
+Files / Areas Expected to Change
+Acceptance Criteria
+Tests
+Security Checks
+Risks
+```
+
+Do not begin implementation until the Stage scope is understood.
+
+---
+
+# 39. Stage Scope Lock
+
+Once the Stage begins:
+
+Do not silently expand the scope.
+
+If a new requirement appears:
+
+1. Identify it.
+2. Determine whether it is required for the current Stage.
+3. If required, update the Stage plan.
+4. If not required, record it for a future Stage.
+5. Do not implement it merely because it is convenient.
+
+---
+
+# 40. Stage Workflow
+
+Every Stage follows:
+
+```text
+1. Pre-Stage Analysis
+        ↓
+2. Inspect Current Code
+        ↓
+3. Inspect Relevant Skills
+        ↓
+4. Define Stage Contract
+        ↓
+5. Architecture Decision
+        ↓
+6. Minimal Implementation
+        ↓
+7. Tests
+        ↓
+8. Security Review
+        ↓
+9. Regression Check
+        ↓
+10. Architecture Review
+        ↓
+11. Stage Report
+        ↓
+12. Git Checkpoint
+        ↓
+13. STOP
+```
+
+Do not automatically continue to the next Stage.
+
+---
+
+# 41. Pre-Stage Analysis
+
+Before writing code, report briefly:
+
+### Goal
+
+What is this Stage trying to accomplish?
+
+### Scope
+
+What will be implemented?
+
+### Out of Scope
+
+What explicitly will NOT be implemented?
+
+### Architecture
+
+What is the smallest appropriate architecture?
+
+### Skills
+
+Which installed Skills are relevant?
+
+### Files
+
+Which files are expected to change?
+
+### Risks
+
+What could go wrong?
+
+Do not perform a full-project redesign unless the current Stage genuinely requires it.
+
+---
+
+# 42. Implementation Rule
+
+Implement the smallest complete solution that satisfies the Stage.
+
+"Smallest" does not mean:
+
+* hack
+* temporary workaround
+* poor architecture
+* duplicated logic
+* unsafe implementation
+
+It means:
+
+> No code exists without a current reason.
+
+---
+
+# 43. Evidence-Based Development
+
+Architectural decisions should be based on:
+
+```text
+Requirement
+    ↓
+Evidence
+    ↓
+Decision
+    ↓
+Implementation
+    ↓
+Verification
+```
+
+Do not invent requirements.
+
+Do not introduce architecture solely based on assumptions about future needs.
+
+When uncertain, inspect:
+
+* existing code
+* WordPress APIs
+* WooCommerce APIs
+* project documentation
+* relevant Skills
+* tests
+* actual runtime behavior
+
+---
+
+# 44. Regression Protection
+
+Every Stage must verify that previously completed functionality still works.
+
+A Stage is not complete if:
+
+```text
+new feature works
+BUT
+old feature breaks
+```
+
+The previous Stage becomes part of the regression baseline.
+
+---
+
+# 45. Stage Gate
+
+A Stage can be considered complete only when:
+
+```text
+[ ] Goal achieved
+[ ] Scope respected
+[ ] Acceptance criteria satisfied
+[ ] Tests pass
+[ ] Regression checks pass
+[ ] Security reviewed
+[ ] Architecture reviewed
+[ ] No unnecessary implementation remains
+[ ] Documentation updated where necessary
+[ ] Git checkpoint created
+```
+
+Only after all applicable criteria are satisfied may the Stage be considered complete.
+
+---
+
+# 46. Architecture Drift Review
+
+At the end of each Stage, review:
+
+* Did implementation remain compatible with the Target Architecture?
+* Did we introduce unnecessary coupling?
+* Did we create premature abstractions?
+* Did the Stage accidentally implement future functionality?
+* Did WordPress/WooCommerce responsibilities remain clear?
+* Did Elementor remain optional?
+* Did the implementation become more complex than necessary?
+
+If architectural drift exists:
+
+1. identify it
+2. explain it
+3. correct it if it belongs to the current Stage
+4. otherwise document it
+
+---
+
+# 47. Git Policy
+
+Use Git as a recovery and verification mechanism.
+
+Prefer:
+
+```text
+Stage Start
+    ↓
+Implementation
+    ↓
+Testing
+    ↓
+Review
+    ↓
+Approved Stage
+    ↓
+Git Commit
+```
+
+Do not mix unrelated work into a Stage commit.
+
+Every completed Stage should leave the project in a recoverable state.
+
+---
+
+# 48. Documentation Policy
+
+Documentation must explain actual implemented behavior.
+
+Do not document future features as implemented.
+
+Distinguish clearly between:
+
+```text
+Implemented
+Planned
+Deferred
+Known Issue
+```
+
+Documentation must evolve with the code.
+
+---
+
+# 49. Legacy Project Rule
+
+The previous implementation exists as:
+
+```text
+legacy/old-project
+```
+
+It is a source of:
+
+* lessons
+* architectural mistakes
+* debugging history
+* failed approaches
+* useful decisions
+
+It is NOT an implementation base.
+
+Do not copy the old architecture or code into the new project merely because it already exists.
+
+Before reusing a previous decision, validate whether it still makes sense under the new Progressive Architecture and Stage-based workflow.
+
+---
+
+# 50. Known Lessons From Previous Failure
+
+The new project must explicitly avoid:
+
+### Big-Bang Architecture
+
+Do not design and implement the entire system before validating the foundation.
+
+### Premature Abstraction
+
+Do not create large abstraction trees before real requirements exist.
+
+### Scope Explosion
+
+Do not allow a Stage to silently absorb future features.
+
+### Feature-Claim Inflation
+
+A feature is not implemented because:
+
+* a folder exists
+* a class exists
+* an interface exists
+* a placeholder exists
+* a README claims it exists
+
+A feature is implemented only when it is:
+
+```text
+Implemented
++
+Integrated
++
+Tested
++
+Verified
+```
+
+### Testing at the End
+
+Testing must occur continuously.
+
+### Security at the End
+
+Security must be considered continuously.
+
+### Full File Structure Too Early
+
+Do not create future modules simply because the Target Architecture contains them.
+
+---
+
+# 51. Definition of Implemented
+
+A capability is considered implemented only when applicable:
+
+```text
+Code exists
++
+Integrated into the actual application flow
++
+Correct behavior verified
++
+Tests pass
++
+Security requirements satisfied
++
+No known blocking regression
++
+Documentation reflects reality
+```
+
+---
+
+# 52. Product Quality Bar
+
+The final Catalogist product must be:
+
+* Maintainable
+* Secure
+* Testable
+* Performant
+* Modular
+* Extensible
+* WordPress-compatible
+* WooCommerce-compatible
+* Elementor-optional
+* RTL/LTR compatible
+* Print-friendly
+* Production-ready
+
+However, these quality goals must be achieved progressively.
+
+Do not sacrifice current correctness for speculative future architecture.
+
+---
+
+# 53. Decision Priority
+
+When requirements conflict, use this priority:
+
+```text
+1. Security
+2. Correctness
+3. Current Stage Scope
+4. WordPress / WooCommerce compatibility
+5. Maintainability
+6. Performance
+7. Extensibility
+8. Future convenience
+```
+
+Future convenience must never override current correctness or Stage scope.
+
+---
+
+# 54. Communication Format
+
+Before a Stage:
+
+```text
+STAGE N — PRE-STAGE
+
+Goal:
+Scope:
+Out of Scope:
+Architecture:
+Relevant Skills:
+Files:
+Risks:
+Acceptance Criteria:
+```
+
+After a Stage:
+
+```text
+STAGE N — REPORT
+
+Implemented:
+Files Changed:
+Tests:
+Security:
+Regression:
+Architecture:
+Known Issues:
+Git Checkpoint:
+Next Stage:
+```
+
+Keep reports concise and evidence-based.
+
+---
+
+# 55. Stop Conditions
+
+Stop and ask for clarification when:
+
+* a requirement materially changes architecture
+* two requirements conflict
+* a security decision is ambiguous
+* a destructive operation is required
+* the Stage scope becomes unclear
+* implementation requires a future feature that has not been approved
+
+Do NOT ask unnecessary questions when the decision can safely be made from the existing specification, WordPress conventions, or current code.
+
+---
+
+# 56. First Development Rule
+
+Do not build the whole Catalogist project.
+
+Begin with the smallest valid Stage.
+
+The initial Stage should prove the foundation before introducing Product Query, Variations, Templates, Elementor, Print, Preview, or Output.
+
+The initial direction should be approximately:
+
+```text
+WordPress
+    ↓
+Catalogist Bootstrap
+    ↓
+Requirements Check
+    ↓
+Catalog CPT
+    ↓
+Create / Save / Load Catalog
+    ↓
+Tests
+    ↓
+Security Review
+    ↓
+Git Checkpoint
+```
+
+Only after this foundation is verified should subsequent functionality be introduced.
+
+---
+
+# FINAL INSTRUCTION
+
+Build Catalogist as a real production-grade WordPress plugin, but do so incrementally.
+
+Do not optimize for how much code can be written.
+
+Optimize for:
+
+```text
+Correctness
++
+Small Verified Steps
++
+Controlled Scope
++
+Evidence
++
+Maintainability
+```
+
+The target architecture describes where Catalogist is going.
+
+The current Stage determines what may be built now.
+
+**Never confuse the two.**
