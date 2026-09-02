@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<ruleset name="Catalogist">
+    <description>Catalogist coding standards.</description>
+
+    <rule ref="WordPress-Extra">
+        <exclude name="WordPress.Files.FileName.NotHyphenatedLowercase"/>
+        <exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
+    </rule>
+
+    <file>src</file>
+    <file>tests</file>
+
+    <arg value="ps"/>
+    <arg name="basepath" value="."/>
+
+    <exclude-pattern>vendor/</exclude-pattern>
+    <exclude-pattern>node_modules/</exclude-pattern>
+</ruleset>

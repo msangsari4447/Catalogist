@@ -8,9 +8,9 @@
             "email": "msangsari4447@gmail.com"
         }
     ],
-    "require": {},
     "require-dev": {
-        "phpunit/phpunit": "^13.3"
+        "phpunit/phpunit": "^13.3",
+        "wp-coding-standards/wpcs": "^3.4"
     },
     "autoload": {
         "psr-4": {
@@ -23,8 +23,14 @@
         }
     },
     "scripts": {
+        "lint": "phpcs",
         "test:unit": "phpunit --testsuite Unit",
-        "test:integration": "docker compose exec wordpress sh -lc \"cd /var/www/html/wp-content/plugins/Catalogist && ./vendor/bin/phpunit --testsuite Integration --bootstrap tests/Integration/Bootstrap.php\"",
+        "test:integration": "docker compose exec wordpress sh -lc \"cd /var/www/html/wp-content/plugins/Catalogist && ./vendor/bin/phpunit --testsuite Integration --bootstrap tests/Integration/bootstrap.php\"",
         "test": "composer test:unit && composer test:integration"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     }
 }

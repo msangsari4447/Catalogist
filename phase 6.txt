@@ -1,0 +1,2422 @@
+D:\wordpress\wp-content\plugins\Catalogist>docker compose exec wordpress sh -lc "cd /var/www/html/wp-content/plugins/Catalogist && ./vendor/bin/phpunit --testsuite Integration --bootstrap tests/Integration/bootstrap.php --display-notices"
+PHPUnit 13.3.2 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 8.5.10
+Configuration: /var/www/html/wp-content/plugins/Catalogist/phpunit.xml
+
+..N                                                                 3 / 3 (100%)
+
+Time: 00:00.456, Memory: 93.00 MB
+
+1 test triggered 301 notices:
+
+1) /var/www/html/wp-includes/functions.php:6260
+Function WP_Icon_Collections_Registry::register was called <strong>incorrectly</strong>. مجموعه آیکون از قبل ثبت شده است. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 7.1.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+2) /var/www/html/wp-includes/functions.php:6260
+Function Automattic\WooCommerce\Blocks\Integrations\IntegrationRegistry::register was called <strong>incorrectly</strong>. &quot;cheque&quot; is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 4.6.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+3) /var/www/html/wp-includes/functions.php:6260
+Function Automattic\WooCommerce\Blocks\Integrations\IntegrationRegistry::register was called <strong>incorrectly</strong>. &quot;paypal&quot; is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 4.6.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+4) /var/www/html/wp-includes/functions.php:6260
+Function Automattic\WooCommerce\Blocks\Integrations\IntegrationRegistry::register was called <strong>incorrectly</strong>. &quot;bacs&quot; is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 4.6.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+5) /var/www/html/wp-includes/functions.php:6260
+Function Automattic\WooCommerce\Blocks\Integrations\IntegrationRegistry::register was called <strong>incorrectly</strong>. &quot;cod&quot; is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 4.6.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+6) /var/www/html/wp-includes/functions.php:6260
+Function WP_Font_Library::register_font_collection was called <strong>incorrectly</strong>. مجموعه فونت با شناسه‌ی "google-fonts" قبلاً ثبت شده است. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 6.5.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+7) /var/www/html/wp-includes/functions.php:6260
+Function WP_Icons_Registry::register was called <strong>incorrectly</strong>. آیکون در حال حاضر ثبت شده است. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 7.1.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered (88 times)
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+8) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Bindings_Registry::register was called <strong>incorrectly</strong>. منبع اتصال بلوک "core/pattern-overrides" قبلاً ثبت شده است. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 6.5.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+9) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Bindings_Registry::register was called <strong>incorrectly</strong>. منبع اتصال بلوک "core/post-data" قبلاً ثبت شده است. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 6.5.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+10) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Bindings_Registry::register was called <strong>incorrectly</strong>. منبع اتصال بلوک "core/post-meta" قبلاً ثبت شده است. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 6.5.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+11) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/legacy-widget" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+12) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/widget-group" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+13) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/accordion" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+14) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/accordion-item" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+15) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/archives" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+16) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/avatar" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+17) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+18) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/breadcrumbs" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+19) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/button" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+20) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/calendar" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+21) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/categories" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+22) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/comment-author-name" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+23) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/comment-content" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+24) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/comment-date" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+25) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/comment-edit-link" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+26) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/comment-reply-link" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+27) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/comment-template" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+28) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/comments" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+29) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/comments-pagination" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+30) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/comments-pagination-next" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+31) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/comments-pagination-numbers" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+32) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/comments-pagination-previous" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+33) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/comments-title" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+34) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/cover" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+35) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/details" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+36) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/file" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+37) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/footnotes" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+38) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/gallery" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+39) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/heading" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+40) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/home-link" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+41) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/icon" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+42) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/image" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+43) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/latest-comments" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+44) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/latest-posts" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+45) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/list" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+46) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/loginout" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+47) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/media-text" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+48) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/navigation" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+49) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/navigation-link" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+50) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/navigation-overlay-close" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+51) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/navigation-submenu" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+52) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/page-list" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+53) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/page-list-item" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+54) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/paragraph" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+55) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/pattern" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+56) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/playlist" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+57) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/playlist-track" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+58) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/post-author" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+59) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/post-author-biography" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+60) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/post-author-name" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+61) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/post-comments-count" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+62) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/post-comments-form" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+63) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/post-comments-link" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+64) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/post-content" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+65) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/post-date" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+66) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/post-excerpt" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+67) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/post-featured-image" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+68) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/post-navigation-link" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+69) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/post-template" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+70) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/post-terms" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+71) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/post-time-to-read" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+72) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/post-title" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+73) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/query" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+74) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/query-no-results" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+75) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/query-pagination" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+76) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/query-pagination-next" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+77) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/query-pagination-numbers" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+78) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/query-pagination-previous" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+79) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/query-title" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+80) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/query-total" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+81) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/read-more" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+82) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/rss" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+83) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/search" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+84) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/shortcode" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+85) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/site-logo" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+86) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/site-tagline" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+87) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/site-title" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+88) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/social-link" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+89) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/tab-list" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+90) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/tab-panel" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+91) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/tabs" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+92) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/tag-cloud" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+93) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/template-part" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+94) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/term-count" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+95) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/term-description" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+96) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/term-name" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+97) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/term-template" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+98) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/video" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+99) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/accordion-heading" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+100) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/accordion-panel" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+101) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/audio" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+102) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/buttons" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+103) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/code" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+104) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/column" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+105) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/columns" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+106) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/embed" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+107) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/freeform" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+108) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/group" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+109) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/html" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+110) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/list-item" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+111) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/math" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+112) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/missing" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+113) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/more" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+114) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/nextpage" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+115) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/preformatted" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+116) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/pullquote" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+117) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/quote" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+118) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/separator" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+119) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/social-links" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+120) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/spacer" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+121) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/tab-panels" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+122) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/table" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+123) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/terms-query" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+124) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/text-columns" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+125) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "core/verse" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+126) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/active-filters" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+127) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/add-to-cart-form" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+128) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/all-products" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+129) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/all-reviews" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+130) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/attribute-filter" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+131) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/breadcrumbs" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+132) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/cart-link" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+133) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/catalog-sorting" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+134) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/category-title" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+135) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/category-description" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+136) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/legacy-template" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+137) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/classic-shortcode" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+138) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/coming-soon" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+139) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/coupon-code" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+140) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/customer-account" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+141) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/dropdown" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+142) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/email-content" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+143) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/featured-category" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+144) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/featured-product" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+145) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/filter-wrapper" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+146) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/handpicked-products" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+147) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/mini-cart" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+148) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-gallery-large-image-next-previous" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+149) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/store-notices" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+150) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/payment-method-icons" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+151) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/price-filter" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+152) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-best-sellers" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+153) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-button" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+154) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-categories" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+155) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-category" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+156) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-collection" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+157) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-collection-no-results" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+158) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-filters" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+159) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-filter-status" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+160) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-filter-price" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+161) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-filter-price-slider" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+162) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-filter-attribute" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+163) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-filter-rating" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+164) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-filter-active" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+165) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-filter-removable-chips" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+166) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-filter-clear-button" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+167) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-filter-checkbox-list" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+168) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-filter-chips" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+169) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-filter-taxonomy" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+170) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-gallery" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+171) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-gallery-large-image" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+172) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-gallery-thumbnails" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+173) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-image" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+174) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-image-gallery" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+175) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-meta" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+176) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-new" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+177) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-on-sale" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+178) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-price" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+179) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-template" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+180) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-query" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+181) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-average-rating" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+182) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-rating" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+183) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-rating-counter" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+184) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-rating-stars" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+185) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-results-count" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+186) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-sale-badge" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+187) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-search" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+188) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-sku" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+189) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-stock-indicator" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+190) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-summary" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+191) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-tag" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+192) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-title" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+193) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-top-rated" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+194) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/products-by-attribute" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+195) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/rating-filter" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+196) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/reviews-by-category" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+197) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/reviews-by-product" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+198) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/related-products" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+199) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/single-product" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+200) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/stock-filter" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+201) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/page-content-wrapper" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+202) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/order-confirmation-status" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+203) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/order-confirmation-summary" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+204) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/order-confirmation-totals" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+205) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/order-confirmation-totals-wrapper" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+206) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/order-confirmation-downloads" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+207) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/order-confirmation-downloads-wrapper" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+208) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/order-confirmation-billing-address" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+209) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/order-confirmation-shipping-address" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+210) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/order-confirmation-billing-wrapper" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+211) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/order-confirmation-shipping-wrapper" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+212) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/order-confirmation-additional-information" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+213) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/order-confirmation-additional-fields-wrapper" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+214) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/order-confirmation-additional-fields" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+215) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/order-confirmation-create-account" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+216) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-details" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+217) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-description" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+218) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-specifications" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+219) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/accordion-group" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+220) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/accordion-item" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+221) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/accordion-panel" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+222) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/accordion-header" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+223) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-reviews" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+224) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-review-rating" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+225) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-reviews-title" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+226) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-review-form" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+227) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-review-date" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+228) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-review-content" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+229) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-review-author-name" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+230) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-reviews-pagination" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+231) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-reviews-pagination-next" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+232) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-reviews-pagination-previous" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+233) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-reviews-pagination-numbers" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+234) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/product-review-template" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+235) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/cart" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+236) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/cart-order-summary-taxes-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+237) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/cart-order-summary-subtotal-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+238) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/cart-order-summary-totals-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+239) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/filled-cart-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+240) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/empty-cart-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+241) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/cart-totals-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+242) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/cart-items-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+243) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/cart-line-items-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+244) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/cart-order-summary-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+245) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/cart-express-payment-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+246) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/proceed-to-checkout-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+247) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/cart-accepted-payment-methods-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+248) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/cart-order-summary-coupon-form-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+249) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/cart-order-summary-discount-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+250) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/cart-order-summary-fee-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+251) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/cart-order-summary-heading-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+252) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/cart-order-summary-shipping-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+253) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/cart-cross-sells-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+254) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/cart-cross-sells-products-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+255) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/checkout" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+256) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/checkout-actions-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+257) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/checkout-additional-information-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+258) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/checkout-billing-address-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+259) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/checkout-contact-information-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+260) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/checkout-express-payment-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+261) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/checkout-fields-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+262) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/checkout-order-note-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+263) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/checkout-order-summary-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+264) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/checkout-order-summary-cart-items-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+265) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/checkout-order-summary-coupon-form-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+266) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/checkout-order-summary-discount-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+267) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/checkout-order-summary-fee-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+268) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/checkout-order-summary-shipping-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+269) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/checkout-order-summary-subtotal-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+270) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/checkout-order-summary-taxes-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+271) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/checkout-order-summary-totals-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+272) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/checkout-payment-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+273) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/checkout-shipping-address-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+274) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/checkout-shipping-methods-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+275) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/checkout-shipping-method-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+276) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/checkout-pickup-options-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+277) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/checkout-terms-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+278) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/checkout-totals-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+279) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/mini-cart-contents" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+280) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/empty-mini-cart-contents-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+281) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/filled-mini-cart-contents-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+282) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/mini-cart-footer-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+283) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/mini-cart-items-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+284) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/mini-cart-products-table-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+285) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/mini-cart-shopping-button-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+286) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/mini-cart-cart-button-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+287) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/mini-cart-checkout-button-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+288) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/mini-cart-title-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+289) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/mini-cart-title-items-counter-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+290) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/mini-cart-title-label-block" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+291) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/add-to-cart-with-options" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+292) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/add-to-cart-with-options-quantity-selector" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+293) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/add-to-cart-with-options-variation-description" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+294) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/add-to-cart-with-options-variation-selector" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+295) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/add-to-cart-with-options-variation-selector-attribute" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+296) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/add-to-cart-with-options-variation-selector-attribute-name" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+297) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/add-to-cart-with-options-grouped-product-selector" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+298) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/add-to-cart-with-options-grouped-product-item" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+299) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/add-to-cart-with-options-grouped-product-item-selector" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+300) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Type_Registry::register was called <strong>incorrectly</strong>. Block type "woocommerce/add-to-cart-with-options-grouped-product-item-label" is already registered. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 5.0.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+301) /var/www/html/wp-includes/functions.php:6260
+Function WP_Block_Bindings_Registry::register was called <strong>incorrectly</strong>. منبع اتصال بلوک "twentytwentyfive/format" قبلاً ثبت شده است. Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (این پیام در نگارش 6.5.0 افزوده شده است.)
+
+Triggered by:
+
+* WordPressBaselineTest::testCatalogPostTypeIsRegistered
+  /var/www/html/wp-content/plugins/Catalogist/tests/Integration/WordPressBaselineTest.php:22
+
+OK, but there were issues!
+Tests: 3, Assertions: 6, Notices: 301.
