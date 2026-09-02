@@ -200,7 +200,20 @@ final class CatalogPostType implements HookableInterface {
 			return array();
 		}
 
-		return $value;
+		$sanitized = array();
+		foreach ( $value as $key => $val ) {
+			if ( is_array( $val ) ) {
+				$sanitized[ $key ] = $this->sanitize_array( $val );
+			} elseif ( is_string( $val ) ) {
+				$sanitized[ $key ] = sanitize_text_field( $val );
+			} elseif ( is_int( $val ) ) {
+				$sanitized[ $key ] = absint( $val );
+			} else {
+				$sanitized[ $key ] = $val;
+			}
+		}
+
+		return $sanitized;
 	}
 
 	/**

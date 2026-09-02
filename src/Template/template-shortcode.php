@@ -59,6 +59,13 @@ function catalogist_shortcode( array $atts ): string {
 	// Validate and sanitize inputs.
 	$catalogId   = absint( $atts['id'] );
 	$template    = sanitize_text_field( $atts['template'] );
+
+	// Whitelist allowed template slugs to prevent template injection.
+	$allowed_templates = array( 'default', 'fallback' );
+	if ( ! in_array( $template, $allowed_templates, true ) ) {
+		$template = 'default';
+	}
+
 	$columns     = max( 1, min( 4, absint( $atts['columns'] ) ) );
 	$order       = in_array( strtoupper( $atts['order'] ), array( 'ASC', 'DESC' ), true ) ? strtoupper( $atts['order'] ) : 'ASC';
 	$orderby     = sanitize_text_field( $atts['orderby'] );
@@ -92,7 +99,7 @@ function catalogist_shortcode( array $atts ): string {
 
 	// Check capability for draft/private catalogs.
 	if ( in_array( $catalog->get_status(), array( 'draft', 'private', 'pending' ), true ) ) {
-		if ( ! current_user_can( 'edit_posts' ) ) {
+		if ( ! current_user_can( 'edit_post', $catalog->get_id() ) ) {
 			return '<p class="catalogist-error">' .
 			       esc_html__( 'You do not have permission to view this catalog.', 'catalogist' ) .
 			       '</p>';
@@ -119,10 +126,10 @@ function catalogist_shortcode( array $atts ): string {
 	$variationArgs = VariationQueryArgs::from_array(
 		array_merge(
 			array(
-				'mode'  => 'parent',
+				'variation_mode' => 'parent',
 			),
 			isset( $catalog->get_product_query()['variation_mode'] )
-				? array( 'mode' => $catalog->get_product_query()['variation_mode'] )
+				? array( 'variation_mode' => $catalog->get_product_query()['variation_mode'] )
 				: array()
 		)
 	);

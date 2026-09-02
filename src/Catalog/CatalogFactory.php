@@ -109,37 +109,40 @@ final class CatalogFactory {
 	private function load_meta( Catalog $catalog ): void {
 		$id = $catalog->get_id();
 
-		$product_query = get_post_meta( $id, '_catalogist_product_query', true );
+		// Batch load all catalog meta in a single query to avoid N+1 meta queries.
+		$meta = get_post_meta( $id );
+
+		$product_query = isset( $meta['_catalogist_product_query'][0] ) ? $meta['_catalogist_product_query'][0] : array();
 		if ( is_array( $product_query ) ) {
 			$catalog->set_product_query( $product_query );
 		}
 
-		$filters = get_post_meta( $id, '_catalogist_filters', true );
+		$filters = isset( $meta['_catalogist_filters'][0] ) ? $meta['_catalogist_filters'][0] : array();
 		if ( is_array( $filters ) ) {
 			$catalog->set_filters( $filters );
 		}
 
-		$selected_products = get_post_meta( $id, '_catalogist_selected_products', true );
+		$selected_products = isset( $meta['_catalogist_selected_products'][0] ) ? $meta['_catalogist_selected_products'][0] : array();
 		if ( is_array( $selected_products ) ) {
 			$catalog->set_selected_products( $selected_products );
 		}
 
-		$template_id = get_post_meta( $id, '_catalogist_template_id', true );
+		$template_id = isset( $meta['_catalogist_template_id'][0] ) ? $meta['_catalogist_template_id'][0] : '';
 		if ( $template_id ) {
 			$catalog->set_template_id( (int) $template_id );
 		}
 
-		$layout_settings = get_post_meta( $id, '_catalogist_layout_settings', true );
+		$layout_settings = isset( $meta['_catalogist_layout_settings'][0] ) ? $meta['_catalogist_layout_settings'][0] : array();
 		if ( is_array( $layout_settings ) ) {
 			$catalog->set_layout_settings( $layout_settings );
 		}
 
-		$print_settings = get_post_meta( $id, '_catalogist_print_settings', true );
+		$print_settings = isset( $meta['_catalogist_print_settings'][0] ) ? $meta['_catalogist_print_settings'][0] : array();
 		if ( is_array( $print_settings ) ) {
 			$catalog->set_print_settings( $print_settings );
 		}
 
-		$output_settings = get_post_meta( $id, '_catalogist_output_settings', true );
+		$output_settings = isset( $meta['_catalogist_output_settings'][0] ) ? $meta['_catalogist_output_settings'][0] : array();
 		if ( is_array( $output_settings ) ) {
 			$catalog->set_output_settings( $output_settings );
 		}

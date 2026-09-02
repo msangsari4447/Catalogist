@@ -19,7 +19,7 @@ use Catalogist\Variation\VariationServiceInterface;
 /**
  * Orchestrates normalization from product/variation query results to CatalogItem objects.
  */
-final class CatalogProcessor {
+final class CatalogProcessor implements CatalogProcessorInterface {
 
 	/**
 	 * Item factory.

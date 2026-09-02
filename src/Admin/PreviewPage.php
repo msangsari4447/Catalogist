@@ -10,9 +10,13 @@ declare(strict_types=1);
 namespace Catalogist\Admin;
 
 use Catalogist\Catalog\CatalogRepositoryInterface;
-use Catalogist\Catalog\CatalogProcessorInterface;
+use Catalogist\CatalogItem\CatalogProcessorInterface;
 use Catalogist\Preview\PreviewEngineInterface;
+use Catalogist\Product\ProductQueryArgs;
+use Catalogist\Product\ProductRepositoryInterface;
 use Catalogist\Security\Capability;
+use Catalogist\Security\Nonce;
+use Catalogist\Variation\VariationQueryArgs;
 
 /**
  * Renders the admin preview page.
@@ -34,6 +38,13 @@ final class PreviewPage {
 	private CatalogProcessorInterface $catalog_processor;
 
 	/**
+	 * Product repository.
+	 *
+	 * @var ProductRepositoryInterface
+	 */
+	private ProductRepositoryInterface $product_repo;
+
+	/**
 	 * Preview engine.
 	 *
 	 * @var PreviewEngineInterface
@@ -43,18 +54,21 @@ final class PreviewPage {
 	/**
 	 * Constructor.
 	 *
-	 * @param CatalogRepositoryInterface $catalog_repo     Catalog repository.
-	 * @param CatalogProcessorInterface  $catalog_processor Catalog processor.
-	 * @param PreviewEngineInterface     $preview_engine    Preview engine.
+	 * @param CatalogRepositoryInterface   $catalog_repo     Catalog repository.
+	 * @param CatalogProcessorInterface    $catalog_processor Catalog processor.
+	 * @param ProductRepositoryInterface   $product_repo      Product repository.
+	 * @param PreviewEngineInterface       $preview_engine    Preview engine.
 	 */
 	public function __construct(
 		CatalogRepositoryInterface $catalog_repo,
 		CatalogProcessorInterface $catalog_processor,
+		ProductRepositoryInterface $product_repo,
 		PreviewEngineInterface $preview_engine
 	) {
-		$this->catalog_repo    = $catalog_repo;
+		$this->catalog_repo      = $catalog_repo;
 		$this->catalog_processor = $catalog_processor;
-		$this->preview_engine  = $preview_engine;
+		$this->product_repo      = $product_repo;
+		$this->preview_engine    = $preview_engine;
 	}
 
 	/**
@@ -124,6 +138,15 @@ final class PreviewPage {
 			);
 		}
 
+		// Verify CSRF nonce for preview action.
+		if ( ! isset( $_GET['_wpnonce'] ) || ! wp_verify_nonce( $_GET['_wpnonce'], 'catalogist_preview_action' ) ) {
+			$this->render_error_page(
+				esc_html__( 'Security error.', 'catalogist' ),
+				esc_html__( 'Invalid security nonce. Please try again.', 'catalogist' )
+			);
+			return;
+		}
+
 		// Get catalog ID from query.
 		$catalog_id = isset( $_GET['catalog_id'] ) ? absint( $_GET['catalog_id'] ) : 0;
 
@@ -136,7 +159,7 @@ final class PreviewPage {
 		}
 
 		// Fetch catalog.
-		$catalog = $this->catalog_repo->find_by_id( $catalog_id );
+		$catalog = $this->catalog_repo->find( $catalog_id );
 
 		if ( $catalog instanceof \WP_Error || null === $catalog ) {
 			$this->render_error_page(
@@ -159,8 +182,34 @@ final class PreviewPage {
 		// Parse optional print settings from query.
 		$print_settings = $this->parse_print_settings();
 
+		// Build product query args from catalog.
+		$product_query_args = ProductQueryArgs::from_array(
+			array_merge(
+				array(
+					'order'   => 'ASC',
+					'orderby' => 'menu_order title',
+				),
+				$catalog->get_product_query()
+			)
+		);
+
+		// Query products.
+		$product_result = $this->product_repo->query( $product_query_args );
+
+		// Build variation query args from catalog and print settings.
+		$variation_mode = 'parent';
+		if ( isset( $catalog->get_product_query()['variation_mode'] ) ) {
+			$variation_mode = $catalog->get_product_query()['variation_mode'];
+		} elseif ( is_array( $print_settings ) && isset( $print_settings['variation_mode'] ) ) {
+			$variation_mode = $print_settings['variation_mode'];
+		}
+
+		$variation_args = VariationQueryArgs::from_array(
+			array( 'variation_mode' => $variation_mode )
+		);
+
 		// Process catalog to get items.
-		$items = $this->catalog_processor->process( $catalog, $print_settings );
+		$items = $this->catalog_processor->process( $product_result, $variation_args );
 
 		// Render preview.
 		echo $this->preview_engine->renderPreview( $catalog, $items, $print_settings );
@@ -189,7 +238,25 @@ final class PreviewPage {
 			return null;
 		}
 
-		return $settings;
+		// Whitelist allowed keys to prevent arbitrary data injection.
+		$allowed_keys = array(
+			'page_size',
+			'orientation',
+			'columns',
+			'margins',
+			'show_header',
+			'show_footer',
+			'show_cover',
+		);
+
+		$filtered = array();
+		foreach ( $allowed_keys as $key ) {
+			if ( array_key_exists( $key, $settings ) ) {
+				$filtered[ $key ] = $settings[ $key ];
+			}
+		}
+
+		return $filtered;
 	}
 
 	/**

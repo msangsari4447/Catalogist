@@ -311,9 +311,9 @@ class CatalogWidget {
 		// Build variation query args from catalog settings.
 		$variation_args = VariationQueryArgs::from_array(
 			array_merge(
-				array( 'mode' => 'parent' ),
+				array( 'variation_mode' => 'parent' ),
 				isset( $catalog->get_product_query()['variation_mode'] )
-					? array( 'mode' => $catalog->get_product_query()['variation_mode'] )
+					? array( 'variation_mode' => $catalog->get_product_query()['variation_mode'] )
 					: array()
 			)
 		);

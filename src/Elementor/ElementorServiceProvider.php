@@ -15,6 +15,7 @@ use Catalogist\Core\Container;
 use Catalogist\Core\ServiceProviderInterface;
 use Catalogist\Elementor\Widgets\ProductCardWidget;
 use Catalogist\Elementor\Widgets\CatalogWidget;
+use Catalogist\Support\Logger;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -132,7 +133,10 @@ class ElementorServiceProvider implements ServiceProviderInterface {
 					$tag_instance = new $tag_class();
 					\ElementorPro\Modules\DynamicTags\Manager::instance()->register_tag( $tag_instance );
 				} catch ( \Throwable $e ) {
-					error_log( 'Catalogist: Failed to register dynamic tag ' . $tag_id . ': ' . $e->getMessage() );
+					Logger::error( 'Failed to register dynamic tag', array(
+						'tag_id' => $tag_id,
+						'error'  => $e->getMessage(),
+					) );
 				}
 			}
 		}
@@ -154,7 +158,10 @@ class ElementorServiceProvider implements ServiceProviderInterface {
 					$widget_instance = new $widget_class();
 					\Elementor\Plugin::instance()->widgets_manager->register_widget_type( $widget_instance );
 				} catch ( \Throwable $e ) {
-					error_log( 'Catalogist: Failed to register widget ' . $widget_id . ': ' . $e->getMessage() );
+					Logger::error( 'Failed to register widget', array(
+						'widget_id' => $widget_id,
+						'error'     => $e->getMessage(),
+					) );
 				}
 			}
 		}

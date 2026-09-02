@@ -58,4 +58,81 @@ class CatalogPostTypeTest extends TestCase {
 			$this->assertNotEmpty( $field );
 		}
 	}
+
+	/**
+	 * Test sanitize_array() recursively sanitizes strings.
+	 *
+	 * @return void
+	 */
+	public function test_sanitize_array_recursively_sanitizes_strings(): void {
+		$post_type = new CatalogPostType();
+
+		$input = array(
+			'name'      => '<script>alert(1)</script>Title',
+			'count'     => '42',
+			'nested'    => array(
+				'inner' => '<b>Bold</b>',
+			),
+		);
+
+		$result = $post_type->sanitize_array( $input );
+
+		$this->assertEquals( 'Title', $result['name'] );
+		$this->assertEquals( 42, $result['count'] );
+		$this->assertEquals( 'Bold', $result['nested']['inner'] );
+		$this->assertIsInt( $result['count'] );
+	}
+
+	/**
+	 * Test sanitize_array() returns empty array for non-array input.
+	 *
+	 * @return void
+	 */
+	public function test_sanitize_array_non_array_input(): void {
+		$post_type = new CatalogPostType();
+
+		$this->assertEquals( array(), $post_type->sanitize_array( 'not an array' ) );
+		$this->assertEquals( array(), $post_type->sanitize_array( 123 ) );
+		$this->assertEquals( array(), $post_type->sanitize_array( null ) );
+	}
+
+	/**
+	 * Test sanitize_array() handles mixed types.
+	 *
+	 * @return void
+	 */
+	public function test_sanitize_array_mixed_types(): void {
+		$post_type = new CatalogPostType();
+
+		$input = array(
+			'string'  => 'hello',
+			'int'     => 42,
+			'float'   => 3.14,
+			'bool'    => true,
+			'array'   => array( 'nested' => 'value' ),
+			'object'  => new stdClass(),
+		);
+
+		$result = $post_type->sanitize_array( $input );
+
+		$this->assertEquals( 'hello', $result['string'] );
+		$this->assertEquals( 42, $result['int'] );
+		$this->assertEquals( 3.14, $result['float'] ); // floats pass through
+		$this->assertTrue( $result['bool'] ); // bools pass through
+		$this->assertEquals( array( 'nested' => 'value' ), $result['array'] );
+		$this->assertInstanceOf( stdClass::class, $result['object'] ); // objects pass through
+	}
+
+	/**
+	 * Test sanitize_int_array() converts all values to positive integers.
+	 *
+	 * @return void
+	 */
+	public function test_sanitize_int_array(): void {
+		$post_type = new CatalogPostType();
+
+		$result = $post_type->sanitize_int_array( array( '1', '2', -5, 'abc', 0 ) );
+
+		$this->assertEquals( array( 1, 2, 5, 0, 0 ), $result );
+	}
 }

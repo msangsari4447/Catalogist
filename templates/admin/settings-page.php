@@ -14,7 +14,7 @@ defined( 'ABSPATH' ) || exit;
 
 	<form action="options.php" method="post" class="catalogist-settings-form">
 		<?php
-		settings_fields( 'catalogist_settings_group' );
+		settings_fields( \Catalogist\Security\Nonce::SETTINGS_ACTION );
 		do_settings_sections( 'catalogist' );
 		submit_button( __( 'Save Settings', 'catalogist' ) );
 		?>

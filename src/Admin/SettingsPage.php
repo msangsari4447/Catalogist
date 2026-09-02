@@ -31,7 +31,7 @@ final class SettingsPage implements HookableInterface {
 	 *
 	 * @var string
 	 */
-	private const OPTION_GROUP = 'catalogist_settings_group';
+	private const OPTION_GROUP = Nonce::SETTINGS_ACTION;
 
 	/**
 	 * Register hooks with WordPress.
@@ -39,8 +39,26 @@ final class SettingsPage implements HookableInterface {
 	 * @return void
 	 */
 	public function register_hooks(): void {
+		add_action( 'admin_init', array( $this, 'verify_settings_nonce' ), 0 );
 		add_action( 'admin_init', array( $this, 'register_settings' ) );
 		add_action( 'admin_menu', array( $this, 'register_options_page' ) );
+	}
+
+	/**
+	 * Verify settings nonce before processing.
+	 *
+	 * @return void
+	 */
+	public function verify_settings_nonce(): void {
+		if ( ! isset( $_REQUEST['option_page'] ) || self::OPTION_GROUP !== $_REQUEST['option_page'] ) {
+			return;
+		}
+
+		if ( ! isset( $_REQUEST['_wpnonce'] ) ) {
+			return;
+		}
+
+		check_admin_referer( self::OPTION_GROUP );
 	}
 
 	/**

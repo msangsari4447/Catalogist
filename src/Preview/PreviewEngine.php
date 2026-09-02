@@ -14,6 +14,7 @@ namespace Catalogist\Preview;
 use Catalogist\Catalog\Catalog;
 use Catalogist\CatalogItem\CatalogItem;
 use Catalogist\Print\PrintEngineInterface;
+use Catalogist\Security\Nonce;
 
 /**
  * Preview engine implementation.
@@ -137,6 +138,7 @@ final class PreviewEngine implements PreviewEngineInterface {
 		$args = array(
 			'page'       => 'catalogist-preview',
 			'catalog_id' => absint( $catalogId ),
+			'_wpnonce'   => wp_create_nonce( 'catalogist_preview_action' ),
 		);
 
 		if ( is_array( $previewSettings ) && ! empty( $previewSettings ) ) {

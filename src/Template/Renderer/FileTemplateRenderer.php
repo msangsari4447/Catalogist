@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace Catalogist\Template\Renderer;
 
+use Catalogist\Support\Logger;
 use Catalogist\Template\TemplateLoaderInterface;
 use Catalogist\Template\TemplateRendererInterface;
 
@@ -48,7 +49,7 @@ final class FileTemplateRenderer implements TemplateRendererInterface {
 		$path = $this->loader->getPath( $templateSlug );
 
 		if ( null === $path ) {
-			error_log( 'Catalogist: Template not found: ' . $templateSlug );
+			Logger::error( 'Template not found', array( 'template_slug' => $templateSlug ) );
 
 			return $this->renderFallback( $context );
 		}
@@ -73,7 +74,10 @@ final class FileTemplateRenderer implements TemplateRendererInterface {
 				ob_end_clean();
 			}
 
-			error_log( 'Catalogist template render error (' . $templateSlug . '): ' . $e->getMessage() );
+			Logger::error( 'Template render error', array(
+				'template_slug' => $templateSlug,
+				'error'         => $e->getMessage(),
+			) );
 
 			return $this->renderFallback( $context );
 		}
@@ -124,7 +128,10 @@ final class FileTemplateRenderer implements TemplateRendererInterface {
 				ob_end_clean();
 			}
 
-			error_log( 'Catalogist section render error (' . $sectionSlug . '): ' . $e->getMessage() );
+			Logger::error( 'Section render error', array(
+				'section_slug' => $sectionSlug,
+				'error'        => $e->getMessage(),
+			) );
 
 			return '';
 		}

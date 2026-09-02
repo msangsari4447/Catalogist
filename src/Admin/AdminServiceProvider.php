@@ -58,7 +58,8 @@ final class AdminServiceProvider implements ServiceProviderInterface {
 			static function ( Container $c ) use ( $container ): PreviewPage {
 				return new PreviewPage(
 					$container->get( \Catalogist\Catalog\CatalogRepositoryInterface::class ),
-					$container->get( \Catalogist\Catalog\CatalogProcessorInterface::class ),
+					$container->get( \Catalogist\CatalogItem\CatalogProcessorInterface::class ),
+					$container->get( \Catalogist\Product\ProductRepositoryInterface::class ),
 					$c->get( PreviewEngineInterface::class )
 				);
 			}

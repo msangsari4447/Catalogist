@@ -1,0 +1,40 @@
+# Dependencies
+/vendor/
+
+# WordPress / local
+*.log
+debug.txt
+
+# Temporary files
+/tmp/
+*.tmp
+
+# Test/debug output
+test_*.php
+test_*.txt
+*_output.txt
+output.txt
+
+# Graphify
+graphify-out/
+src/graphify-out/
+
+# Claude local files
+.claude/
+.agents/
+.codex/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Milestone reports (internal)
+*-milestone-*.md
+*-audit-*.md
+
+# Documentation drafts
+docs/drafts/

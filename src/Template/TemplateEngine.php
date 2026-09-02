@@ -182,7 +182,13 @@ final class TemplateEngine implements TemplateEngineInterface {
 	): string {
 		// Settings override takes precedence.
 		if ( is_array( $settings ) && isset( $settings['template'] ) ) {
-			return sanitize_text_field( $settings['template'] );
+			$slug = sanitize_text_field( $settings['template'] );
+			// Whitelist allowed template slugs to prevent template injection.
+			$allowed_templates = array( 'default', 'fallback' );
+			if ( in_array( $slug, $allowed_templates, true ) ) {
+				return $slug;
+			}
+			return $this->defaultTemplate;
 		}
 
 		$templateId = $catalog->get_template_id();

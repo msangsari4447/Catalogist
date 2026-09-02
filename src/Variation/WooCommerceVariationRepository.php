@@ -17,6 +17,20 @@ defined( 'ABSPATH' ) || exit;
 final class WooCommerceVariationRepository implements VariationRepositoryInterface {
 
 	/**
+	 * Cache transient prefix.
+	 *
+	 * @var string
+	 */
+	private const CACHE_PREFIX = 'catalogist_variation_';
+
+	/**
+	 * Cache TTL in seconds (5 minutes).
+	 *
+	 * @var int
+	 */
+	private const CACHE_TTL = 5 * MINUTE_IN_SECONDS;
+
+	/**
 	 * Get variations for a variable product.
 	 *
 	 * @param int                      $product_id Parent product ID.
@@ -27,6 +41,19 @@ final class WooCommerceVariationRepository implements VariationRepositoryInterfa
 	public function get_variations( int $product_id, VariationQueryArgs $args ): VariationQueryResult {
 		if ( ! $this->is_woocommerce_active() ) {
 			return new VariationQueryResult( $product_id, array(), 0, $args->get_mode() );
+		}
+
+		// Generate cache key based on product ID and query args (mode, excludes, selects).
+		$cache_key = $this->get_variations_cache_key( $product_id, $args );
+		$cached    = get_transient( $cache_key );
+
+		if ( false !== $cached && is_array( $cached ) ) {
+			return new VariationQueryResult(
+				$product_id,
+				$cached['variations'],
+				$cached['total'],
+				$args->get_mode()
+			);
 		}
 
 		$product = wc_get_product( $product_id );
@@ -65,7 +92,38 @@ final class WooCommerceVariationRepository implements VariationRepositoryInterfa
 			$variations = $filtered;
 		}
 
-		return new VariationQueryResult( $product_id, $variations, count( $variations ), $args->get_mode() );
+		$result = new VariationQueryResult( $product_id, $variations, count( $variations ), $args->get_mode() );
+
+		// Cache the result.
+		set_transient(
+			$cache_key,
+			array(
+				'variations' => $variations,
+				'total'      => count( $variations ),
+			),
+			self::CACHE_TTL
+		);
+
+		return $result;
+	}
+
+	/**
+	 * Generate a cache key for variations query.
+	 *
+	 * @param int                 $product_id Parent product ID.
+	 * @param VariationQueryArgs  $args       Variation query arguments.
+	 *
+	 * @return string
+	 */
+	private function get_variations_cache_key( int $product_id, VariationQueryArgs $args ): string {
+		$key_data = array(
+			'product_id'   => $product_id,
+			'mode'         => $args->get_mode()->value,
+			'exclude_ids'  => $args->get_exclude_variation_ids(),
+			'select_ids'   => $args->get_selected_variation_ids(),
+		);
+
+		return self::CACHE_PREFIX . hash( 'sha256', wp_json_encode( $key_data ) );
 	}
 
 	/**
@@ -114,6 +172,14 @@ final class WooCommerceVariationRepository implements VariationRepositoryInterfa
 			return array();
 		}
 
+		// Check cache first.
+		$cache_key = self::CACHE_PREFIX . 'ids_' . $product_id;
+		$cached    = get_transient( $cache_key );
+
+		if ( false !== $cached && is_array( $cached ) ) {
+			return $cached;
+		}
+
 		$product = wc_get_product( $product_id );
 
 		if ( ! $product || ! $this->is_variable( $product ) ) {
@@ -121,8 +187,12 @@ final class WooCommerceVariationRepository implements VariationRepositoryInterfa
 		}
 
 		$ids = $product->get_children();
+		$result = array_map( 'absint', array_filter( $ids ) );
 
-		return array_map( 'absint', array_filter( $ids ) );
+		// Cache the variation IDs.
+		set_transient( $cache_key, $result, self::CACHE_TTL );
+
+		return $result;
 	}
 
 	/**

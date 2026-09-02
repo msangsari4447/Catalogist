@@ -14,6 +14,7 @@ defined( 'ABSPATH' ) || exit;
 use Catalogist\Core\Container;
 use Catalogist\Core\ServiceProviderInterface;
 use Catalogist\Product\ProductRepositoryInterface;
+use Catalogist\Variation\VariationRepositoryInterface;
 use Catalogist\Variation\VariationService;
 use Catalogist\Variation\VariationServiceInterface;
 
@@ -39,7 +40,14 @@ final class CatalogServiceProvider implements ServiceProviderInterface {
 			}
 		);
 
-		$container->set( VariationServiceInterface::class, new VariationService() );
+		$container->factory(
+			VariationServiceInterface::class,
+			static function ( Container $c ): VariationServiceInterface {
+				return new VariationService(
+					$c->get( VariationRepositoryInterface::class )
+				);
+			}
+		);
 
 		$container->factory(
 			CatalogProcessor::class,
@@ -49,6 +57,13 @@ final class CatalogServiceProvider implements ServiceProviderInterface {
 					$c->get( VariationServiceInterface::class ),
 					$c->get( ProductRepositoryInterface::class )
 				);
+			}
+		);
+
+		$container->factory(
+			CatalogProcessorInterface::class,
+			static function ( Container $c ): CatalogProcessorInterface {
+				return $c->get( CatalogProcessor::class );
 			}
 		);
 	}

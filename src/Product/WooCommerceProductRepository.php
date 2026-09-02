@@ -243,38 +243,26 @@ final class WooCommerceProductRepository implements ProductRepositoryInterface {
 	 * @return array<string, mixed>
 	 */
 	private function execute_query( array $query_args, ProductQueryArgs $args ): array {
-		$products = wc_get_products( $query_args );
+		// Use paginate => true to get both products and total in a single query.
+		$paginated_args = $query_args;
+		$paginated_args['paginate'] = true;
 
-		if ( ! is_array( $products ) ) {
+		$result = wc_get_products( $paginated_args );
+
+		if ( ! is_array( $result ) || ! isset( $result['products'] ) ) {
 			return array(
 				'products' => array(),
 				'total'    => 0,
 			);
 		}
 
-		$total = $this->get_total_count( $query_args );
+		$products = $result['products'];
+		$total    = isset( $result['total'] ) ? (int) $result['total'] : count( $products );
 
 		return array(
 			'products' => $products,
 			'total'    => $total,
 		);
-	}
-
-	/**
-	 * Get total count for pagination using count return type.
-	 *
-	 * @param array<string, mixed> $query_args Query args.
-	 *
-	 * @return int
-	 */
-	private function get_total_count( array $query_args ): int {
-		$count_args = $query_args;
-		unset( $count_args['limit'], $count_args['page'] );
-		$count_args['return'] = 'count';
-
-		$total = wc_get_products( $count_args );
-
-		return is_int( $total ) ? $total : 0;
 	}
 
 	/**
@@ -285,6 +273,6 @@ final class WooCommerceProductRepository implements ProductRepositoryInterface {
 	 * @return string
 	 */
 	private function get_cache_key( array $args ): string {
-		return self::CACHE_PREFIX . md5( wp_json_encode( $args ) );
+		return self::CACHE_PREFIX . hash( 'sha256', wp_json_encode( $args ) );
 	}
 }
