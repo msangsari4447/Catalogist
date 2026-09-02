@@ -1,0 +1,30 @@
+{
+    "name": "msangsari4447/catalogist",
+    "description": "WooCommerce Catalog Builder for WordPress",
+    "type": "wordpress-plugin",
+    "authors": [
+        {
+            "name": "msangsari4447",
+            "email": "msangsari4447@gmail.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^13.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Catalogist\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Catalogist\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test:unit": "phpunit --testsuite Unit",
+        "test:integration": "docker compose exec wordpress sh -lc \"cd /var/www/html/wp-content/plugins/Catalogist && ./vendor/bin/phpunit --testsuite Integration --bootstrap tests/Integration/Bootstrap.php\"",
+        "test": "composer test:unit && composer test:integration"
+    }
+}
