@@ -441,6 +441,62 @@ The goal is controlled architectural growth.
 
 ---
 
+## 20.1 Graphify Architecture Analysis
+
+Catalogist uses Graphify as a supporting architecture and dependency
+analysis tool.
+
+When graphify-out/ exists, Graphify should be considered a primary
+orientation tool for understanding existing architecture, dependencies,
+class relationships, and module boundaries.
+
+Graphify does not replace inspection of the actual source code, tests,
+Stage Contract, or project documentation.
+
+Before making a change that materially affects architecture, dependencies,
+class relationships, module boundaries, or core data flow:
+
+1. Check whether graphify-out/graph.json exists.
+2. If it exists and may be stale, refresh the Graphify analysis before
+   relying on it.
+3. Use Graphify queries to understand relevant existing relationships.
+4. Then inspect the actual source files before making implementation
+   decisions.
+5. After a significant architectural change, consider refreshing Graphify
+   and reviewing the resulting dependency structure.
+
+Graphify should be especially considered when:
+
+- creating a new core class or service
+- introducing a new dependency
+- changing module boundaries
+- changing core data flow
+- refactoring existing architecture
+- investigating unexpected coupling
+- performing the Architecture Review of a Stage
+
+Do not run Graphify for trivial changes when it provides no useful
+architectural evidence.
+
+Do not modify the architecture merely to satisfy Graphify.
+
+Graphify output is supporting evidence only. Final decisions must be based
+on:
+
+- CLAUDE.md
+- AGENTS.md
+- prompt.txt
+- the current Stage Contract
+- relevant Skills
+- actual source code
+- tests
+- runtime behavior
+
+When graphify-out/graph.json exists, use Graphify to orient architectural
+questions before broad repository exploration where practical.
+
+---
+
 ## 21. Stop Conditions
 
 Stop and request clarification when:
@@ -594,3 +650,13 @@ Untested
 The objective is not to build the entire Catalogist architecture immediately.
 
 The objective is to build **one correct, verified Stage at a time**.
+
+## graphify
+
+This project has a knowledge graph at graphify-out/ with god nodes, community structure, and cross-file relationships.
+
+Rules:
+- For codebase questions, first run `graphify query "<question>"` when graphify-out/graph.json exists. Use `graphify path "<A>" "<B>"` for relationships and `graphify explain "<concept>"` for focused concepts. These return a scoped subgraph, usually much smaller than GRAPH_REPORT.md or raw grep output.
+- If graphify-out/wiki/index.md exists, use it for broad navigation instead of raw source browsing.
+- Read graphify-out/GRAPH_REPORT.md only for broad architecture review or when query/path/explain do not surface enough context.
+- After modifying code, run `graphify update .` to keep the graph current (AST-only, no API cost).

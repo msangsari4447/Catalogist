@@ -1,5 +1,6 @@
 D:\wordpress\wp-content\plugins\Catalogist\.claude\agents\stage-reporter.md
 D:\wordpress\wp-content\plugins\Catalogist\.claude\skills\catalogist-stage-verification\SKILL.md
+D:\wordpress\wp-content\plugins\Catalogist\.claude\skills\graphify\SKILL.md
 D:\wordpress\wp-content\plugins\Catalogist\.claude\skills\wordpress-elementor\SKILL.md
 D:\wordpress\wp-content\plugins\Catalogist\.claude\skills\wordpress-pro\SKILL.md
 D:\wordpress\wp-content\plugins\Catalogist\.claude\skills\wordpress-pro\references\gutenberg-blocks.md
