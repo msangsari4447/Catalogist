@@ -20,9 +20,29 @@ final class CatalogCrudTest extends TestCase {
 	 */
 	private static int $catalog_id = 0;
 
+	/**
+	 * Get Admin nonce config via reflection (test-only helper).
+	 *
+	 * @return array{action: string, field: string}
+	 */
+	private static function get_admin_nonce_config(): array {
+		$ref    = new ReflectionClass( Admin::class );
+		$method = $ref->getMethod( 'get_nonce_config' );
+		$method->setAccessible( true );
+		return $method->invoke( null );
+	}
+
 	public static function setUpBeforeClass(): void {
 		require_once dirname( __DIR__, 2 ) . '/catalogist.php';
 		do_action( 'init' );
+	}
+
+	/**
+	 * Set up test environment before each test.
+	 */
+	protected function setUp(): void {
+		parent::setUp();
+		wp_set_current_user( 1 );
 	}
 
 	/**
@@ -39,11 +59,13 @@ final class CatalogCrudTest extends TestCase {
 	 * Test creating a catalog post.
 	 */
 	public function testCreateCatalog(): void {
-		$post_id = wp_insert_post( [
-			'post_type'   => CatalogPostType::POST_TYPE,
-			'post_title'  => 'Test Catalog',
-			'post_status' => 'publish',
-		] );
+		$post_id = wp_insert_post(
+			array(
+				'post_type'   => CatalogPostType::POST_TYPE,
+				'post_title'  => 'Test Catalog',
+				'post_status' => 'publish',
+			)
+		);
 
 		$this->assertGreaterThan( 0, $post_id );
 		$this->assertSame( 'Test Catalog', get_the_title( $post_id ) );
@@ -56,26 +78,28 @@ final class CatalogCrudTest extends TestCase {
 	 * Test saving catalog meta data.
 	 */
 	public function testSaveCatalogMeta(): void {
-		$post_id = wp_insert_post( [
-			'post_type'   => CatalogPostType::POST_TYPE,
-			'post_title'  => 'Catalog with Meta',
-			'post_status' => 'draft',
-		] );
+		$post_id = wp_insert_post(
+			array(
+				'post_type'   => CatalogPostType::POST_TYPE,
+				'post_title'  => 'Catalog with Meta',
+				'post_status' => 'draft',
+			)
+		);
 
 		$this->assertGreaterThan( 0, $post_id );
 		self::$catalog_id = $post_id;
 
-		$data = [
+		$data = array(
 			'description' => 'This is a test catalog description.',
-			'settings'    => [
-				'layout'      => 'list',
-				'columns'     => 2,
-				'show_price'  => false,
-				'show_sku'    => true,
-				'show_stock'  => false,
-			],
-			'products'    => [ 100, 101, 102 ],
-		];
+			'settings'    => array(
+				'layout'     => 'list',
+				'columns'    => 2,
+				'show_price' => false,
+				'show_sku'   => true,
+				'show_stock' => false,
+			),
+			'products'    => array( 100, 101, 102 ),
+		);
 
 		$result = Catalog::save( $post_id, $data );
 		$this->assertTrue( $result );
@@ -96,18 +120,20 @@ final class CatalogCrudTest extends TestCase {
 
 		$saved_products = get_post_meta( $post_id, Catalog::META_PRODUCTS, true );
 		$this->assertIsArray( $saved_products );
-		$this->assertSame( [ 100, 101, 102 ], $saved_products );
+		$this->assertSame( array( 100, 101, 102 ), $saved_products );
 	}
 
 	/**
 	 * Test loading catalog data with defaults.
 	 */
 	public function testLoadCatalogDataWithDefaults(): void {
-		$post_id = wp_insert_post( [
-			'post_type'   => CatalogPostType::POST_TYPE,
-			'post_title'  => 'Catalog with Defaults',
-			'post_status' => 'publish',
-		] );
+		$post_id = wp_insert_post(
+			array(
+				'post_type'   => CatalogPostType::POST_TYPE,
+				'post_title'  => 'Catalog with Defaults',
+				'post_status' => 'publish',
+			)
+		);
 
 		$this->assertGreaterThan( 0, $post_id );
 		self::$catalog_id = $post_id;
@@ -118,7 +144,7 @@ final class CatalogCrudTest extends TestCase {
 		$this->assertSame( 'Catalog with Defaults', $data['title'] );
 		$this->assertSame( '', $data['description'] );
 		$this->assertSame( Catalog::default_settings(), $data['settings'] );
-		$this->assertSame( [], $data['products'] );
+		$this->assertSame( array(), $data['products'] );
 		$this->assertIsString( $data['created_at'] );
 		$this->assertIsString( $data['updated_at'] );
 	}
@@ -127,27 +153,32 @@ final class CatalogCrudTest extends TestCase {
 	 * Test loading catalog data with saved meta.
 	 */
 	public function testLoadCatalogDataWithMeta(): void {
-		$post_id = wp_insert_post( [
-			'post_type'   => CatalogPostType::POST_TYPE,
-			'post_title'  => 'Catalog with Meta',
-			'post_status' => 'publish',
-		] );
+		$post_id = wp_insert_post(
+			array(
+				'post_type'   => CatalogPostType::POST_TYPE,
+				'post_title'  => 'Catalog with Meta',
+				'post_status' => 'publish',
+			)
+		);
 
 		$this->assertGreaterThan( 0, $post_id );
 		self::$catalog_id = $post_id;
 
 		// Save some meta first.
-		Catalog::save( $post_id, [
-			'description' => 'Loaded description.',
-			'settings'    => [
-				'layout'      => 'table',
-				'columns'     => 4,
-				'show_price'  => true,
-				'show_sku'    => false,
-				'show_stock'  => true,
-			],
-			'products'    => [ 200, 201 ],
-		] );
+		Catalog::save(
+			$post_id,
+			array(
+				'description' => 'Loaded description.',
+				'settings'    => array(
+					'layout'     => 'table',
+					'columns'    => 4,
+					'show_price' => true,
+					'show_sku'   => false,
+					'show_stock' => true,
+				),
+				'products'    => array( 200, 201 ),
+			)
+		);
 
 		$data = Catalog::get_data( $post_id );
 
@@ -157,35 +188,39 @@ final class CatalogCrudTest extends TestCase {
 		$this->assertTrue( $data['settings']['show_price'] );
 		$this->assertFalse( $data['settings']['show_sku'] );
 		$this->assertTrue( $data['settings']['show_stock'] );
-		$this->assertSame( [ 200, 201 ], $data['products'] );
+		$this->assertSame( array( 200, 201 ), $data['products'] );
 	}
 
 	/**
 	 * Test saving and loading through Admin save handler simulation.
 	 */
 	public function testAdminSaveHandlerSimulation(): void {
-		$post_id = wp_insert_post( [
-			'post_type'   => CatalogPostType::POST_TYPE,
-			'post_title'  => 'Admin Save Test',
-			'post_status' => 'draft',
-		] );
+		$post_id = wp_insert_post(
+			array(
+				'post_type'   => CatalogPostType::POST_TYPE,
+				'post_title'  => 'Admin Save Test',
+				'post_status' => 'draft',
+			)
+		);
 
 		$this->assertGreaterThan( 0, $post_id );
 		self::$catalog_id = $post_id;
 
+		$nonce = self::get_admin_nonce_config();
+
 		// Simulate the POST data that would come from the meta box.
-		$_POST = [
+		$_POST = array(
 			'catalog_description' => 'Admin saved description.',
-			'catalog_settings'    => [
-				'layout'      => 'grid',
-				'columns'     => 5,
-				'show_price'  => '1',
-				'show_sku'    => '0',
-				'show_stock'  => '1',
-			],
-			'catalog_products'    => [ '300', '301' ],
-			Admin::NONCE_FIELD    => wp_create_nonce( Admin::NONCE_ACTION ),
-		];
+			'catalog_settings'    => array(
+				'layout'     => 'grid',
+				'columns'    => 5,
+				'show_price' => '1',
+				'show_sku'   => '0',
+				'show_stock' => '1',
+			),
+			'catalog_products'    => array( '300', '301' ),
+			$nonce['field']       => wp_create_nonce( $nonce['action'] ),
+		);
 
 		// Create a mock post object.
 		$post = get_post( $post_id );
@@ -200,28 +235,32 @@ final class CatalogCrudTest extends TestCase {
 		$this->assertTrue( $data['settings']['show_price'] );
 		$this->assertFalse( $data['settings']['show_sku'] );
 		$this->assertTrue( $data['settings']['show_stock'] );
-		$this->assertSame( [ 300, 301 ], $data['products'] );
+		$this->assertSame( array( 300, 301 ), $data['products'] );
 	}
 
 	/**
 	 * Test Admin save handler rejects invalid nonce.
 	 */
 	public function testAdminSaveHandlerInvalidNonce(): void {
-		$post_id = wp_insert_post( [
-			'post_type'   => CatalogPostType::POST_TYPE,
-			'post_title'  => 'Nonce Test',
-			'post_status' => 'draft',
-		] );
+		$post_id = wp_insert_post(
+			array(
+				'post_type'   => CatalogPostType::POST_TYPE,
+				'post_title'  => 'Nonce Test',
+				'post_status' => 'draft',
+			)
+		);
 
 		$this->assertGreaterThan( 0, $post_id );
 		self::$catalog_id = $post_id;
 
-		$_POST = [
+		$nonce = self::get_admin_nonce_config();
+
+		$_POST = array(
 			'catalog_description' => 'Should not save.',
-			'catalog_settings'    => [],
-			'catalog_products'    => [],
-			Admin::NONCE_FIELD    => 'invalid_nonce',
-		];
+			'catalog_settings'    => array(),
+			'catalog_products'    => array(),
+			$nonce['field']       => 'invalid_nonce',
+		);
 
 		$post = get_post( $post_id );
 		Admin::save_meta_box_data( $post_id, $post, true );
@@ -235,11 +274,13 @@ final class CatalogCrudTest extends TestCase {
 	 * Test Admin save handler rejects autosave.
 	 */
 	public function testAdminSaveHandlerAutosave(): void {
-		$post_id = wp_insert_post( [
-			'post_type'   => CatalogPostType::POST_TYPE,
-			'post_title'  => 'Autosave Test',
-			'post_status' => 'draft',
-		] );
+		$post_id = wp_insert_post(
+			array(
+				'post_type'   => CatalogPostType::POST_TYPE,
+				'post_title'  => 'Autosave Test',
+				'post_status' => 'draft',
+			)
+		);
 
 		$this->assertGreaterThan( 0, $post_id );
 		self::$catalog_id = $post_id;
@@ -249,12 +290,14 @@ final class CatalogCrudTest extends TestCase {
 			define( 'DOING_AUTOSAVE', true );
 		}
 
-		$_POST = [
+		$nonce = self::get_admin_nonce_config();
+
+		$_POST = array(
 			'catalog_description' => 'Autosave should not save.',
-			'catalog_settings'    => [],
-			'catalog_products'    => [],
-			Admin::NONCE_FIELD    => wp_create_nonce( Admin::NONCE_ACTION ),
-		];
+			'catalog_settings'    => array(),
+			'catalog_products'    => array(),
+			$nonce['field']       => wp_create_nonce( $nonce['action'] ),
+		);
 
 		$post = get_post( $post_id );
 		Admin::save_meta_box_data( $post_id, $post, true );
@@ -267,21 +310,26 @@ final class CatalogCrudTest extends TestCase {
 	 * Test delete_meta removes all catalog meta.
 	 */
 	public function testDeleteMeta(): void {
-		$post_id = wp_insert_post( [
-			'post_type'   => CatalogPostType::POST_TYPE,
-			'post_title'  => 'Delete Meta Test',
-			'post_status' => 'draft',
-		] );
+		$post_id = wp_insert_post(
+			array(
+				'post_type'   => CatalogPostType::POST_TYPE,
+				'post_title'  => 'Delete Meta Test',
+				'post_status' => 'draft',
+			)
+		);
 
 		$this->assertGreaterThan( 0, $post_id );
 		self::$catalog_id = $post_id;
 
 		// Save meta first.
-		Catalog::save( $post_id, [
-			'description' => 'To be deleted.',
-			'settings'    => Catalog::default_settings(),
-			'products'    => [ 400 ],
-		] );
+		Catalog::save(
+			$post_id,
+			array(
+				'description' => 'To be deleted.',
+				'settings'    => Catalog::default_settings(),
+				'products'    => array( 400 ),
+			)
+		);
 
 		// Verify saved.
 		$this->assertSame( 'To be deleted.', get_post_meta( $post_id, Catalog::META_DESCRIPTION, true ) );
@@ -292,29 +340,29 @@ final class CatalogCrudTest extends TestCase {
 
 		// Verify all meta is gone.
 		$this->assertSame( '', get_post_meta( $post_id, Catalog::META_DESCRIPTION, true ) );
-		$this->assertSame( [], get_post_meta( $post_id, Catalog::META_SETTINGS, true ) );
-		$this->assertSame( [], get_post_meta( $post_id, Catalog::META_PRODUCTS, true ) );
+		$this->assertSame( '', get_post_meta( $post_id, Catalog::META_SETTINGS, true ) );
+		$this->assertSame( '', get_post_meta( $post_id, Catalog::META_PRODUCTS, true ) );
 	}
 
 	/**
 	 * Test sanitize_input with empty input.
 	 */
 	public function testSanitizeInputEmpty(): void {
-		$input = [];
+		$input  = array();
 		$result = Catalog::sanitize_input( $input );
 
 		$this->assertSame( '', $result['description'] );
 		$this->assertSame( Catalog::default_settings(), $result['settings'] );
-		$this->assertSame( [], $result['products'] );
+		$this->assertSame( array(), $result['products'] );
 	}
 
 	/**
 	 * Test sanitize_input with description.
 	 */
 	public function testSanitizeInputDescription(): void {
-		$input = [
+		$input  = array(
 			'catalog_description' => '  Test description with <script>alert(1)</script>  ',
-		];
+		);
 		$result = Catalog::sanitize_input( $input );
 
 		$this->assertStringContainsString( 'Test description', $result['description'] );
@@ -325,15 +373,15 @@ final class CatalogCrudTest extends TestCase {
 	 * Test sanitize_input with settings.
 	 */
 	public function testSanitizeInputSettings(): void {
-		$input = [
-			'catalog_settings' => [
-				'layout'      => 'list',
-				'columns'     => '5',
-				'show_price'  => '0',
-				'show_sku'    => '1',
-				'show_stock'  => '1',
-			],
-		];
+		$input  = array(
+			'catalog_settings' => array(
+				'layout'     => 'list',
+				'columns'    => '5',
+				'show_price' => '0',
+				'show_sku'   => '1',
+				'show_stock' => '1',
+			),
+		);
 		$result = Catalog::sanitize_input( $input );
 
 		$this->assertSame( 'list', $result['settings']['layout'] );
@@ -347,11 +395,11 @@ final class CatalogCrudTest extends TestCase {
 	 * Test sanitize_input clamps columns to minimum 1.
 	 */
 	public function testSanitizeInputColumnsMinimum(): void {
-		$input = [
-			'catalog_settings' => [
+		$input  = array(
+			'catalog_settings' => array(
 				'columns' => '0',
-			],
-		];
+			),
+		);
 		$result = Catalog::sanitize_input( $input );
 
 		$this->assertSame( 1, $result['settings']['columns'] );
@@ -361,11 +409,11 @@ final class CatalogCrudTest extends TestCase {
 	 * Test sanitize_input with negative columns.
 	 */
 	public function testSanitizeInputNegativeColumns(): void {
-		$input = [
-			'catalog_settings' => [
+		$input  = array(
+			'catalog_settings' => array(
 				'columns' => '-2',
-			],
-		];
+			),
+		);
 		$result = Catalog::sanitize_input( $input );
 
 		$this->assertSame( 1, $result['settings']['columns'] );
@@ -375,36 +423,36 @@ final class CatalogCrudTest extends TestCase {
 	 * Test sanitize_input with products array.
 	 */
 	public function testSanitizeInputProducts(): void {
-		$input = [
-			'catalog_products' => [ '123', '456', 'invalid', '789' ],
-		];
+		$input  = array(
+			'catalog_products' => array( '123', '456', 'invalid', '789' ),
+		);
 		$result = Catalog::sanitize_input( $input );
 
-		$this->assertSame( [ 123, 456, 789 ], $result['products'] );
+		$this->assertSame( array( 123, 456, 789 ), $result['products'] );
 	}
 
 	/**
 	 * Test sanitize_input filters out zero and negative product IDs.
 	 */
 	public function testSanitizeInputProductsFiltersInvalid(): void {
-		$input = [
-			'catalog_products' => [ '0', '-1', '5' ],
-		];
+		$input  = array(
+			'catalog_products' => array( '0', '-1', '5' ),
+		);
 		$result = Catalog::sanitize_input( $input );
 
-		$this->assertSame( [ 5 ], $result['products'] );
+		$this->assertSame( array( 5 ), $result['products'] );
 	}
 
 	/**
 	 * Test sanitize_input handles mixed valid/invalid settings.
 	 */
 	public function testSanitizeInputPartialSettings(): void {
-		$input = [
-			'catalog_settings' => [
+		$input = array(
+			'catalog_settings' => array(
 				'layout' => 'table',
 				// Missing other settings - should use defaults
-			],
-		];
+			),
+		);
 		$result = Catalog::sanitize_input( $input );
 
 		$this->assertSame( 'table', $result['settings']['layout'] );
@@ -416,11 +464,11 @@ final class CatalogCrudTest extends TestCase {
 	 * Test sanitize_input rejects invalid layout values.
 	 */
 	public function testSanitizeInputInvalidLayout(): void {
-		$input = [
-			'catalog_settings' => [
+		$input  = array(
+			'catalog_settings' => array(
 				'layout' => 'invalid_layout',
-			],
-		];
+			),
+		);
 		$result = Catalog::sanitize_input( $input );
 
 		// Should sanitize but not validate layout values - that's a business logic decision

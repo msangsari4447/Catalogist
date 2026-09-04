@@ -33,10 +33,7 @@ wp-content/debug.log
 /coverage/
 .phpunit.result.cache
 
-# Graphify
-/graphify-out/
-.graphify/
-.graphify-cache/
+
 
 # Claude local runtime
 .claude/settings.local.json

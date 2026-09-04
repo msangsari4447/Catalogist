@@ -1,0 +1,2156 @@
+{
+  "nodes": [
+    {
+      "id": "catalogist",
+      "label": "catalogist.php",
+      "file_type": "code",
+      "source_file": "catalogist.php",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "composer",
+      "label": "composer.json",
+      "file_type": "code",
+      "source_file": "composer.json",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "composer_name",
+      "label": "name",
+      "file_type": "code",
+      "source_file": "composer.json",
+      "source_location": "L2",
+      "_origin": "ast"
+    },
+    {
+      "id": "composer_description",
+      "label": "description",
+      "file_type": "code",
+      "source_file": "composer.json",
+      "source_location": "L3",
+      "_origin": "ast"
+    },
+    {
+      "id": "composer_type",
+      "label": "type",
+      "file_type": "code",
+      "source_file": "composer.json",
+      "source_location": "L4",
+      "_origin": "ast"
+    },
+    {
+      "id": "composer_authors",
+      "label": "authors",
+      "file_type": "code",
+      "source_file": "composer.json",
+      "source_location": "L5",
+      "_origin": "ast"
+    },
+    {
+      "id": "composer_require_dev",
+      "label": "require-dev",
+      "file_type": "code",
+      "source_file": "composer.json",
+      "source_location": "L11",
+      "_origin": "ast"
+    },
+    {
+      "id": "composer_require_dev_phpunit_phpunit",
+      "label": "phpunit/phpunit",
+      "file_type": "code",
+      "source_file": "composer.json",
+      "source_location": "L12",
+      "_origin": "ast"
+    },
+    {
+      "id": "composer_require_dev_wp_coding_standards_wpcs",
+      "label": "wp-coding-standards/wpcs",
+      "file_type": "code",
+      "source_file": "composer.json",
+      "source_location": "L13",
+      "_origin": "ast"
+    },
+    {
+      "id": "composer_autoload",
+      "label": "autoload",
+      "file_type": "code",
+      "source_file": "composer.json",
+      "source_location": "L15",
+      "_origin": "ast"
+    },
+    {
+      "id": "composer_autoload_psr_4",
+      "label": "psr-4",
+      "file_type": "code",
+      "source_file": "composer.json",
+      "source_location": "L16",
+      "_origin": "ast"
+    },
+    {
+      "id": "composer_psr_4_catalogist",
+      "label": "Catalogist\\\\",
+      "file_type": "code",
+      "source_file": "composer.json",
+      "source_location": "L17",
+      "_origin": "ast"
+    },
+    {
+      "id": "composer_autoload_dev",
+      "label": "autoload-dev",
+      "file_type": "code",
+      "source_file": "composer.json",
+      "source_location": "L20",
+      "_origin": "ast"
+    },
+    {
+      "id": "composer_autoload_dev_psr_4",
+      "label": "psr-4",
+      "file_type": "code",
+      "source_file": "composer.json",
+      "source_location": "L21",
+      "_origin": "ast"
+    },
+    {
+      "id": "composer_psr_4_catalogist_tests",
+      "label": "Catalogist\\\\Tests\\\\",
+      "file_type": "code",
+      "source_file": "composer.json",
+      "source_location": "L22",
+      "_origin": "ast"
+    },
+    {
+      "id": "composer_scripts",
+      "label": "scripts",
+      "file_type": "code",
+      "source_file": "composer.json",
+      "source_location": "L25",
+      "_origin": "ast"
+    },
+    {
+      "id": "composer_scripts_lint",
+      "label": "lint",
+      "file_type": "code",
+      "source_file": "composer.json",
+      "source_location": "L26",
+      "_origin": "ast"
+    },
+    {
+      "id": "composer_scripts_test_unit",
+      "label": "test:unit",
+      "file_type": "code",
+      "source_file": "composer.json",
+      "source_location": "L27",
+      "_origin": "ast"
+    },
+    {
+      "id": "composer_scripts_test_integration",
+      "label": "test:integration",
+      "file_type": "code",
+      "source_file": "composer.json",
+      "source_location": "L28",
+      "_origin": "ast"
+    },
+    {
+      "id": "composer_scripts_test",
+      "label": "test",
+      "file_type": "code",
+      "source_file": "composer.json",
+      "source_location": "L29",
+      "_origin": "ast"
+    },
+    {
+      "id": "composer_config",
+      "label": "config",
+      "file_type": "code",
+      "source_file": "composer.json",
+      "source_location": "L31",
+      "_origin": "ast"
+    },
+    {
+      "id": "composer_config_allow_plugins",
+      "label": "allow-plugins",
+      "file_type": "code",
+      "source_file": "composer.json",
+      "source_location": "L32",
+      "_origin": "ast"
+    },
+    {
+      "id": "composer_allow_plugins_dealerdirect_phpcodesniffer_composer_installer",
+      "label": "dealerdirect/phpcodesniffer-composer-installer",
+      "file_type": "code",
+      "source_file": "composer.json",
+      "source_location": "L33",
+      "_origin": "ast"
+    },
+    {
+      "id": "generate_html",
+      "label": "generate_html.py",
+      "file_type": "code",
+      "source_file": "generate_html.py",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "run_graphify",
+      "label": "run_graphify.py",
+      "file_type": "code",
+      "source_file": "run_graphify.py",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "src_admin",
+      "label": "Admin.php",
+      "file_type": "code",
+      "source_file": "src/Admin.php",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "src_admin_admin",
+      "label": "Admin",
+      "file_type": "code",
+      "source_file": "src/Admin.php",
+      "source_location": "L13",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "src_admin_admin_get_nonce_config",
+      "label": ".get_nonce_config()",
+      "file_type": "code",
+      "source_file": "src/Admin.php",
+      "source_location": "L35",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "src_admin_admin_boot",
+      "label": ".boot()",
+      "file_type": "code",
+      "source_file": "src/Admin.php",
+      "source_location": "L45",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "src_admin_admin_register_meta_boxes",
+      "label": ".register_meta_boxes()",
+      "file_type": "code",
+      "source_file": "src/Admin.php",
+      "source_location": "L53",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "src_admin_admin_render_settings_meta_box",
+      "label": ".render_settings_meta_box()",
+      "file_type": "code",
+      "source_file": "src/Admin.php",
+      "source_location": "L78",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "wp_post",
+      "label": "WP_Post",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast"
+    },
+    {
+      "id": "src_admin_admin_render_products_meta_box",
+      "label": ".render_products_meta_box()",
+      "file_type": "code",
+      "source_file": "src/Admin.php",
+      "source_location": "L202",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "src_admin_admin_save_meta_box_data",
+      "label": ".save_meta_box_data()",
+      "file_type": "code",
+      "source_file": "src/Admin.php",
+      "source_location": "L419",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "src_admin_admin_ajax_search_products",
+      "label": ".ajax_search_products()",
+      "file_type": "code",
+      "source_file": "src/Admin.php",
+      "source_location": "L451",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "src_catalog",
+      "label": "Catalog.php",
+      "file_type": "code",
+      "source_file": "src/Catalog.php",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "src_catalog_catalog",
+      "label": "Catalog",
+      "file_type": "code",
+      "source_file": "src/Catalog.php",
+      "source_location": "L13",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "src_catalog_catalog_default_settings",
+      "label": ".default_settings()",
+      "file_type": "code",
+      "source_file": "src/Catalog.php",
+      "source_location": "L35",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "src_catalog_catalog_meta_keys",
+      "label": ".meta_keys()",
+      "file_type": "code",
+      "source_file": "src/Catalog.php",
+      "source_location": "L50",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "src_catalog_catalog_get_data",
+      "label": ".get_data()",
+      "file_type": "code",
+      "source_file": "src/Catalog.php",
+      "source_location": "L64",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "src_catalog_catalog_sanitize_input",
+      "label": ".sanitize_input()",
+      "file_type": "code",
+      "source_file": "src/Catalog.php",
+      "source_location": "L96",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "src_catalog_catalog_save",
+      "label": ".save()",
+      "file_type": "code",
+      "source_file": "src/Catalog.php",
+      "source_location": "L146",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "src_catalog_catalog_delete_meta",
+      "label": ".delete_meta()",
+      "file_type": "code",
+      "source_file": "src/Catalog.php",
+      "source_location": "L162",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "src_catalogposttype",
+      "label": "CatalogPostType.php",
+      "file_type": "code",
+      "source_file": "src/CatalogPostType.php",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "src_catalogposttype_catalogposttype",
+      "label": "CatalogPostType",
+      "file_type": "code",
+      "source_file": "src/CatalogPostType.php",
+      "source_location": "L7",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "src_catalogposttype_catalogposttype_register",
+      "label": ".register()",
+      "file_type": "code",
+      "source_file": "src/CatalogPostType.php",
+      "source_location": "L11",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "src_plugin",
+      "label": "Plugin.php",
+      "file_type": "code",
+      "source_file": "src/Plugin.php",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "src_plugin_plugin",
+      "label": "Plugin",
+      "file_type": "code",
+      "source_file": "src/Plugin.php",
+      "source_location": "L7",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "src_plugin_plugin_boot",
+      "label": ".boot()",
+      "file_type": "code",
+      "source_file": "src/Plugin.php",
+      "source_location": "L9",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "tests_integration_catalogcrudtest",
+      "label": "CatalogCrudTest.php",
+      "file_type": "code",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "tests_integration_catalogcrudtest_catalogcrudtest",
+      "label": "CatalogCrudTest",
+      "file_type": "code",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L16",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "tests_integration_catalogcrudtest_catalogcrudtest_get_admin_nonce_config",
+      "label": ".get_admin_nonce_config()",
+      "file_type": "code",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L28",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "tests_integration_catalogcrudtest_catalogcrudtest_setupbeforeclass",
+      "label": ".setUpBeforeClass()",
+      "file_type": "code",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L35",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "tests_integration_catalogcrudtest_catalogcrudtest_setup",
+      "label": ".setUp()",
+      "file_type": "code",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L43",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "tests_integration_catalogcrudtest_catalogcrudtest_teardown",
+      "label": ".tearDown()",
+      "file_type": "code",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L51",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "tests_integration_catalogcrudtest_catalogcrudtest_testcreatecatalog",
+      "label": ".testCreateCatalog()",
+      "file_type": "code",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L61",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "tests_integration_catalogcrudtest_catalogcrudtest_testsavecatalogmeta",
+      "label": ".testSaveCatalogMeta()",
+      "file_type": "code",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L80",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "tests_integration_catalogcrudtest_catalogcrudtest_testloadcatalogdatawithdefaults",
+      "label": ".testLoadCatalogDataWithDefaults()",
+      "file_type": "code",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L129",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "tests_integration_catalogcrudtest_catalogcrudtest_testloadcatalogdatawithmeta",
+      "label": ".testLoadCatalogDataWithMeta()",
+      "file_type": "code",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L155",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "tests_integration_catalogcrudtest_catalogcrudtest_testadminsavehandlersimulation",
+      "label": ".testAdminSaveHandlerSimulation()",
+      "file_type": "code",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L197",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "tests_integration_catalogcrudtest_catalogcrudtest_testadminsavehandlerinvalidnonce",
+      "label": ".testAdminSaveHandlerInvalidNonce()",
+      "file_type": "code",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L244",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "tests_integration_catalogcrudtest_catalogcrudtest_testadminsavehandlerautosave",
+      "label": ".testAdminSaveHandlerAutosave()",
+      "file_type": "code",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L276",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "tests_integration_catalogcrudtest_catalogcrudtest_testdeletemeta",
+      "label": ".testDeleteMeta()",
+      "file_type": "code",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L312",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "tests_integration_catalogcrudtest_catalogcrudtest_testsanitizeinputempty",
+      "label": ".testSanitizeInputEmpty()",
+      "file_type": "code",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L350",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "tests_integration_catalogcrudtest_catalogcrudtest_testsanitizeinputdescription",
+      "label": ".testSanitizeInputDescription()",
+      "file_type": "code",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L362",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "tests_integration_catalogcrudtest_catalogcrudtest_testsanitizeinputsettings",
+      "label": ".testSanitizeInputSettings()",
+      "file_type": "code",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L375",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "tests_integration_catalogcrudtest_catalogcrudtest_testsanitizeinputcolumnsminimum",
+      "label": ".testSanitizeInputColumnsMinimum()",
+      "file_type": "code",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L397",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "tests_integration_catalogcrudtest_catalogcrudtest_testsanitizeinputnegativecolumns",
+      "label": ".testSanitizeInputNegativeColumns()",
+      "file_type": "code",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L411",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "tests_integration_catalogcrudtest_catalogcrudtest_testsanitizeinputproducts",
+      "label": ".testSanitizeInputProducts()",
+      "file_type": "code",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L425",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "tests_integration_catalogcrudtest_catalogcrudtest_testsanitizeinputproductsfiltersinvalid",
+      "label": ".testSanitizeInputProductsFiltersInvalid()",
+      "file_type": "code",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L437",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "tests_integration_catalogcrudtest_catalogcrudtest_testsanitizeinputpartialsettings",
+      "label": ".testSanitizeInputPartialSettings()",
+      "file_type": "code",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L449",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "tests_integration_catalogcrudtest_catalogcrudtest_testsanitizeinputinvalidlayout",
+      "label": ".testSanitizeInputInvalidLayout()",
+      "file_type": "code",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L466",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "tests_integration_wordpressbaselinetest",
+      "label": "WordPressBaselineTest.php",
+      "file_type": "code",
+      "source_file": "tests/Integration/WordPressBaselineTest.php",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "tests_integration_wordpressbaselinetest_wordpressbaselinetest",
+      "label": "WordPressBaselineTest",
+      "file_type": "code",
+      "source_file": "tests/Integration/WordPressBaselineTest.php",
+      "source_location": "L9",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "tests_integration_wordpressbaselinetest_wordpressbaselinetest_testwordpressisloaded",
+      "label": ".testWordPressIsLoaded()",
+      "file_type": "code",
+      "source_file": "tests/Integration/WordPressBaselineTest.php",
+      "source_location": "L11",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "tests_integration_wordpressbaselinetest_wordpressbaselinetest_testcatalogistbootstrapregistersinitializationhook",
+      "label": ".testCatalogistBootstrapRegistersInitializationHook()",
+      "file_type": "code",
+      "source_file": "tests/Integration/WordPressBaselineTest.php",
+      "source_location": "L16",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "tests_integration_wordpressbaselinetest_wordpressbaselinetest_testcatalogposttypeisregistered",
+      "label": ".testCatalogPostTypeIsRegistered()",
+      "file_type": "code",
+      "source_file": "tests/Integration/WordPressBaselineTest.php",
+      "source_location": "L22",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "tests_integration_bootstrap",
+      "label": "bootstrap.php",
+      "file_type": "code",
+      "source_file": "tests/Integration/bootstrap.php",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "tests_unit_baselinetest",
+      "label": "BaselineTest.php",
+      "file_type": "code",
+      "source_file": "tests/Unit/BaselineTest.php",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "tests_unit_baselinetest_baselinetest",
+      "label": "BaselineTest",
+      "file_type": "code",
+      "source_file": "tests/Unit/BaselineTest.php",
+      "source_location": "L7",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "tests_unit_baselinetest_baselinetest_testphpunitisworking",
+      "label": ".testPhpUnitIsWorking()",
+      "file_type": "code",
+      "source_file": "tests/Unit/BaselineTest.php",
+      "source_location": "L9",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "tests_unit_catalogtest",
+      "label": "CatalogTest.php",
+      "file_type": "code",
+      "source_file": "tests/Unit/CatalogTest.php",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "tests_unit_catalogtest_catalogtest",
+      "label": "CatalogTest",
+      "file_type": "code",
+      "source_file": "tests/Unit/CatalogTest.php",
+      "source_location": "L16",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "tests_unit_catalogtest_catalogtest_testdefaultsettingsstructure",
+      "label": ".testDefaultSettingsStructure()",
+      "file_type": "code",
+      "source_file": "tests/Unit/CatalogTest.php",
+      "source_location": "L21",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "tests_unit_catalogtest_catalogtest_testmetakeys",
+      "label": ".testMetaKeys()",
+      "file_type": "code",
+      "source_file": "tests/Unit/CatalogTest.php",
+      "source_location": "L41",
+      "_callable": true,
+      "_origin": "ast"
+    },
+    {
+      "id": "phpunit_framework_testcase",
+      "label": "PHPUnit\\Framework\\TestCase",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast"
+    }
+  ],
+  "edges": [
+    {
+      "source": "composer",
+      "target": "composer_name",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "composer.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "composer",
+      "target": "composer_description",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "composer.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "composer",
+      "target": "composer_type",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "composer.json",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "composer",
+      "target": "composer_authors",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "composer.json",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "composer",
+      "target": "composer_require_dev",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "composer.json",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "composer_require_dev",
+      "target": "composer_require_dev_phpunit_phpunit",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "composer.json",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "composer_require_dev",
+      "target": "composer_require_dev_wp_coding_standards_wpcs",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "composer.json",
+      "source_location": "L13",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "composer",
+      "target": "composer_autoload",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "composer.json",
+      "source_location": "L15",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "composer_autoload",
+      "target": "composer_autoload_psr_4",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "composer.json",
+      "source_location": "L16",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "composer_autoload_psr_4",
+      "target": "composer_psr_4_catalogist",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "composer.json",
+      "source_location": "L17",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "composer",
+      "target": "composer_autoload_dev",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "composer.json",
+      "source_location": "L20",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "composer_autoload_dev",
+      "target": "composer_autoload_dev_psr_4",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "composer.json",
+      "source_location": "L21",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "composer_autoload_dev_psr_4",
+      "target": "composer_psr_4_catalogist_tests",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "composer.json",
+      "source_location": "L22",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "composer",
+      "target": "composer_scripts",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "composer.json",
+      "source_location": "L25",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "composer_scripts",
+      "target": "composer_scripts_lint",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "composer.json",
+      "source_location": "L26",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "composer_scripts",
+      "target": "composer_scripts_test_unit",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "composer.json",
+      "source_location": "L27",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "composer_scripts",
+      "target": "composer_scripts_test_integration",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "composer.json",
+      "source_location": "L28",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "composer_scripts",
+      "target": "composer_scripts_test",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "composer.json",
+      "source_location": "L29",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "composer",
+      "target": "composer_config",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "composer.json",
+      "source_location": "L31",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "composer_config",
+      "target": "composer_config_allow_plugins",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "composer.json",
+      "source_location": "L32",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "composer_config_allow_plugins",
+      "target": "composer_allow_plugins_dealerdirect_phpcodesniffer_composer_installer",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "composer.json",
+      "source_location": "L33",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "generate_html",
+      "target": "json",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "generate_html.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "generate_html",
+      "target": "pathlib",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "generate_html.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "generate_html",
+      "target": "collections",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "generate_html.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "generate_html",
+      "target": "graphify_build",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "generate_html.py",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "generate_html",
+      "target": "graphify_exporters_html",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "generate_html.py",
+      "source_location": "L41",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "generate_html",
+      "target": "traceback",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "generate_html.py",
+      "source_location": "L55",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "run_graphify",
+      "target": "json",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "run_graphify.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "run_graphify",
+      "target": "sys",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "run_graphify.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "run_graphify",
+      "target": "pathlib",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "run_graphify.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "run_graphify",
+      "target": "graphify_detect",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "run_graphify.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "run_graphify",
+      "target": "graphify_extract",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "run_graphify.py",
+      "source_location": "L31",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "run_graphify",
+      "target": "graphify_cache",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "run_graphify.py",
+      "source_location": "L47",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "run_graphify",
+      "target": "graphify_build",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "run_graphify.py",
+      "source_location": "L119",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "run_graphify",
+      "target": "graphify_cluster",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "run_graphify.py",
+      "source_location": "L120",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "run_graphify",
+      "target": "graphify_analyze",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "run_graphify.py",
+      "source_location": "L121",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "run_graphify",
+      "target": "graphify_report",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "run_graphify.py",
+      "source_location": "L122",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "run_graphify",
+      "target": "graphify_export",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "run_graphify.py",
+      "source_location": "L123",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "run_graphify",
+      "target": "subprocess",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "run_graphify.py",
+      "source_location": "L188",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "run_graphify",
+      "target": "glob",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "run_graphify.py",
+      "source_location": "L194",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "src_admin",
+      "target": "src_admin_admin",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/Admin.php",
+      "source_location": "L13",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "src_admin_admin",
+      "target": "src_admin_admin_get_nonce_config",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/Admin.php",
+      "source_location": "L35",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "src_admin_admin",
+      "target": "src_admin_admin_boot",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/Admin.php",
+      "source_location": "L45",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "src_admin_admin",
+      "target": "src_admin_admin_register_meta_boxes",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/Admin.php",
+      "source_location": "L53",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "src_admin_admin",
+      "target": "src_admin_admin_render_settings_meta_box",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/Admin.php",
+      "source_location": "L78",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "src_admin_admin_render_settings_meta_box",
+      "target": "wp_post",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "src/Admin.php",
+      "source_location": "L78",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "_origin": "ast"
+    },
+    {
+      "source": "src_admin_admin",
+      "target": "src_admin_admin_render_products_meta_box",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/Admin.php",
+      "source_location": "L202",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "src_admin_admin_render_products_meta_box",
+      "target": "wp_post",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "src/Admin.php",
+      "source_location": "L202",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "_origin": "ast"
+    },
+    {
+      "source": "src_admin_admin",
+      "target": "src_admin_admin_save_meta_box_data",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/Admin.php",
+      "source_location": "L419",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "src_admin_admin_save_meta_box_data",
+      "target": "wp_post",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "src/Admin.php",
+      "source_location": "L419",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "_origin": "ast"
+    },
+    {
+      "source": "src_admin_admin",
+      "target": "src_admin_admin_ajax_search_products",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/Admin.php",
+      "source_location": "L451",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "src_catalog",
+      "target": "src_catalog_catalog",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/Catalog.php",
+      "source_location": "L13",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "src_catalog_catalog",
+      "target": "src_catalog_catalog_default_settings",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/Catalog.php",
+      "source_location": "L35",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "src_catalog_catalog",
+      "target": "src_catalog_catalog_meta_keys",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/Catalog.php",
+      "source_location": "L50",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "src_catalog_catalog",
+      "target": "src_catalog_catalog_get_data",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/Catalog.php",
+      "source_location": "L64",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "src_catalog_catalog",
+      "target": "src_catalog_catalog_sanitize_input",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/Catalog.php",
+      "source_location": "L96",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "src_catalog_catalog",
+      "target": "src_catalog_catalog_save",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/Catalog.php",
+      "source_location": "L146",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "src_catalog_catalog",
+      "target": "src_catalog_catalog_delete_meta",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/Catalog.php",
+      "source_location": "L162",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "src_catalogposttype",
+      "target": "src_catalogposttype_catalogposttype",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CatalogPostType.php",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "src_catalogposttype_catalogposttype",
+      "target": "src_catalogposttype_catalogposttype_register",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/CatalogPostType.php",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "src_plugin",
+      "target": "src_plugin_plugin",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/Plugin.php",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "src_plugin_plugin",
+      "target": "src_plugin_plugin_boot",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "src/Plugin.php",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest",
+      "target": "src_admin_admin",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest",
+      "target": "src_catalog_catalog",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest",
+      "target": "src_catalogposttype_catalogposttype",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest",
+      "target": "src_plugin_plugin",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest",
+      "target": "phpunit_framework_testcase",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest",
+      "target": "tests_integration_catalogcrudtest_catalogcrudtest",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L16",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest_catalogcrudtest",
+      "target": "phpunit_framework_testcase",
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L16",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest_catalogcrudtest",
+      "target": "tests_integration_catalogcrudtest_catalogcrudtest_get_admin_nonce_config",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L28",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest_catalogcrudtest",
+      "target": "tests_integration_catalogcrudtest_catalogcrudtest_setupbeforeclass",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L35",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest_catalogcrudtest",
+      "target": "tests_integration_catalogcrudtest_catalogcrudtest_setup",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L43",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest_catalogcrudtest",
+      "target": "tests_integration_catalogcrudtest_catalogcrudtest_teardown",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L51",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest_catalogcrudtest",
+      "target": "tests_integration_catalogcrudtest_catalogcrudtest_testcreatecatalog",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L61",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest_catalogcrudtest",
+      "target": "tests_integration_catalogcrudtest_catalogcrudtest_testsavecatalogmeta",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L80",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest_catalogcrudtest",
+      "target": "tests_integration_catalogcrudtest_catalogcrudtest_testloadcatalogdatawithdefaults",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L129",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest_catalogcrudtest",
+      "target": "tests_integration_catalogcrudtest_catalogcrudtest_testloadcatalogdatawithmeta",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L155",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest_catalogcrudtest",
+      "target": "tests_integration_catalogcrudtest_catalogcrudtest_testadminsavehandlersimulation",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L197",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest_catalogcrudtest",
+      "target": "tests_integration_catalogcrudtest_catalogcrudtest_testadminsavehandlerinvalidnonce",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L244",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest_catalogcrudtest",
+      "target": "tests_integration_catalogcrudtest_catalogcrudtest_testadminsavehandlerautosave",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L276",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest_catalogcrudtest",
+      "target": "tests_integration_catalogcrudtest_catalogcrudtest_testdeletemeta",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L312",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest_catalogcrudtest",
+      "target": "tests_integration_catalogcrudtest_catalogcrudtest_testsanitizeinputempty",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L350",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest_catalogcrudtest",
+      "target": "tests_integration_catalogcrudtest_catalogcrudtest_testsanitizeinputdescription",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L362",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest_catalogcrudtest",
+      "target": "tests_integration_catalogcrudtest_catalogcrudtest_testsanitizeinputsettings",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L375",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest_catalogcrudtest",
+      "target": "tests_integration_catalogcrudtest_catalogcrudtest_testsanitizeinputcolumnsminimum",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L397",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest_catalogcrudtest",
+      "target": "tests_integration_catalogcrudtest_catalogcrudtest_testsanitizeinputnegativecolumns",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L411",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest_catalogcrudtest",
+      "target": "tests_integration_catalogcrudtest_catalogcrudtest_testsanitizeinputproducts",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L425",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest_catalogcrudtest",
+      "target": "tests_integration_catalogcrudtest_catalogcrudtest_testsanitizeinputproductsfiltersinvalid",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L437",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest_catalogcrudtest",
+      "target": "tests_integration_catalogcrudtest_catalogcrudtest_testsanitizeinputpartialsettings",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L449",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest_catalogcrudtest",
+      "target": "tests_integration_catalogcrudtest_catalogcrudtest_testsanitizeinputinvalidlayout",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L466",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_wordpressbaselinetest",
+      "target": "src_catalogposttype_catalogposttype",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Integration/WordPressBaselineTest.php",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_wordpressbaselinetest",
+      "target": "src_plugin_plugin",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Integration/WordPressBaselineTest.php",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_wordpressbaselinetest",
+      "target": "phpunit_framework_testcase",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Integration/WordPressBaselineTest.php",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_wordpressbaselinetest",
+      "target": "tests_integration_wordpressbaselinetest_wordpressbaselinetest",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Integration/WordPressBaselineTest.php",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_wordpressbaselinetest_wordpressbaselinetest",
+      "target": "phpunit_framework_testcase",
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Integration/WordPressBaselineTest.php",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_wordpressbaselinetest_wordpressbaselinetest",
+      "target": "tests_integration_wordpressbaselinetest_wordpressbaselinetest_testwordpressisloaded",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Integration/WordPressBaselineTest.php",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_wordpressbaselinetest_wordpressbaselinetest",
+      "target": "tests_integration_wordpressbaselinetest_wordpressbaselinetest_testcatalogistbootstrapregistersinitializationhook",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Integration/WordPressBaselineTest.php",
+      "source_location": "L16",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_wordpressbaselinetest_wordpressbaselinetest",
+      "target": "tests_integration_wordpressbaselinetest_wordpressbaselinetest_testcatalogposttypeisregistered",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Integration/WordPressBaselineTest.php",
+      "source_location": "L22",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_unit_baselinetest",
+      "target": "phpunit_framework_testcase",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Unit/BaselineTest.php",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_unit_baselinetest",
+      "target": "tests_unit_baselinetest_baselinetest",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Unit/BaselineTest.php",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_unit_baselinetest_baselinetest",
+      "target": "phpunit_framework_testcase",
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Unit/BaselineTest.php",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_unit_baselinetest_baselinetest",
+      "target": "tests_unit_baselinetest_baselinetest_testphpunitisworking",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Unit/BaselineTest.php",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_unit_catalogtest",
+      "target": "src_catalog_catalog",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Unit/CatalogTest.php",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_unit_catalogtest",
+      "target": "phpunit_framework_testcase",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Unit/CatalogTest.php",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_unit_catalogtest",
+      "target": "tests_unit_catalogtest_catalogtest",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Unit/CatalogTest.php",
+      "source_location": "L16",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_unit_catalogtest_catalogtest",
+      "target": "phpunit_framework_testcase",
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Unit/CatalogTest.php",
+      "source_location": "L16",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_unit_catalogtest_catalogtest",
+      "target": "tests_unit_catalogtest_catalogtest_testdefaultsettingsstructure",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Unit/CatalogTest.php",
+      "source_location": "L21",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_unit_catalogtest_catalogtest",
+      "target": "tests_unit_catalogtest_catalogtest_testmetakeys",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/Unit/CatalogTest.php",
+      "source_location": "L41",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "src_admin_admin_render_settings_meta_box",
+      "target": "src_catalog_catalog",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "src/Admin.php",
+      "source_location": "L82",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "src_admin_admin_render_products_meta_box",
+      "target": "src_catalog_catalog",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "src/Admin.php",
+      "source_location": "L206",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "src_admin_admin_save_meta_box_data",
+      "target": "src_catalog_catalog",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "src/Admin.php",
+      "source_location": "L444",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest_catalogcrudtest_testsavecatalogmeta",
+      "target": "src_catalog_catalog",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L104",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest_catalogcrudtest_testloadcatalogdatawithdefaults",
+      "target": "src_catalog_catalog",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L141",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest_catalogcrudtest_testloadcatalogdatawithmeta",
+      "target": "src_catalog_catalog",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L168",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest_catalogcrudtest_testadminsavehandlersimulation",
+      "target": "src_admin_admin",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L229",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest_catalogcrudtest_testadminsavehandlersimulation",
+      "target": "src_catalog_catalog",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L232",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest_catalogcrudtest_testadminsavehandlerinvalidnonce",
+      "target": "src_admin_admin",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L266",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest_catalogcrudtest_testadminsavehandlerinvalidnonce",
+      "target": "src_catalog_catalog",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L269",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest_catalogcrudtest_testadminsavehandlerautosave",
+      "target": "src_admin_admin",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L303",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest_catalogcrudtest_testadminsavehandlerautosave",
+      "target": "src_catalog_catalog",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L305",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest_catalogcrudtest_testdeletemeta",
+      "target": "src_catalog_catalog",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L325",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest_catalogcrudtest_testsanitizeinputempty",
+      "target": "src_catalog_catalog",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L352",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest_catalogcrudtest_testsanitizeinputdescription",
+      "target": "src_catalog_catalog",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L366",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest_catalogcrudtest_testsanitizeinputsettings",
+      "target": "src_catalog_catalog",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L385",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest_catalogcrudtest_testsanitizeinputcolumnsminimum",
+      "target": "src_catalog_catalog",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L403",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest_catalogcrudtest_testsanitizeinputnegativecolumns",
+      "target": "src_catalog_catalog",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L417",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest_catalogcrudtest_testsanitizeinputproducts",
+      "target": "src_catalog_catalog",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L429",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest_catalogcrudtest_testsanitizeinputproductsfiltersinvalid",
+      "target": "src_catalog_catalog",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L441",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest_catalogcrudtest_testsanitizeinputpartialsettings",
+      "target": "src_catalog_catalog",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L456",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_integration_catalogcrudtest_catalogcrudtest_testsanitizeinputinvalidlayout",
+      "target": "src_catalog_catalog",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/Integration/CatalogCrudTest.php",
+      "source_location": "L472",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_unit_catalogtest_catalogtest_testdefaultsettingsstructure",
+      "target": "src_catalog_catalog",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/Unit/CatalogTest.php",
+      "source_location": "L22",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "tests_unit_catalogtest_catalogtest_testmetakeys",
+      "target": "src_catalog_catalog",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/Unit/CatalogTest.php",
+      "source_location": "L42",
+      "weight": 1.0,
+      "_origin": "ast"
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0,
+  "failed_sources": []
+}

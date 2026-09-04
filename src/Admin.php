@@ -28,6 +28,18 @@ final class Admin {
 	private const EDIT_CAPABILITY = 'edit_posts';
 
 	/**
+	 * Get nonce configuration for testing.
+	 *
+	 * @return array{action: string, field: string}
+	 */
+	protected static function get_nonce_config(): array {
+		return array(
+			'action' => self::NONCE_ACTION,
+			'field'  => self::NONCE_FIELD,
+		);
+	}
+
+	/**
 	 * Boot admin hooks.
 	 */
 	public static function boot(): void {
