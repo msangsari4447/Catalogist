@@ -1,11 +1,11 @@
 # Graph Report - Catalogist  (2026-09-04)
 
 ## Corpus Check
-- 42 files · ~48,679 words
+- 41 files · ~47,802 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 700 nodes · 797 edges · 32 communities (29 shown, 3 thin omitted)
+- 679 nodes · 777 edges · 31 communities (28 shown, 3 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 5 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
@@ -41,7 +41,6 @@
 - website.md
 - WordPress Playground
 - debugging.md
-- Stage 3 — Variation Engine: First Vertical Slice
 
 ## God Nodes (most connected - your core abstractions)
 1. `ProductQueryEngine` - 60 edges
@@ -66,7 +65,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (32 total, 3 thin omitted)
+## Communities (31 total, 3 thin omitted)
 
 ### Community 0 - "Catalog"
 Cohesion: 0.05
@@ -160,12 +159,8 @@ Nodes (8): Create or open a site with a URL, Decide what to do, Interact with th
 Cohesion: 0.25
 Nodes (7): Escalation, Failure modes, Guardrails, Inputs required, Procedure, Verification, WordPress Playground
 
-### Community 31 - "Stage 3 — Variation Engine: First Vertical Slice"
-Cohesion: 0.10
-Nodes (20): Architecture, Files Changed, Git, Goal, Implementation Details, Implemented, Integration Tests (Docker WordPress + WooCommerce), Known Issues (+12 more)
-
 ## Knowledge Gaps
-- **396 isolated node(s):** `name`, `description`, `type`, `authors`, `phpunit/phpunit` (+391 more)
+- **379 isolated node(s):** `name`, `description`, `type`, `authors`, `phpunit/phpunit` (+374 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **3 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -173,13 +168,13 @@ Nodes (20): Architecture, Files Changed, Git, Goal, Implementation Details, Impl
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `ProductQueryEngineTest` connect `ProductQueryEngine` to `VariationEngine`?**
-  _High betweenness centrality (0.029) - this node is a cross-community bridge._
+  _High betweenness centrality (0.030) - this node is a cross-community bridge._
 - **Why does `CatalogCrudTest` connect `Catalog` to `VariationEngine`?**
-  _High betweenness centrality (0.014) - this node is a cross-community bridge._
+  _High betweenness centrality (0.015) - this node is a cross-community bridge._
 - **Are the 3 inferred relationships involving `Catalog` (e.g. with `.render_products_meta_box()` and `.render_settings_meta_box()`) actually correct?**
   _`Catalog` has 3 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `name`, `description`, `type` to the rest of the system?**
-  _396 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _379 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Catalog` be split into smaller, more focused modules?**
   _Cohesion score 0.053246753246753244 - nodes in this community are weakly interconnected._
 - **Should `ProductQueryEngine` be split into smaller, more focused modules?**
