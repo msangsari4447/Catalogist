@@ -1,164 +1,122 @@
-# Stage 4 — Filter Engine: First Vertical Slice
+# گزارش Verification — Stage 4
 
-## Stage
+## وضعیت نهایی
 
-Stage 4
+`STAGE VERIFIED`
 
-## Goal
+## خلاصه
 
-Implement a Filter Engine that applies composable, deterministic filters to product ID lists produced by the Product Query Engine and Variation Engine. The engine must support six filter types (type, category, tag, stock_status, price, sku) with safe validation, sequential composition, and graceful degradation for invalid input.
+موتور فیلتر (Filter Engine) به‌درستی پیاده‌سازی شده و تمام معیارهای پذیرش را گذرانده است. ۷۳ تست واحد و یکپارچه با موفقیت اجرا شدند، کد از نظر امنیتی و معماری سالم است و هیچ عملکرد متعلق به Stage‌های بعدی در آن نفوذ نکرده است.
 
-## Scope
+## Stage Contract
 
-### In Scope
+### وضعیت هر Requirement
 
-1. **`src/FilterEngine.php`** — New final class with static methods:
-   - `filter( array $product_ids, array $filters ): array` — Applies filters sequentially; invalid filters are skipped
-   - `validate_filter( mixed $filter ): bool` — Validates a single filter config before processing
-2. **Supported filter types**: `type`, `category`, `tag`, `stock_status`, `price`, `sku`
-3. **Integration with existing pipeline**: Accepts product IDs from `ProductQueryEngine::query()` and `VariationEngine::expand_product_ids()`
-4. **Tests**:
-   - `tests/Unit/FilterEngineTest.php` — 32 unit tests, 42 assertions
-   - `tests/Integration/FilterEngineTest.php` — 41 integration tests, 129 assertions
-5. **Report**: `report/stage-4-filter-engine.md`
-
-### Out of Scope
-
-- Sorting engine (Stage 5)
-- Selection engine (Stage 5)
-- Catalog Item normalization (Stage 7)
-- Template/Rendering/Print/Preview/Output
-- Elementor integration
-- Caching layer
-- REST/AJAX endpoints
-- Filter UI/Settings page
-
-## Acceptance Criteria
-
-| # | Criterion | Result |
+| # | معیار | وضعیت |
 |---|---|---|
-| 1 | `filter()` returns input IDs unchanged with empty filters | PASS |
-| 2 | `filter()` applies type filter correctly | PASS |
-| 3 | `filter()` applies category filter correctly | PASS |
-| 4 | `filter()` applies tag filter correctly | PASS |
-| 5 | `filter()` applies stock_status filter correctly | PASS |
-| 6 | `filter()` applies price filter (gte/lte/eq) correctly | PASS |
-| 7 | `filter()` applies sku filter correctly | PASS |
-| 8 | `filter()` composes multiple filters sequentially | PASS |
-| 9 | `validate_filter()` rejects invalid filter structures | PASS |
-| 10 | `validate_filter()` accepts valid filter structures | PASS |
-| 11 | Invalid/unknown filter types are skipped safely | PASS |
-| 12 | Empty product IDs return empty array | PASS |
-| 13 | Non-integer IDs are normalized to integers | PASS |
-| 14 | IDs <= 0 are rejected | PASS |
-| 15 | Deterministic output (same input → same output) | PASS |
-| 16 | PHPCS clean with project ruleset | PASS |
-| 17 | Unit tests pass (100%) | PASS |
-| 18 | Integration tests pass (100%) | PASS |
-| 19 | Stage 2/3 regression tests pass | PASS |
+| 1 | `filter()` با فیلترهای خالی، IDs ورودی را بدون تغییر برمی‌گرداند | PASS |
+| 2 | فیلتر type به‌درستی اعمال می‌شود | PASS |
+| 3 | فیلتر category به‌درستی اعمال می‌شود | PASS |
+| 4 | فیلتر tag به‌درستی اعمال می‌شود | PASS |
+| 5 | فیلتر stock_status به‌درستی اعمال می‌شود | PASS |
+| 6 | فیلتر price (gte/lte/eq) به‌درستی اعمال می‌شود | PASS |
+| 7 | فیلتر sku به‌درستی اعمال می‌شود | PASS |
+| 8 | ترکیب چند فیلتر به‌صورت متوالی کار می‌کند | PASS |
+| 9 | `validate_filter()` ساختارهای نامعتبر را رد می‌کند | PASS |
+| 10 | `validate_filter()` ساختارهای معتبر را قبول می‌کند | PASS |
+| 11 | فیلترهای نامعتبر/ناشناخته امن skip می‌شوند | PASS |
+| 12 | IDs خالی، آرایه خالی برمی‌گرداند | PASS |
+| 13 | IDs غیرعدد به integer نرمال‌سازی می‌شوند | PASS |
+| 14 | IDs ≤ 0 رد می‌شوند | PASS |
+| 15 | خروجی قطعی (دترمینισتیک) است | PASS |
+| 16 | PHPCS تمیز با ruleset پروژه | PASS |
+| 17 | تست‌های واحد ۱۰۰٪ PASS | PASS |
+| 18 | تست‌های یکپارچه ۱۰۰٪ PASS | PASS |
+| 19 | رگرسیون Stage 2/3 سالم | PASS |
 
 ## Implementation
 
-| File | Lines | Description |
-|---|---|---|
-| `src/FilterEngine.php` | 574 | Final class, 2 public static methods, 5 private helpers |
-| `tests/Unit/FilterEngineTest.php` | 497 | 32 tests, 42 assertions |
-| `tests/Integration/FilterEngineTest.php` | 1030 | 41 tests, 129 assertions |
+**فایل:** `src/FilterEngine.php` — ۵۷۴ خط
 
-### Architecture
-
-```
-FilterEngine (final class, all-static)
-├── filter(product_ids, filters) → array
-│   ├── normalize_ids() → list<int>
-│   └── apply_filters(ids, filters) → list<int>
-│       ├── validate_filter(filter) → bool
-│       ├── apply_type_filter(ids, filter) → list<int>
-│       ├── apply_category_filter(ids, filter) → list<int>
-│       ├── apply_tag_filter(ids, filter) → list<int>
-│       ├── apply_stock_status_filter(ids, filter) → list<int>
-│       ├── apply_price_filter(ids, filter) → list<int>
-│       └── apply_sku_filter(ids, filter) → list<int>
-└── validate_filter(filter) → bool
-```
-
-**Design decisions:**
-- Single `wc_get_product()` call per product (no N+1 in filter loops)
-- Validate-first-then-load: invalid filters skipped before any product loading
-- Sequential composition: each filter narrows the result set
-- Safe defaults: invalid input returns empty array, never throws
+- `final class FilterEngine` با ۲ متد public static:
+  - `filter( array $product_ids, array $filters ): array`
+  - `validate_filter( mixed $filter ): bool`
+- ۶ نوع فیلتر پشتیبانی‌شده: type, category, tag, stock_status, price, sku
+- الگوی validate-first-then-load: اعتبارسنجی قبل از بارگذاری محصولات
+- بارگذاری تک‌باره محصولات با `wc_get_product()` (بدون N+1)
+- فیلترهای نامعتبر امن skip می‌شوند
 
 ## Tests
 
-| Project | Command | Result |
+| مورد | Command | نتیجه |
 |---|---|---|
-| Unit | `phpunit --testsuite Unit --filter FilterEngine` | PASS 32 tests, 42 assertions |
-| Integration | `docker compose exec wordpress ... --bootstrap tests/Integration/bootstrap.php --testsuite Integration --filter FilterEngine` | PASS 41 tests, 129 assertions |
-| Regression (Stage 3) | `docker compose exec wordpress ... --testsuite Integration --filter VariationEngine` | PASS 26 tests, 71 assertions |
-| Regression (Stage 2) | `docker compose exec wordpress ... --testsuite Integration --filter ProductQueryEngine` | PASS 46 tests, 129 assertions (3 pre-existing failures) |
-| PHPCS | `vendor/bin/phpcs -s src/FilterEngine.php tests/Unit/FilterEngineTest.php tests/Integration/FilterEngineTest.php` | CLEAN 3/3 files (project ruleset) |
+| PHPUnit Unit (FilterEngine) | `phpunit --bootstrap tests/Integration/bootstrap.php --testsuite Unit tests/Unit/FilterEngineTest.php` | PASS 32 tests, 42 assertions |
+| PHPUnit Integration (FilterEngine) | `phpunit --bootstrap tests/Integration/bootstrap.php --testsuite Integration tests/Integration/FilterEngineTest.php` | PASS 41 tests, 129 assertions |
+| Regression Stage 3 (VariationEngine) | `phpunit --bootstrap ... --testsuite Integration tests/Integration/VariationEngineTest.php` | PASS 26 tests, 71 assertions |
+| Regression Stage 2 (ProductQueryEngine) | `phpunit --bootstrap ... --testsuite Integration tests/Integration/ProductQueryEngineTest.php` | 46 tests, 3 pre-existing failures (مربوط به Stage 4 نیست) |
+| PHPCS (ruleset پروژه) | `vendor/bin/phpcs -s src/FilterEngine.php tests/Integration/FilterEngineTest.php tests/Unit/FilterEngineTest.php` | CLEAN 3/3 files |
 
 ## Code Quality
 
-PHPCS: PASS — 3/3 files, exit 0 (project ruleset with filename/classname exclusions)
-PHPStan: N/A（未配置）
+PHPCS: PASS — ۳ فایل، بدون خطا (با ruleset پروژه که موارد filename/classname را استثنا کرده)
 
 ## Security
 
-| 检查项 | 结果 |
+| بررسی | نتیجه |
 |---|---|
-| Input Sanitization | PASS — `intval()` for IDs, allow-list for filter types/operators/stock statuses |
-| Output Escaping | PASS — IDs are integers, no direct output |
-| Database Safety | PASS — 无 raw SQL; uses `wc_get_product()` and WordPress term APIs |
-| Capability/Nonce | N/A — query-only engine, no user-facing input |
-| `wc_get_product()` Null Check | PASS — 所有调用前检查 product 是否存在 |
-| No Eval/Dynamic Code | PASS |
-| Edge Case Safety | PASS — 无效输入返回安全默认值（空数组） |
+| Input Sanitization | PASS — `intval()` برای IDs، `sanitize_text_field()` برای category/tag |
+| Output Escaping | PASS — IDs اعداد صحیح، خروجی مستقیم نداریم |
+| Database Safety | PASS — بدون SQL مستقیم، استفاده از `wc_get_product()` و APIهای WordPress |
+| Capability/Nonce | N/A — موتور query-only، ورودی کاربر مستقیم ندارد |
+| `wc_get_product()` Null Check | PASS — بررسی null قبل از هر دسترسی |
+| No Eval/Dynamic Code | PASS — هیچ eval/exec/system |
+| Edge Case Safety | PASS — ورودی نامعتبر → آرایه خالی |
 
 ## Architecture
 
-- Single final class with static methods, mirrors ProductQueryEngine/VariationEngine pattern
-- Clean dependency: ProductQueryEngine → VariationEngine → FilterEngine
-- No Stage 5+ functionality leaked
-- Graceful failure: invalid filters skipped, never crashes
-- Single product load per ID (no N+1)
+- `final class` با متدهای static — مطابق الگوی ProductQueryEngine و VariationEngine
+- وابستگی تمیز: ProductQueryEngine → VariationEngine → FilterEngine
+- هیچ عملکرد Stage 5+ (sort, selection, catalog item, template, render) نفوذ نکرده
+- شکست graceful: فیلترهای نامعتبر skip می‌شوند، هرگز crash نمی‌کند
+- بارگذاری محصولات در هر بار اجرا یک‌باره (بدون N+1)
 
 ## Regressions
 
-- Stage 3 VariationEngine: 26 tests PASS, 0 regressions
-- Stage 2 ProductQueryEngine: 46 tests, 3 pre-existing failures (unchanged)
-- Unit tests: 58 total PASS, 0 regressions
+- Stage 3 VariationEngine: ۲۶ تست PASS، ۰ رگرسیون
+- Stage 2 ProductQueryEngine: ۳ شکست از قبل موجود (مربوط به pollution دیتابیس تست‌ها، unrelated به Stage 4)
+- Unit tests: ۵۸ تست PASS، ۰ رگرسیون
 
 ## Known Issues
 
-- Elementor 4.2.4 / WordPress 7.1 class-redeclaration bug affects CatalogCrudTest and WordPressBaselineTest only (pre-existing, same as Stage 2)
-- PHPCS `WordPress.DB.SlowDBQuery` warnings on test SKU lookup use `get_posts()` with meta_key — suppressed with phpcs:ignore comment (consistent with test cleanup patterns)
+- ۳ شکست pre-existing در ProductQueryEngineTest (مرتب‌سازی عنوان) — مربوط به Stage 4 نیست و قبل از آن هم وجود داشته است
 
-## Out of Scope
+## Evidence
 
-- Sorting & Selection (Stage 5)
-- Catalog Configuration (Stage 6)
-- Catalog Item Engine (Stage 7)
-- Template Engine (Stage 8)
-- Rendering/Print/Preview/Output Engines (Stages 9-12)
-- Elementor Integration (Stage 13)
-- Release Hardening (Stage 14)
-- Caching layer
-- REST/AJAX endpoints
-- Filter UI/Settings
+```
+# Unit tests
+phpunit --bootstrap tests/Integration/bootstrap.php --testsuite Unit tests/Unit/FilterEngineTest.php
+→ OK (32 tests, 42 assertions)
 
-## Git
+# Integration tests
+phpunit --bootstrap tests/Integration/bootstrap.php --testsuite Integration tests/Integration/FilterEngineTest.php
+→ OK (41 tests, 129 assertions)
 
-Branch: master
-Working Tree: clean (除新增文件外)
-New files:
-- `src/FilterEngine.php`
-- `tests/Unit/FilterEngineTest.php`
-- `tests/Integration/FilterEngineTest.php`
+# Combined integration
+phpunit --bootstrap tests/Integration/bootstrap.php --testsuite Integration tests/Integration/FilterEngineTest.php tests/Integration/VariationEngineTest.php
+→ OK (67 tests, 200 assertions)
+
+# PHPCS
+vendor/bin/phpcs -s src/FilterEngine.php tests/Integration/FilterEngineTest.php tests/Unit/FilterEngineTest.php
+→ CLEAN 3/3 files
+
+# Git
+git show 7c83d43 --stat
+→ 4 files changed, 2274 insertions
+```
 
 ## Final Decision
 
-STAGE VERIFIED
+`STAGE VERIFIED`
 
 ---
 

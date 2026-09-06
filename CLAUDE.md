@@ -7,8 +7,9 @@ Before starting any development task, read:
 1. `README.md`
 2. `AGENTS.md`
 3. `prompt.txt`
-4. The current Stage Contract, if one exists
-5. Relevant Skills
+4. `roadmap.md`
+5. The current Stage Contract, if one exists
+6. Relevant Skills
 
 These documents define the project context, development philosophy, scope rules, and architectural constraints.
 
