@@ -459,20 +459,19 @@ final class SelectionEngineTest extends TestCase {
 			return $product_id;
 		}
 
-		// Set product data via WooCommerce object API.
-		$product = wc_get_product( $product_id );
-		if ( $product ) {
-			if ( isset( $args['price'] ) ) {
-				$product->set_price( $args['price'] );
-			}
-			if ( isset( $args['sku'] ) ) {
-				$product->set_sku( $args['sku'] );
-			}
-			$product->save();
-			// Set product type AFTER save.
-			wp_set_object_terms( $product_id, $type, 'product_type' );
-			wp_cache_flush();
+		// Set product type BEFORE save (required by WooCommerce 11+).
+		wp_set_object_terms( $product_id, $type, 'product_type' );
+
+		// Set product data via WooCommerce post meta.
+		if ( isset( $args['price'] ) ) {
+			update_post_meta( $product_id, '_regular_price', $args['price'] );
+			update_post_meta( $product_id, '_sale_price', '' );
+			update_post_meta( $product_id, '_price', $args['price'] );
 		}
+		if ( isset( $args['sku'] ) ) {
+			update_post_meta( $product_id, '_sku', $args['sku'] );
+		}
+		wp_cache_flush();
 
 		return $product_id;
 	}

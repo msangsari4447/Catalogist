@@ -105,7 +105,7 @@ final class SortEngine {
 			$product  = $product_data[ $id ] ?? null;
 			$value    = self::get_sort_value( $product, $sort_key );
 			$tuples[] = array(
-				$value  => $value,
+				'value' => $value,
 				'id'    => $id,
 				'index' => $index,
 			);

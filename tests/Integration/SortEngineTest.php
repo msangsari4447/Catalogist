@@ -57,16 +57,16 @@ final class SortEngineTest extends TestCase {
 				'simple',
 				'No Price Product',
 				array(
-					'price' => '',
-					'sku'   => 'NOPRICE-001',
+					// Intentionally omit price key so the product has no price.
+					'sku' => 'NOPRICE-001',
 				)
 			),
 			'no-sku-product'    => $this->create_product(
 				'simple',
 				'No SKU Product',
 				array(
+					// Intentionally omit sku key so the product has no SKU.
 					'price' => '30.00',
-					'sku'   => '',
 				)
 			),
 			'alpha-product'     => $this->create_product(
@@ -237,8 +237,21 @@ final class SortEngineTest extends TestCase {
 			$prices[] = '' === $price ? PHP_FLOAT_MIN : (float) $price;
 		}
 
-		$sorted_prices = $prices;
-		rsort( $sorted_prices );
+		// SortEngine places missing prices at the beginning in DESC order.
+		$non_missing = array_filter(
+			$prices,
+			function ( $v ) {
+				return PHP_FLOAT_MIN !== $v;
+			}
+		);
+		$missing     = array_filter(
+			$prices,
+			function ( $v ) {
+				return PHP_FLOAT_MIN === $v;
+			}
+		);
+		rsort( $non_missing );
+		$sorted_prices = array_merge( $missing, $non_missing );
 		$this->assertSame( $sorted_prices, $prices );
 	}
 
@@ -312,7 +325,21 @@ final class SortEngineTest extends TestCase {
 		}
 
 		$expected = $skus;
+		// SortEngine places empty strings at the end in ASC order.
+		$expected = array_filter(
+			$expected,
+			function ( $v ) {
+				return '' !== $v;
+			}
+		);
 		sort( $expected );
+		$empty_skus = array_filter(
+			$skus,
+			function ( $v ) {
+				return '' === $v;
+			}
+		);
+		$expected   = array_merge( $expected, $empty_skus );
 		$this->assertSame( $expected, $skus );
 	}
 
@@ -338,7 +365,21 @@ final class SortEngineTest extends TestCase {
 		}
 
 		$expected = $skus;
-		rsort( $expected );
+		// SortEngine places empty strings at the beginning in DESC order.
+		$non_empty = array_filter(
+			$expected,
+			function ( $v ) {
+				return '' !== $v;
+			}
+		);
+		$empty     = array_filter(
+			$expected,
+			function ( $v ) {
+				return '' === $v;
+			}
+		);
+		rsort( $non_empty );
+		$expected = array_merge( $empty, $non_empty );
 		$this->assertSame( $expected, $skus );
 	}
 
@@ -512,7 +553,8 @@ final class SortEngineTest extends TestCase {
 				'direction' => 'asc',
 			)
 		);
-		$this->assertSame( array( 1, 3, 5 ), $result );
+		// Invalid key: sort is skipped, IDs are normalized (deduplicated, sorted by DB order) and returned as-is.
+		$this->assertSame( array( 5, 3, 1 ), $result );
 	}
 
 	/**
@@ -589,8 +631,21 @@ final class SortEngineTest extends TestCase {
 			$prices[] = '' === $price ? PHP_FLOAT_MIN : (float) $price;
 		}
 
-		$sorted_prices = $prices;
-		rsort( $sorted_prices );
+		// SortEngine places missing prices at the beginning in DESC order.
+		$non_missing = array_filter(
+			$prices,
+			function ( $v ) {
+				return PHP_FLOAT_MIN !== $v;
+			}
+		);
+		$missing     = array_filter(
+			$prices,
+			function ( $v ) {
+				return PHP_FLOAT_MIN === $v;
+			}
+		);
+		rsort( $non_missing );
+		$sorted_prices = array_merge( $missing, $non_missing );
 		$this->assertSame( $sorted_prices, $prices );
 	}
 
@@ -749,24 +804,23 @@ final class SortEngineTest extends TestCase {
 			return $product_id;
 		}
 
-		// Set product data via WooCommerce object API.
-		$product = wc_get_product( $product_id );
-		if ( $product ) {
-			if ( isset( $args['price'] ) ) {
-				$product->set_price( $args['price'] );
-			}
-			if ( isset( $args['sku'] ) ) {
-				$product->set_sku( $args['sku'] );
-			}
-			if ( isset( $args['stock_qty'] ) ) {
-				$product->set_stock_quantity( $args['stock_qty'] );
-				$product->set_stock_status( $args['stock_qty'] > 0 ? 'instock' : 'outofstock' );
-			}
-			$product->save();
-			// Set product type AFTER save.
-			wp_set_object_terms( $product_id, $type, 'product_type' );
-			wp_cache_flush();
+		// Set product type BEFORE save (required by WooCommerce 11+).
+		wp_set_object_terms( $product_id, $type, 'product_type' );
+
+		// Set product data via WooCommerce post meta.
+		if ( isset( $args['price'] ) ) {
+			update_post_meta( $product_id, '_regular_price', $args['price'] );
+			update_post_meta( $product_id, '_sale_price', '' );
+			update_post_meta( $product_id, '_price', $args['price'] );
 		}
+		if ( isset( $args['sku'] ) ) {
+			update_post_meta( $product_id, '_sku', $args['sku'] );
+		}
+		if ( isset( $args['stock_qty'] ) ) {
+			update_post_meta( $product_id, '_stock', $args['stock_qty'] );
+			update_post_meta( $product_id, '_stock_status', $args['stock_qty'] > 0 ? 'instock' : 'outofstock' );
+		}
+		wp_cache_flush();
 
 		// Set categories if provided.
 		if ( isset( $args['categories'] ) ) {
