@@ -749,8 +749,24 @@ final class SortEngineTest extends TestCase {
 			return $product_id;
 		}
 
-		// Set product type.
-		wc_create_product( $product_id, $type );
+		// Set product data via WooCommerce object API.
+		$product = wc_get_product( $product_id );
+		if ( $product ) {
+			if ( isset( $args['price'] ) ) {
+				$product->set_price( $args['price'] );
+			}
+			if ( isset( $args['sku'] ) ) {
+				$product->set_sku( $args['sku'] );
+			}
+			if ( isset( $args['stock_qty'] ) ) {
+				$product->set_stock_quantity( $args['stock_qty'] );
+				$product->set_stock_status( $args['stock_qty'] > 0 ? 'instock' : 'outofstock' );
+			}
+			$product->save();
+			// Set product type AFTER save.
+			wp_set_object_terms( $product_id, $type, 'product_type' );
+			wp_cache_flush();
+		}
 
 		// Set categories if provided.
 		if ( isset( $args['categories'] ) ) {
