@@ -548,6 +548,15 @@ final class FilterEngine {
 	}
 
 	/**
+	 * Get the list of allowed filter types.
+	 *
+	 * @return list<string>
+	 */
+	public static function get_allowed_filter_types(): array {
+		return self::ALLOWED_FILTER_TYPES;
+	}
+
+	/**
 	 * Sanitize SKU filter value to a list of SKUs.
 	 *
 	 * @param mixed $value Raw SKU value.

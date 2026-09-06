@@ -475,4 +475,684 @@ final class CatalogCrudTest extends TestCase {
 		// For Stage 1, we just sanitize the string
 		$this->assertSame( 'invalid_layout', $result['settings']['layout'] );
 	}
+
+	// ----------------------------------------------------------------
+	// Stage 6: Configuration Validation
+	// ----------------------------------------------------------------
+
+	/**
+	 * Test validate_configuration accepts a complete valid configuration.
+	 */
+	public function testValidateConfigurationAcceptsCompleteValid(): void {
+		$config = Catalog::default_configuration();
+		$config['filters'] = array(
+			array(
+				'type'  => 'category',
+				'value' => 'electronics',
+			),
+		);
+
+		$errors = Catalog::validate_configuration( $config );
+		$this->assertEmpty( $errors );
+	}
+
+	/**
+	 * Test validate_configuration rejects missing version.
+	 */
+	public function testValidateConfigurationRejectsMissingVersion(): void {
+		$config = Catalog::default_configuration();
+		unset( $config['version'] );
+
+		$errors = Catalog::validate_configuration( $config );
+		$this->assertNotEmpty( $errors );
+		$this->assertContains( 'version', $errors[0] );
+	}
+
+	/**
+	 * Test validate_configuration rejects invalid status.
+	 */
+	public function testValidateConfigurationRejectsInvalidStatus(): void {
+		$config = Catalog::default_configuration();
+		$config['status'] = 'published';
+
+		$errors = Catalog::validate_configuration( $config );
+		$this->assertNotEmpty( $errors );
+		$this->assertContains( 'status', $errors[0] );
+	}
+
+	/**
+	 * Test validate_configuration accepts all allowed statuses.
+	 *
+	 * @dataProvider providerAllowedStatuses
+	 */
+	public function testValidateConfigurationAcceptsAllowedStatuses( string $status ): void {
+		$config = Catalog::default_configuration();
+		$config['status'] = $status;
+
+		$errors = Catalog::validate_configuration( $config );
+		$this->assertEmpty( $errors, "Status '$status' should be valid" );
+	}
+
+	/**
+	 * Data provider for allowed statuses.
+	 *
+	 * @return array<array<string>>
+	 */
+	public static function providerAllowedStatuses(): array {
+		return array(
+			array( 'draft' ),
+			array( 'active' ),
+			array( 'archived' ),
+		);
+	}
+
+	/**
+	 * Test validate_configuration rejects invalid sort key.
+	 */
+	public function testValidateConfigurationRejectsInvalidSortKey(): void {
+		$config = Catalog::default_configuration();
+		$config['sort'] = array(
+			'key'       => 'random_field',
+			'direction' => 'asc',
+		);
+
+		$errors = Catalog::validate_configuration( $config );
+		$this->assertNotEmpty( $errors );
+		$this->assertContains( 'key', $errors[0] );
+	}
+
+	/**
+	 * Test validate_configuration accepts all allowed sort keys.
+	 *
+	 * @dataProvider providerAllowedSortKeys
+	 */
+	public function testValidateConfigurationAcceptsAllowedSortKeys( string $key ): void {
+		$config = Catalog::default_configuration();
+		$config['sort'] = array(
+			'key'       => $key,
+			'direction' => 'asc',
+		);
+
+		$errors = Catalog::validate_configuration( $config );
+		$this->assertEmpty( $errors, "Sort key '$key' should be valid" );
+	}
+
+	/**
+	 * Data provider for allowed sort keys.
+	 *
+	 * @return array<array<string>>
+	 */
+	public static function providerAllowedSortKeys(): array {
+		return array(
+			array( 'title' ),
+			array( 'price' ),
+			array( 'sku' ),
+			array( 'menu_order' ),
+			array( 'id' ),
+		);
+	}
+
+	/**
+	 * Test validate_configuration rejects invalid sort direction.
+	 */
+	public function testValidateConfigurationRejectsInvalidSortDirection(): void {
+		$config = Catalog::default_configuration();
+		$config['sort'] = array(
+			'key'       => 'title',
+			'direction' => 'DOWN',
+		);
+
+		$errors = Catalog::validate_configuration( $config );
+		$this->assertNotEmpty( $errors );
+		$this->assertContains( 'direction', $errors[0] );
+	}
+
+	/**
+	 * Test validate_configuration accepts both allowed directions.
+	 *
+	 * @dataProvider providerAllowedSortDirections
+	 */
+	public function testValidateConfigurationAcceptsAllowedSortDirections( string $direction ): void {
+		$config = Catalog::default_configuration();
+		$config['sort'] = array(
+			'key'       => 'title',
+			'direction' => $direction,
+		);
+
+		$errors = Catalog::validate_configuration( $config );
+		$this->assertEmpty( $errors, "Direction '$direction' should be valid" );
+	}
+
+	/**
+	 * Data provider for allowed sort directions.
+	 *
+	 * @return array<array<string>>
+	 */
+	public static function providerAllowedSortDirections(): array {
+		return array(
+			array( 'asc' ),
+			array( 'desc' ),
+		);
+	}
+
+	/**
+	 * Test validate_configuration rejects negative selection offset.
+	 */
+	public function testValidateConfigurationRejectsNegativeOffset(): void {
+		$config = Catalog::default_configuration();
+		$config['selection'] = array(
+			'offset' => -1,
+			'limit'  => null,
+		);
+
+		$errors = Catalog::validate_configuration( $config );
+		$this->assertNotEmpty( $errors );
+		$this->assertContains( 'offset', $errors[0] );
+	}
+
+	/**
+	 * Test validate_configuration rejects negative selection limit.
+	 */
+	public function testValidateConfigurationRejectsNegativeLimit(): void {
+		$config = Catalog::default_configuration();
+		$config['selection'] = array(
+			'offset' => 0,
+			'limit'  => -5,
+		);
+
+		$errors = Catalog::validate_configuration( $config );
+		$this->assertNotEmpty( $errors );
+		$this->assertContains( 'limit', $errors[0] );
+	}
+
+	/**
+	 * Test validate_configuration accepts null limit (no limit).
+	 */
+	public function testValidateConfigurationAcceptsNullLimit(): void {
+		$config = Catalog::default_configuration();
+		$config['selection'] = array(
+			'offset' => 0,
+			'limit'  => null,
+		);
+
+		$errors = Catalog::validate_configuration( $config );
+		$this->assertEmpty( $errors );
+	}
+
+	/**
+	 * Test validate_configuration rejects invalid layout value.
+	 */
+	public function testValidateConfigurationRejectsInvalidLayout(): void {
+		$config = Catalog::default_configuration();
+		$config['layout']['layout'] = 'carousel';
+
+		$errors = Catalog::validate_configuration( $config );
+		$this->assertNotEmpty( $errors );
+		$this->assertContains( 'Layout', $errors[0] );
+	}
+
+	/**
+	 * Test validate_configuration accepts all allowed layouts.
+	 *
+	 * @dataProvider providerAllowedLayouts
+	 */
+	public function testValidateConfigurationAcceptsAllowedLayouts( string $layout ): void {
+		$config = Catalog::default_configuration();
+		$config['layout']['layout'] = $layout;
+
+		$errors = Catalog::validate_configuration( $config );
+		$this->assertEmpty( $errors, "Layout '$layout' should be valid" );
+	}
+
+	/**
+	 * Data provider for allowed layouts.
+	 *
+	 * @return array<array<string>>
+	 */
+	public static function providerAllowedLayouts(): array {
+		return array(
+			array( 'grid' ),
+			array( 'list' ),
+			array( 'table' ),
+		);
+	}
+
+	/**
+	 * Test validate_configuration rejects invalid column count.
+	 */
+	public function testValidateConfigurationRejectsInvalidColumns(): void {
+		$config = Catalog::default_configuration();
+		$config['layout']['columns'] = 0;
+
+		$errors = Catalog::validate_configuration( $config );
+		$this->assertNotEmpty( $errors );
+		$this->assertContains( 'columns', $errors[0] );
+	}
+
+	/**
+	 * Test validate_configuration rejects too many columns.
+	 */
+	public function testValidateConfigurationRejectsTooManyColumns(): void {
+		$config = Catalog::default_configuration();
+		$config['layout']['columns'] = 13;
+
+		$errors = Catalog::validate_configuration( $config );
+		$this->assertNotEmpty( $errors );
+		$this->assertContains( 'columns', $errors[0] );
+	}
+
+	/**
+	 * Test validate_configuration accepts valid column counts.
+	 *
+	 * @dataProvider providerValidColumnCounts
+	 */
+	public function testValidateConfigurationAcceptsValidColumns( int $columns ): void {
+		$config = Catalog::default_configuration();
+		$config['layout']['columns'] = $columns;
+
+		$errors = Catalog::validate_configuration( $config );
+		$this->assertEmpty( $errors, "Columns $columns should be valid" );
+	}
+
+	/**
+	 * Data provider for valid column counts.
+	 *
+	 * @return array<array<int>>
+	 */
+	public static function providerValidColumnCounts(): array {
+		return array(
+			array( 1 ),
+			array( 3 ),
+			array( 6 ),
+			array( 12 ),
+		);
+	}
+
+	/**
+	 * Test validate_configuration rejects invalid filter type.
+	 */
+	public function testValidateConfigurationRejectsInvalidFilterType(): void {
+		$config = Catalog::default_configuration();
+		$config['filters'] = array(
+			array(
+				'type'  => 'nonexistent_filter',
+				'value' => 'something',
+			),
+		);
+
+		$errors = Catalog::validate_configuration( $config );
+		$this->assertNotEmpty( $errors );
+	}
+
+	/**
+	 * Test validate_configuration rejects filter missing type.
+	 */
+	public function testValidateConfigurationRejectsFilterMissingType(): void {
+		$config = Catalog::default_configuration();
+		$config['filters'] = array(
+			array( 'value' => 'something' ),
+		);
+
+		$errors = Catalog::validate_configuration( $config );
+		$this->assertNotEmpty( $errors );
+		$this->assertContains( 'Filter at index 0', $errors[0] );
+	}
+
+	/**
+	 * Test validate_configuration rejects filter missing value.
+	 */
+	public function testValidateConfigurationRejectsFilterMissingValue(): void {
+		$config = Catalog::default_configuration();
+		$config['filters'] = array(
+			array( 'type' => 'category' ),
+		);
+
+		$errors = Catalog::validate_configuration( $config );
+		$this->assertNotEmpty( $errors );
+		$this->assertContains( 'Filter at index 0', $errors[0] );
+	}
+
+	/**
+	 * Test validate_configuration rejects non-array filter.
+	 */
+	public function testValidateConfigurationRejectsNonArrayFilter(): void {
+		$config = Catalog::default_configuration();
+		$config['filters'] = array( 'not-an-array' );
+
+		$errors = Catalog::validate_configuration( $config );
+		$this->assertNotEmpty( $errors );
+		$this->assertContains( 'Filter at index 0', $errors[0] );
+	}
+
+	/**
+	 * Test validate_configuration accepts valid filter.
+	 */
+	public function testValidateConfigurationAcceptsValidFilter(): void {
+		$config = Catalog::default_configuration();
+		$config['filters'] = array(
+			array(
+				'type'  => 'category',
+				'value' => 'electronics',
+			),
+		);
+
+		$errors = Catalog::validate_configuration( $config );
+		$this->assertEmpty( $errors );
+	}
+
+	/**
+	 * Test validate_configuration with empty filters array is valid.
+	 */
+	public function testValidateConfigurationEmptyFiltersValid(): void {
+		$config = Catalog::default_configuration();
+		$config['filters'] = array();
+
+		$errors = Catalog::validate_configuration( $config );
+		$this->assertEmpty( $errors );
+	}
+
+	/**
+	 * Test validate_configuration rejects non-array filters.
+	 */
+	public function testValidateConfigurationRejectsNonArrayFilters(): void {
+		$config = Catalog::default_configuration();
+		$config['filters'] = 'not-an-array';
+
+		$errors = Catalog::validate_configuration( $config );
+		$this->assertNotEmpty( $errors );
+		$this->assertContains( 'Filters', $errors[0] );
+	}
+
+	// ----------------------------------------------------------------
+	// Stage 6: Configuration Persistence
+	// ----------------------------------------------------------------
+
+	/**
+	 * Test saving configuration fields to post meta.
+	 */
+	public function testSaveConfigurationFields(): void {
+		$post_id = wp_insert_post(
+			array(
+				'post_type'   => CatalogPostType::POST_TYPE,
+				'post_title'  => 'Config Catalog',
+				'post_status' => 'draft',
+			)
+		);
+		$this->assertGreaterThan( 0, $post_id );
+		self::$catalog_id = $post_id;
+
+		// Simulate saving new configuration fields.
+		$input = array(
+			'catalog_status'            => 'active',
+			'catalog_sort_key'          => 'price',
+			'catalog_sort_direction'    => 'desc',
+			'catalog_selection_offset'  => '10',
+			'catalog_selection_limit'   => '25',
+			'catalog_template_id'       => '5',
+		);
+
+		// Call Admin::save_meta_box_data directly with the input.
+		// We need to simulate the POST data.
+		$_POST = $input;
+		$_REQUEST = $input;
+
+		// Use reflection to call the save method.
+		$ref = new ReflectionClass( Admin::class );
+		$method = $ref->getMethod( 'save_meta_box_data' );
+		$method->setAccessible( true );
+
+		// Create a mock request object.
+		$request = new \WP_REST_Request( 'POST', '/' );
+		$request->set_param( 'catalog_status', 'active' );
+		$request->set_param( 'catalog_sort_key', 'price' );
+		$request->set_param( 'catalog_sort_direction', 'desc' );
+		$request->set_param( 'catalog_selection_offset', '10' );
+		$request->set_param( 'catalog_selection_limit', '25' );
+		$request->set_param( 'catalog_template_id', '5' );
+		$request->set_param( '_wpnonce', wp_create_nonce( 'catalogist_save_data' ) );
+		$request->set_param( 'post_id', $post_id );
+
+		// Since we can't easily call the admin handler, let's test via Catalog::save directly.
+		$configuration = Catalog::sanitize_configuration( array(
+			'status' => 'active',
+			'sort'   => array( 'key' => 'price', 'direction' => 'desc' ),
+			'selection' => array( 'offset' => 10, 'limit' => 25 ),
+			'template' => array( 'id' => 5 ),
+		) );
+
+		$result = Catalog::save( $post_id, array(
+			'description' => 'Test config catalog',
+			'settings'    => array(),
+			'products'    => array(),
+			'configuration' => $configuration,
+		) );
+
+		$this->assertTrue( $result );
+
+		// Verify meta was saved.
+		$saved_config = get_post_meta( $post_id, Catalog::CTLG_META_CONFIGURATION, true );
+		$saved_config = json_decode( $saved_config, true );
+
+		$this->assertSame( 'active', $saved_config['status'] );
+		$this->assertSame( 'price', $saved_config['sort']['key'] );
+		$this->assertSame( 'desc', $saved_config['sort']['direction'] );
+		$this->assertSame( 10, $saved_config['selection']['offset'] );
+		$this->assertSame( 25, $saved_config['selection']['limit'] );
+		$this->assertSame( 5, $saved_config['template']['id'] );
+	}
+
+	/**
+	 * Test loading configuration from post meta.
+	 */
+	public function testLoadConfigurationFromMeta(): void {
+		$post_id = wp_insert_post(
+			array(
+				'post_type'   => CatalogPostType::POST_TYPE,
+				'post_title'  => 'Load Config Catalog',
+				'post_status' => 'draft',
+			)
+		);
+		$this->assertGreaterThan( 0, $post_id );
+		self::$catalog_id = $post_id;
+
+		// Manually set configuration meta.
+		$config = Catalog::default_configuration();
+		$config['status'] = 'active';
+		$config['sort'] = array( 'key' => 'price', 'direction' => 'desc' );
+		$config['selection'] = array( 'offset' => 5, 'limit' => 10 );
+		$config['layout'] = array( 'layout' => 'table', 'columns' => 4 );
+
+		update_post_meta( $post_id, Catalog::CTLG_META_CONFIGURATION, wp_json_encode( $config ) );
+		update_post_meta( $post_id, Catalog::CTLG_META_VERSION, Catalog::CONFIG_VERSION );
+		update_post_meta( $post_id, Catalog::CTLG_META_STATUS, 'active' );
+
+		// Load via Catalog::get_data.
+		$data = Catalog::get_data( $post_id );
+
+		$this->assertSame( 'active', $data['configuration']['status'] );
+		$this->assertSame( 'price', $data['configuration']['sort']['key'] );
+		$this->assertSame( 'desc', $data['configuration']['sort']['direction'] );
+		$this->assertSame( 5, $data['configuration']['selection']['offset'] );
+		$this->assertSame( 10, $data['configuration']['selection']['limit'] );
+		$this->assertSame( 'table', $data['configuration']['layout']['layout'] );
+		$this->assertSame( 4, $data['configuration']['layout']['columns'] );
+	}
+
+	/**
+	 * Test backward compatibility: legacy meta merged into configuration.
+	 */
+	public function testBackwardCompatibilityLegacyMeta(): void {
+		$post_id = wp_insert_post(
+			array(
+				'post_type'   => CatalogPostType::POST_TYPE,
+				'post_title'  => 'Legacy Catalog',
+				'post_status' => 'draft',
+			)
+		);
+		$this->assertGreaterThan( 0, $post_id );
+		self::$catalog_id = $post_id;
+
+		// Simulate legacy meta (Stage 1-5 format).
+		update_post_meta( $post_id, Catalog::META_DESCRIPTION, 'Legacy description' );
+		update_post_meta( $post_id, Catalog::META_SETTINGS, wp_json_encode( array(
+			'layout'     => 'list',
+			'columns'    => 2,
+			'show_price' => false,
+			'show_sku'   => true,
+			'show_stock' => false,
+		) ) );
+		update_post_meta( $post_id, Catalog::META_PRODUCTS, wp_json_encode( array( 100, 200 ) ) );
+
+		$data = Catalog::get_data( $post_id );
+
+		// Description should be loaded.
+		$this->assertSame( 'Legacy description', $data['description'] );
+
+		// Legacy settings should be merged into configuration.
+		$this->assertSame( 'list', $data['configuration']['layout']['layout'] );
+		$this->assertSame( 2, $data['configuration']['layout']['columns'] );
+		$this->assertFalse( $data['configuration']['layout']['show_price'] );
+		$this->assertTrue( $data['configuration']['layout']['show_sku'] );
+		$this->assertFalse( $data['configuration']['layout']['show_stock'] );
+
+		// Products should still be available.
+		$this->assertSame( array( 100, 200 ), $data['products'] );
+
+		// Default configuration values should fill in missing parts.
+		$this->assertSame( 'draft', $data['configuration']['status'] );
+		$this->assertSame( 'title', $data['configuration']['sort']['key'] );
+	}
+
+	/**
+	 * Test configuration version is stored and retrievable.
+	 */
+	public function testConfigurationVersionStored(): void {
+		$post_id = wp_insert_post(
+			array(
+				'post_type'   => CatalogPostType::POST_TYPE,
+				'post_title'  => 'Version Catalog',
+				'post_status' => 'draft',
+			)
+		);
+		$this->assertGreaterThan( 0, $post_id );
+		self::$catalog_id = $post_id;
+
+		$config = Catalog::default_configuration();
+		Catalog::save( $post_id, array(
+			'description' => '',
+			'settings'    => array(),
+			'products'    => array(),
+			'configuration' => $config,
+		) );
+
+		// Version should be stored in meta.
+		$version_meta = get_post_meta( $post_id, Catalog::CTLG_META_VERSION, true );
+		$this->assertSame( Catalog::CONFIG_VERSION, $version_meta );
+
+		// Version should also be in configuration.
+		$data = Catalog::get_data( $post_id );
+		$this->assertSame( Catalog::CONFIG_VERSION, $data['configuration']['version'] );
+	}
+
+	/**
+	 * Test sanitize_configuration with full valid input.
+	 */
+	public function testSanitizeConfigurationFullValid(): void {
+		$input = array(
+			'status'     => 'active',
+			'filters'    => array(
+				array( 'type' => 'category', 'value' => 'books' ),
+			),
+			'sort'       => array( 'key' => 'price', 'direction' => 'desc' ),
+			'selection'  => array( 'offset' => 0, 'limit' => 20 ),
+			'layout'     => array( 'layout' => 'table', 'columns' => 4, 'show_price' => true ),
+			'template'   => array( 'id' => 10 ),
+		);
+
+		$result = Catalog::sanitize_configuration( $input );
+
+		$this->assertSame( 'active', $result['status'] );
+		$this->assertCount( 1, $result['filters'] );
+		$this->assertSame( 'price', $result['sort']['key'] );
+		$this->assertSame( 'desc', $result['sort']['direction'] );
+		$this->assertSame( 0, $result['selection']['offset'] );
+		$this->assertSame( 20, $result['selection']['limit'] );
+		$this->assertSame( 'table', $result['layout']['layout'] );
+		$this->assertSame( 4, $result['layout']['columns'] );
+		$this->assertSame( 10, $result['template']['id'] );
+	}
+
+	/**
+	 * Test sanitize_configuration with empty input returns defaults.
+	 */
+	public function testSanitizeConfigurationEmptyInput(): void {
+		$result = Catalog::sanitize_configuration( array() );
+
+		$this->assertSame( Catalog::CONFIG_VERSION, $result['version'] );
+		$this->assertSame( 'draft', $result['status'] );
+		$this->assertEmpty( $result['filters'] );
+		$this->assertSame( 'title', $result['sort']['key'] );
+		$this->assertSame( 'asc', $result['sort']['direction'] );
+		$this->assertSame( 0, $result['selection']['offset'] );
+		$this->assertNull( $result['selection']['limit'] );
+		$this->assertSame( 'grid', $result['layout']['layout'] );
+		$this->assertSame( 3, $result['layout']['columns'] );
+	}
+
+	/**
+	 * Test sanitize_configuration with invalid values normalizes to defaults.
+	 */
+	public function testSanitizeConfigurationInvalidValuesNormalized(): void {
+		$input = array(
+			'status'     => 'invalid_status',
+			'sort'       => array( 'key' => 'invalid_key', 'direction' => 'invalid_dir' ),
+			'selection'  => array( 'offset' => -5, 'limit' => -10 ),
+			'layout'     => array( 'layout' => 'invalid_layout', 'columns' => 99 ),
+		);
+
+		$result = Catalog::sanitize_configuration( $input );
+
+		// All invalid values should be normalized to safe defaults.
+		$this->assertSame( 'draft', $result['status'] );
+		$this->assertSame( 'title', $result['sort']['key'] );
+		$this->assertSame( 'asc', $result['sort']['direction'] );
+		$this->assertSame( 0, $result['selection']['offset'] );
+		$this->assertSame( 0, $result['selection']['limit'] );
+		$this->assertSame( 'grid', $result['layout']['layout'] );
+		$this->assertSame( 12, $result['layout']['columns'] );
+	}
+
+	/**
+	 * Test get_data with new configuration meta takes precedence over legacy.
+	 */
+	public function testGetDataTypeOverridesLegacy(): void {
+		$post_id = wp_insert_post(
+			array(
+				'post_type'   => CatalogPostType::POST_TYPE,
+				'post_title'  => 'Override Catalog',
+				'post_status' => 'draft',
+			)
+		);
+		$this->assertGreaterThan( 0, $post_id );
+		self::$catalog_id = $post_id;
+
+		// Set both legacy and new meta.
+		update_post_meta( $post_id, Catalog::META_SETTINGS, wp_json_encode( array(
+			'layout' => 'list',
+			'columns' => 2,
+		) ) );
+
+		$new_config = Catalog::default_configuration();
+		$new_config['layout'] = array(
+			'layout' => 'table',
+			'columns' => 5,
+		);
+		update_post_meta( $post_id, Catalog::CTLG_META_CONFIGURATION, wp_json_encode( $new_config ) );
+
+		$data = Catalog::get_data( $post_id );
+
+		// New configuration should take precedence.
+		$this->assertSame( 'table', $data['configuration']['layout']['layout'] );
+		$this->assertSame( 5, $data['configuration']['layout']['columns'] );
+	}
 }

@@ -42,9 +42,12 @@ final class CatalogTest extends TestCase {
 		$keys = Catalog::meta_keys();
 
 		$this->assertIsArray( $keys );
-		$this->assertCount( 3, $keys );
+		$this->assertCount( 6, $keys );
 		$this->assertContains( 'ctlg_catalog_description', $keys );
 		$this->assertContains( 'ctlg_catalog_settings', $keys );
 		$this->assertContains( 'ctlg_catalog_products', $keys );
+		$this->assertContains( 'ctlg_catalog_configuration', $keys );
+		$this->assertContains( 'ctlg_catalog_version', $keys );
+		$this->assertContains( 'ctlg_catalog_status', $keys );
 	}
 }

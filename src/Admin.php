@@ -61,6 +61,24 @@ final class Admin {
 		);
 
 		add_meta_box(
+			'catalogist_pipeline_config',
+			__( 'Pipeline Configuration', 'catalogist' ),
+			array( self::class, 'render_pipeline_config_meta_box' ),
+			CatalogPostType::POST_TYPE,
+			'normal',
+			'high'
+		);
+
+		add_meta_box(
+			'catalogist_catalog_status',
+			__( 'Catalog Status', 'catalogist' ),
+			array( self::class, 'render_status_meta_box' ),
+			CatalogPostType::POST_TYPE,
+			'side',
+			'default'
+		);
+
+		add_meta_box(
 			'catalogist_catalog_products',
 			__( 'Catalog Products', 'catalogist' ),
 			array( self::class, 'render_products_meta_box' ),
@@ -191,6 +209,189 @@ final class Admin {
 				</tr>
 			</tbody>
 		</table>
+		<?php
+	}
+
+	/**
+	 * Render the Pipeline Configuration meta box.
+	 *
+	 * Displays sort, selection, and filter configuration for the catalog.
+	 *
+	 * @param \WP_Post $post Current post object.
+	 */
+	public static function render_pipeline_config_meta_box( \WP_Post $post ): void {
+		wp_nonce_field( self::NONCE_ACTION, self::NONCE_FIELD );
+
+		$data         = Catalog::get_data( $post->ID );
+		$config       = $data['configuration'];
+		$sort         = $config['sort'] ?? array( 'key' => 'title', 'direction' => 'asc' );
+		$selection    = $config['selection'] ?? array( 'offset' => 0, 'limit' => null );
+		$filters      = $config['filters'] ?? array();
+		$template_id  = isset( $config['template']['id'] ) ? intval( $config['template']['id'] ) : 0;
+		?>
+		<table class="form-table" role="presentation">
+			<tbody>
+				<tr>
+					<th scope="row">
+						<label for="catalog_sort_key"><?php esc_html_e( 'Sort By', 'catalogist' ); ?></label>
+					</th>
+					<td>
+						<select
+							id="catalog_sort_key"
+							name="catalog_sort_key"
+							class="regular-text"
+						>
+							<?php
+							$sort_keys = array(
+								'title'      => __( 'Title', 'catalogist' ),
+								'price'      => __( 'Price', 'catalogist' ),
+								'sku'        => __( 'SKU', 'catalogist' ),
+								'menu_order' => __( 'Menu Order', 'catalogist' ),
+								'id'         => __( 'ID', 'catalogist' ),
+							);
+							foreach ( $sort_keys as $key => $label ) : ?>
+								<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $sort['key'], $key ); ?>>
+									<?php echo esc_html( $label ); ?>
+								</option>
+							<?php endforeach; ?>
+						</select>
+						<p class="description">
+							<?php esc_html_e( 'Sort products by the selected attribute.', 'catalogist' ); ?>
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">
+						<label for="catalog_sort_direction"><?php esc_html_e( 'Sort Direction', 'catalogist' ); ?></label>
+					</th>
+					<td>
+						<select
+							id="catalog_sort_direction"
+							name="catalog_sort_direction"
+							class="regular-text"
+						>
+							<option value="asc" <?php selected( $sort['direction'], 'asc' ); ?>>
+								<?php esc_html_e( 'Ascending', 'catalogist' ); ?>
+							</option>
+							<option value="desc" <?php selected( $sort['direction'], 'desc' ); ?>>
+								<?php esc_html_e( 'Descending', 'catalogist' ); ?>
+							</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">
+						<label for="catalog_selection_offset"><?php esc_html_e( 'Offset', 'catalogist' ); ?></label>
+					</th>
+					<td>
+						<input
+							type="number"
+							id="catalog_selection_offset"
+							name="catalog_selection_offset"
+							value="<?php echo esc_attr( $selection['offset'] ?? 0 ); ?>"
+							min="0"
+							step="1"
+							class="small-text"
+						>
+						<p class="description">
+							<?php esc_html_e( 'Skip this many products at the start.', 'catalogist' ); ?>
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">
+						<label for="catalog_selection_limit"><?php esc_html_e( 'Limit', 'catalogist' ); ?></label>
+					</th>
+					<td>
+						<input
+							type="number"
+							id="catalog_selection_limit"
+							name="catalog_selection_limit"
+							value="<?php echo esc_attr( $selection['limit'] ?? '' ); ?>"
+							min="0"
+							step="1"
+							class="small-text"
+						>
+						<p class="description">
+							<?php esc_html_e( 'Maximum number of products to show. Leave empty for no limit.', 'catalogist' ); ?>
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">
+						<label for="catalog_template_id"><?php esc_html_e( 'Template', 'catalogist' ); ?></label>
+					</th>
+					<td>
+						<input
+							type="number"
+							id="catalog_template_id"
+							name="catalog_template_id"
+							value="<?php echo esc_attr( $template_id ); ?>"
+							min="1"
+							step="1"
+							class="regular-text"
+						>
+						<p class="description">
+							<?php esc_html_e( 'Post ID of the template to use for this catalog.', 'catalogist' ); ?>
+						</p>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<?php
+	}
+
+	/**
+	 * Render the Catalog Status meta box.
+	 *
+	 * Displays and allows editing of the catalog status and version info.
+	 *
+	 * @param \WP_Post $post Current post object.
+	 */
+	public static function render_status_meta_box( \WP_Post $post ): void {
+		wp_nonce_field( self::NONCE_ACTION, self::NONCE_FIELD );
+
+		$data    = Catalog::get_data( $post->ID );
+		$status  = $data['status'];
+		$version = $data['version'];
+		?>
+		<div class="inside">
+			<table class="widefat fixed" cellspacing="0">
+				<tbody>
+					<tr>
+						<th scope="row" style="width: 40%;">
+							<?php esc_html_e( 'Status', 'catalogist' ); ?>
+						</th>
+						<td>
+							<select
+								name="catalog_status"
+								class="widefat"
+							>
+								<?php
+								$statuses = array(
+									'draft'  => __( 'Draft', 'catalogist' ),
+									'active' => __( 'Active', 'catalogist' ),
+									'archived' => __( 'Archived', 'catalogist' ),
+								);
+								foreach ( $statuses as $key => $label ) : ?>
+									<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $status, $key ); ?>>
+										<?php echo esc_html( $label ); ?>
+									</option>
+								<?php endforeach; ?>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">
+							<?php esc_html_e( 'Version', 'catalogist' ); ?>
+						</th>
+						<td>
+							<span class="code"><?php echo esc_html( $version ); ?></span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 		<?php
 	}
 
