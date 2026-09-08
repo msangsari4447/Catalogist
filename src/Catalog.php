@@ -203,7 +203,7 @@ final class Catalog {
 			$configuration = self::apply_defaults( $configuration, $config );
 		} elseif ( is_array( $settings ) || '' !== $settings ) {
 			// Legacy: merge old settings array into configuration.
-			$legacy_settings = is_array( $settings ) ? $settings : array();
+			$legacy_settings         = is_array( $settings ) ? $settings : array();
 			$configuration['layout'] = array_merge(
 				self::default_configuration()['layout'],
 				$legacy_settings
@@ -233,8 +233,8 @@ final class Catalog {
 			'settings'      => $configuration['layout'] ?? self::default_configuration()['layout'],
 			'products'      => $products_array,
 			'configuration' => $configuration,
-			'version'       => $version ?: $configuration['version'] ?? self::CONFIG_VERSION,
-			'status'        => $status ?: $configuration['status'] ?? 'draft',
+			'version'       => $version ? $version : ( $configuration['version'] ?? self::CONFIG_VERSION ),
+			'status'        => $status ? $status : ( $configuration['status'] ?? 'draft' ),
 			'created_at'    => get_the_date( 'c', $post_id ),
 			'updated_at'    => get_the_modified_date( 'c', $post_id ),
 		);
@@ -294,26 +294,26 @@ final class Catalog {
 		} else {
 			foreach ( $config['filters'] as $index => $filter ) {
 				$filter_errors = self::validate_filter( $filter, $index );
-				$errors = array_merge( $errors, $filter_errors );
+				$errors        = array_merge( $errors, $filter_errors );
 			}
 		}
 
 		// Sort configuration.
 		if ( isset( $config['sort'] ) ) {
 			$sort_errors = self::validate_sort_config( $config['sort'] );
-			$errors = array_merge( $errors, $sort_errors );
+			$errors      = array_merge( $errors, $sort_errors );
 		}
 
 		// Selection configuration.
 		if ( isset( $config['selection'] ) ) {
 			$selection_errors = self::validate_selection_config( $config['selection'] );
-			$errors = array_merge( $errors, $selection_errors );
+			$errors           = array_merge( $errors, $selection_errors );
 		}
 
 		// Layout configuration.
 		if ( isset( $config['layout'] ) ) {
 			$layout_errors = self::validate_layout_config( $config['layout'] );
-			$errors = array_merge( $errors, $layout_errors );
+			$errors        = array_merge( $errors, $layout_errors );
 		}
 
 		return $errors;
@@ -330,23 +330,25 @@ final class Catalog {
 		$errors = array();
 
 		if ( ! is_array( $filter ) ) {
+			// Translators: %d is the filter index number.
 			return array( sprintf( __( 'Filter at index %d must be an array.', 'catalogist' ), $index ) );
 		}
 
 		if ( ! isset( $filter['type'] ) || ! is_string( $filter['type'] ) || '' === trim( $filter['type'] ) ) {
+			// Translators: %d is the filter index number.
 			$errors[] = sprintf( __( 'Filter at index %d is missing a valid type.', 'catalogist' ), $index );
 		}
 
 		if ( ! isset( $filter['value'] ) ) {
+			// Translators: %d is the filter index number.
 			$errors[] = sprintf( __( 'Filter at index %d is missing a value.', 'catalogist' ), $index );
 		}
 
 		// Validate type-specific constraints.
-		if ( isset( $filter['type'] ) && in_array( $filter['type'], FilterEngine::get_allowed_filter_types(), true ) ) {
-			// Type is valid — additional validation happens in FilterEngine.
-		} elseif ( isset( $filter['type'] ) && '' !== trim( $filter['type'] ) ) {
+		if ( isset( $filter['type'] ) && '' !== trim( $filter['type'] ) ) {
 			$errors[] = sprintf(
-				__( 'Filter at index %d has an invalid type: "%s".', 'catalogist' ),
+				// Translators: %1$d is the filter index number. %2$s is the invalid filter type string.
+				__( 'Filter at index %1$d has an invalid type: "%2$s".', 'catalogist' ),
 				$index,
 				$filter['type']
 			);
@@ -373,7 +375,8 @@ final class Catalog {
 				$errors[] = __( 'Sort key must be a non-empty string.', 'catalogist' );
 			} elseif ( ! in_array( strtolower( trim( $sort_config['key'] ) ), self::ALLOWED_SORT_KEYS, true ) ) {
 				$errors[] = sprintf(
-					__( 'Sort key "%s" is not supported. Allowed keys: %s.', 'catalogist' ),
+					// Translators: %s is the invalid sort key. The second %s is the comma-separated list of allowed sort keys.
+					__( 'Sort key "%1$s" is not supported. Allowed keys: %2$s.', 'catalogist' ),
 					$sort_config['key'],
 					implode( ', ', self::ALLOWED_SORT_KEYS )
 				);
@@ -385,7 +388,8 @@ final class Catalog {
 				$errors[] = __( 'Sort direction must be a non-empty string.', 'catalogist' );
 			} elseif ( ! in_array( strtolower( trim( $sort_config['direction'] ) ), self::ALLOWED_SORT_DIRECTIONS, true ) ) {
 				$errors[] = sprintf(
-					__( 'Sort direction "%s" is not supported. Allowed directions: %s.', 'catalogist' ),
+					// Translators: %s is the invalid sort direction. The second %s is the comma-separated list of allowed sort directions.
+					__( 'Sort direction "%1$s" is not supported. Allowed directions: %2$s.', 'catalogist' ),
 					$sort_config['direction'],
 					implode( ', ', self::ALLOWED_SORT_DIRECTIONS )
 				);
@@ -441,7 +445,8 @@ final class Catalog {
 		if ( isset( $layout_config['layout'] ) ) {
 			if ( ! in_array( $layout_config['layout'], self::ALLOWED_LAYOUTS, true ) ) {
 				$errors[] = sprintf(
-					__( 'Layout "%s" is not supported. Allowed layouts: %s.', 'catalogist' ),
+					// Translators: %s is the invalid layout. The second %s is the comma-separated list of allowed layouts.
+					__( 'Layout "%1$s" is not supported. Allowed layouts: %2$s.', 'catalogist' ),
 					$layout_config['layout'],
 					implode( ', ', self::ALLOWED_LAYOUTS )
 				);
@@ -509,7 +514,7 @@ final class Catalog {
 				'limit'  => null,
 			);
 		} else {
-			$offset = $config['selection']['offset'] ?? 0;
+			$offset                        = $config['selection']['offset'] ?? 0;
 			$config['selection']['offset'] = max( 0, (int) $offset );
 
 			$limit = $config['selection']['limit'] ?? null;
@@ -527,10 +532,10 @@ final class Catalog {
 			if ( ! in_array( $config['layout']['layout'] ?? '', self::ALLOWED_LAYOUTS, true ) ) {
 				$config['layout']['layout'] = 'grid';
 			}
-			$columns = $config['layout']['columns'] ?? 3;
-			$config['layout']['columns'] = max( 1, min( 12, (int) $columns ) );
+			$columns                        = $config['layout']['columns'] ?? 3;
+			$config['layout']['columns']    = max( 1, min( 12, (int) $columns ) );
 			$config['layout']['show_price'] = (bool) ( $config['layout']['show_price'] ?? true );
-			$config['layout']['show_sku'] = (bool) ( $config['layout']['show_sku'] ?? false );
+			$config['layout']['show_sku']   = (bool) ( $config['layout']['show_sku'] ?? false );
 			$config['layout']['show_stock'] = (bool) ( $config['layout']['show_stock'] ?? false );
 		}
 
@@ -639,9 +644,9 @@ final class Catalog {
 		}
 
 		return array(
-			'description'  => $description,
-			'settings'     => $configuration['layout'] ?? self::default_settings(),
-			'products'     => $products,
+			'description'   => $description,
+			'settings'      => $configuration['layout'] ?? self::default_settings(),
+			'products'      => $products,
 			'configuration' => $configuration,
 		);
 	}
@@ -670,9 +675,9 @@ final class Catalog {
 
 		// New structured configuration.
 		$configuration = $data['configuration'] ?? self::default_configuration();
-		$results[] = update_post_meta( $post_id, self::CTLG_META_CONFIGURATION, $configuration );
-		$results[] = update_post_meta( $post_id, self::CTLG_META_VERSION, $configuration['version'] ?? self::CONFIG_VERSION );
-		$results[] = update_post_meta( $post_id, self::CTLG_META_STATUS, $configuration['status'] ?? 'draft' );
+		$results[]     = update_post_meta( $post_id, self::CTLG_META_CONFIGURATION, $configuration );
+		$results[]     = update_post_meta( $post_id, self::CTLG_META_VERSION, $configuration['version'] ?? self::CONFIG_VERSION );
+		$results[]     = update_post_meta( $post_id, self::CTLG_META_STATUS, $configuration['status'] ?? 'draft' );
 
 		return ! in_array( false, $results, true );
 	}

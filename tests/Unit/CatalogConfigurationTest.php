@@ -87,8 +87,8 @@ final class CatalogConfigurationTest extends TestCase {
 	public function testApplyDefaultsPreservesProvidedValues(): void {
 		$defaults = Catalog::default_configuration();
 		$provided = array(
-			'status'  => 'active',
-			'layout'  => array(
+			'status' => 'active',
+			'layout' => array(
 				'layout'  => 'table',
 				'columns' => 5,
 			),

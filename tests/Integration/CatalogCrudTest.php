@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace Catalogist\Tests\Integration;
+
 use Catalogist\Admin;
 use Catalogist\Catalog;
 use Catalogist\CatalogPostType;
@@ -34,7 +36,7 @@ final class CatalogCrudTest extends TestCase {
 
 	public static function setUpBeforeClass(): void {
 		require_once dirname( __DIR__, 2 ) . '/catalogist.php';
-		do_action( 'init' );
+		//do_action( 'init' );
 	}
 
 	/**
@@ -484,7 +486,7 @@ final class CatalogCrudTest extends TestCase {
 	 * Test validate_configuration accepts a complete valid configuration.
 	 */
 	public function testValidateConfigurationAcceptsCompleteValid(): void {
-		$config = Catalog::default_configuration();
+		$config            = Catalog::default_configuration();
 		$config['filters'] = array(
 			array(
 				'type'  => 'category',
@@ -512,7 +514,7 @@ final class CatalogCrudTest extends TestCase {
 	 * Test validate_configuration rejects invalid status.
 	 */
 	public function testValidateConfigurationRejectsInvalidStatus(): void {
-		$config = Catalog::default_configuration();
+		$config           = Catalog::default_configuration();
 		$config['status'] = 'published';
 
 		$errors = Catalog::validate_configuration( $config );
@@ -526,7 +528,7 @@ final class CatalogCrudTest extends TestCase {
 	 * @dataProvider providerAllowedStatuses
 	 */
 	public function testValidateConfigurationAcceptsAllowedStatuses( string $status ): void {
-		$config = Catalog::default_configuration();
+		$config           = Catalog::default_configuration();
 		$config['status'] = $status;
 
 		$errors = Catalog::validate_configuration( $config );
@@ -550,7 +552,7 @@ final class CatalogCrudTest extends TestCase {
 	 * Test validate_configuration rejects invalid sort key.
 	 */
 	public function testValidateConfigurationRejectsInvalidSortKey(): void {
-		$config = Catalog::default_configuration();
+		$config         = Catalog::default_configuration();
 		$config['sort'] = array(
 			'key'       => 'random_field',
 			'direction' => 'asc',
@@ -567,7 +569,7 @@ final class CatalogCrudTest extends TestCase {
 	 * @dataProvider providerAllowedSortKeys
 	 */
 	public function testValidateConfigurationAcceptsAllowedSortKeys( string $key ): void {
-		$config = Catalog::default_configuration();
+		$config         = Catalog::default_configuration();
 		$config['sort'] = array(
 			'key'       => $key,
 			'direction' => 'asc',
@@ -596,7 +598,7 @@ final class CatalogCrudTest extends TestCase {
 	 * Test validate_configuration rejects invalid sort direction.
 	 */
 	public function testValidateConfigurationRejectsInvalidSortDirection(): void {
-		$config = Catalog::default_configuration();
+		$config         = Catalog::default_configuration();
 		$config['sort'] = array(
 			'key'       => 'title',
 			'direction' => 'DOWN',
@@ -613,7 +615,7 @@ final class CatalogCrudTest extends TestCase {
 	 * @dataProvider providerAllowedSortDirections
 	 */
 	public function testValidateConfigurationAcceptsAllowedSortDirections( string $direction ): void {
-		$config = Catalog::default_configuration();
+		$config         = Catalog::default_configuration();
 		$config['sort'] = array(
 			'key'       => 'title',
 			'direction' => $direction,
@@ -639,7 +641,7 @@ final class CatalogCrudTest extends TestCase {
 	 * Test validate_configuration rejects negative selection offset.
 	 */
 	public function testValidateConfigurationRejectsNegativeOffset(): void {
-		$config = Catalog::default_configuration();
+		$config              = Catalog::default_configuration();
 		$config['selection'] = array(
 			'offset' => -1,
 			'limit'  => null,
@@ -654,7 +656,7 @@ final class CatalogCrudTest extends TestCase {
 	 * Test validate_configuration rejects negative selection limit.
 	 */
 	public function testValidateConfigurationRejectsNegativeLimit(): void {
-		$config = Catalog::default_configuration();
+		$config              = Catalog::default_configuration();
 		$config['selection'] = array(
 			'offset' => 0,
 			'limit'  => -5,
@@ -669,7 +671,7 @@ final class CatalogCrudTest extends TestCase {
 	 * Test validate_configuration accepts null limit (no limit).
 	 */
 	public function testValidateConfigurationAcceptsNullLimit(): void {
-		$config = Catalog::default_configuration();
+		$config              = Catalog::default_configuration();
 		$config['selection'] = array(
 			'offset' => 0,
 			'limit'  => null,
@@ -683,7 +685,7 @@ final class CatalogCrudTest extends TestCase {
 	 * Test validate_configuration rejects invalid layout value.
 	 */
 	public function testValidateConfigurationRejectsInvalidLayout(): void {
-		$config = Catalog::default_configuration();
+		$config                     = Catalog::default_configuration();
 		$config['layout']['layout'] = 'carousel';
 
 		$errors = Catalog::validate_configuration( $config );
@@ -697,7 +699,7 @@ final class CatalogCrudTest extends TestCase {
 	 * @dataProvider providerAllowedLayouts
 	 */
 	public function testValidateConfigurationAcceptsAllowedLayouts( string $layout ): void {
-		$config = Catalog::default_configuration();
+		$config                     = Catalog::default_configuration();
 		$config['layout']['layout'] = $layout;
 
 		$errors = Catalog::validate_configuration( $config );
@@ -721,7 +723,7 @@ final class CatalogCrudTest extends TestCase {
 	 * Test validate_configuration rejects invalid column count.
 	 */
 	public function testValidateConfigurationRejectsInvalidColumns(): void {
-		$config = Catalog::default_configuration();
+		$config                      = Catalog::default_configuration();
 		$config['layout']['columns'] = 0;
 
 		$errors = Catalog::validate_configuration( $config );
@@ -733,7 +735,7 @@ final class CatalogCrudTest extends TestCase {
 	 * Test validate_configuration rejects too many columns.
 	 */
 	public function testValidateConfigurationRejectsTooManyColumns(): void {
-		$config = Catalog::default_configuration();
+		$config                      = Catalog::default_configuration();
 		$config['layout']['columns'] = 13;
 
 		$errors = Catalog::validate_configuration( $config );
@@ -747,7 +749,7 @@ final class CatalogCrudTest extends TestCase {
 	 * @dataProvider providerValidColumnCounts
 	 */
 	public function testValidateConfigurationAcceptsValidColumns( int $columns ): void {
-		$config = Catalog::default_configuration();
+		$config                      = Catalog::default_configuration();
 		$config['layout']['columns'] = $columns;
 
 		$errors = Catalog::validate_configuration( $config );
@@ -772,7 +774,7 @@ final class CatalogCrudTest extends TestCase {
 	 * Test validate_configuration rejects invalid filter type.
 	 */
 	public function testValidateConfigurationRejectsInvalidFilterType(): void {
-		$config = Catalog::default_configuration();
+		$config            = Catalog::default_configuration();
 		$config['filters'] = array(
 			array(
 				'type'  => 'nonexistent_filter',
@@ -788,7 +790,7 @@ final class CatalogCrudTest extends TestCase {
 	 * Test validate_configuration rejects filter missing type.
 	 */
 	public function testValidateConfigurationRejectsFilterMissingType(): void {
-		$config = Catalog::default_configuration();
+		$config            = Catalog::default_configuration();
 		$config['filters'] = array(
 			array( 'value' => 'something' ),
 		);
@@ -802,7 +804,7 @@ final class CatalogCrudTest extends TestCase {
 	 * Test validate_configuration rejects filter missing value.
 	 */
 	public function testValidateConfigurationRejectsFilterMissingValue(): void {
-		$config = Catalog::default_configuration();
+		$config            = Catalog::default_configuration();
 		$config['filters'] = array(
 			array( 'type' => 'category' ),
 		);
@@ -816,7 +818,7 @@ final class CatalogCrudTest extends TestCase {
 	 * Test validate_configuration rejects non-array filter.
 	 */
 	public function testValidateConfigurationRejectsNonArrayFilter(): void {
-		$config = Catalog::default_configuration();
+		$config            = Catalog::default_configuration();
 		$config['filters'] = array( 'not-an-array' );
 
 		$errors = Catalog::validate_configuration( $config );
@@ -828,7 +830,7 @@ final class CatalogCrudTest extends TestCase {
 	 * Test validate_configuration accepts valid filter.
 	 */
 	public function testValidateConfigurationAcceptsValidFilter(): void {
-		$config = Catalog::default_configuration();
+		$config            = Catalog::default_configuration();
 		$config['filters'] = array(
 			array(
 				'type'  => 'category',
@@ -844,7 +846,7 @@ final class CatalogCrudTest extends TestCase {
 	 * Test validate_configuration with empty filters array is valid.
 	 */
 	public function testValidateConfigurationEmptyFiltersValid(): void {
-		$config = Catalog::default_configuration();
+		$config            = Catalog::default_configuration();
 		$config['filters'] = array();
 
 		$errors = Catalog::validate_configuration( $config );
@@ -855,7 +857,7 @@ final class CatalogCrudTest extends TestCase {
 	 * Test validate_configuration rejects non-array filters.
 	 */
 	public function testValidateConfigurationRejectsNonArrayFilters(): void {
-		$config = Catalog::default_configuration();
+		$config            = Catalog::default_configuration();
 		$config['filters'] = 'not-an-array';
 
 		$errors = Catalog::validate_configuration( $config );
@@ -883,21 +885,21 @@ final class CatalogCrudTest extends TestCase {
 
 		// Simulate saving new configuration fields.
 		$input = array(
-			'catalog_status'            => 'active',
-			'catalog_sort_key'          => 'price',
-			'catalog_sort_direction'    => 'desc',
-			'catalog_selection_offset'  => '10',
-			'catalog_selection_limit'   => '25',
-			'catalog_template_id'       => '5',
+			'catalog_status'           => 'active',
+			'catalog_sort_key'         => 'price',
+			'catalog_sort_direction'   => 'desc',
+			'catalog_selection_offset' => '10',
+			'catalog_selection_limit'  => '25',
+			'catalog_template_id'      => '5',
 		);
 
 		// Call Admin::save_meta_box_data directly with the input.
 		// We need to simulate the POST data.
-		$_POST = $input;
+		$_POST    = $input;
 		$_REQUEST = $input;
 
 		// Use reflection to call the save method.
-		$ref = new ReflectionClass( Admin::class );
+		$ref    = new ReflectionClass( Admin::class );
 		$method = $ref->getMethod( 'save_meta_box_data' );
 		$method->setAccessible( true );
 
@@ -913,19 +915,30 @@ final class CatalogCrudTest extends TestCase {
 		$request->set_param( 'post_id', $post_id );
 
 		// Since we can't easily call the admin handler, let's test via Catalog::save directly.
-		$configuration = Catalog::sanitize_configuration( array(
-			'status' => 'active',
-			'sort'   => array( 'key' => 'price', 'direction' => 'desc' ),
-			'selection' => array( 'offset' => 10, 'limit' => 25 ),
-			'template' => array( 'id' => 5 ),
-		) );
+		$configuration = Catalog::sanitize_configuration(
+			array(
+				'status'    => 'active',
+				'sort'      => array(
+					'key'       => 'price',
+					'direction' => 'desc',
+				),
+				'selection' => array(
+					'offset' => 10,
+					'limit'  => 25,
+				),
+				'template'  => array( 'id' => 5 ),
+			)
+		);
 
-		$result = Catalog::save( $post_id, array(
-			'description' => 'Test config catalog',
-			'settings'    => array(),
-			'products'    => array(),
-			'configuration' => $configuration,
-		) );
+		$result = Catalog::save(
+			$post_id,
+			array(
+				'description'   => 'Test config catalog',
+				'settings'      => array(),
+				'products'      => array(),
+				'configuration' => $configuration,
+			)
+		);
 
 		$this->assertTrue( $result );
 
@@ -956,11 +969,20 @@ final class CatalogCrudTest extends TestCase {
 		self::$catalog_id = $post_id;
 
 		// Manually set configuration meta.
-		$config = Catalog::default_configuration();
-		$config['status'] = 'active';
-		$config['sort'] = array( 'key' => 'price', 'direction' => 'desc' );
-		$config['selection'] = array( 'offset' => 5, 'limit' => 10 );
-		$config['layout'] = array( 'layout' => 'table', 'columns' => 4 );
+		$config              = Catalog::default_configuration();
+		$config['status']    = 'active';
+		$config['sort']      = array(
+			'key'       => 'price',
+			'direction' => 'desc',
+		);
+		$config['selection'] = array(
+			'offset' => 5,
+			'limit'  => 10,
+		);
+		$config['layout']    = array(
+			'layout'  => 'table',
+			'columns' => 4,
+		);
 
 		update_post_meta( $post_id, Catalog::CTLG_META_CONFIGURATION, wp_json_encode( $config ) );
 		update_post_meta( $post_id, Catalog::CTLG_META_VERSION, Catalog::CONFIG_VERSION );
@@ -994,13 +1016,19 @@ final class CatalogCrudTest extends TestCase {
 
 		// Simulate legacy meta (Stage 1-5 format).
 		update_post_meta( $post_id, Catalog::META_DESCRIPTION, 'Legacy description' );
-		update_post_meta( $post_id, Catalog::META_SETTINGS, wp_json_encode( array(
-			'layout'     => 'list',
-			'columns'    => 2,
-			'show_price' => false,
-			'show_sku'   => true,
-			'show_stock' => false,
-		) ) );
+		update_post_meta(
+			$post_id,
+			Catalog::META_SETTINGS,
+			wp_json_encode(
+				array(
+					'layout'     => 'list',
+					'columns'    => 2,
+					'show_price' => false,
+					'show_sku'   => true,
+					'show_stock' => false,
+				)
+			)
+		);
 		update_post_meta( $post_id, Catalog::META_PRODUCTS, wp_json_encode( array( 100, 200 ) ) );
 
 		$data = Catalog::get_data( $post_id );
@@ -1038,12 +1066,15 @@ final class CatalogCrudTest extends TestCase {
 		self::$catalog_id = $post_id;
 
 		$config = Catalog::default_configuration();
-		Catalog::save( $post_id, array(
-			'description' => '',
-			'settings'    => array(),
-			'products'    => array(),
-			'configuration' => $config,
-		) );
+		Catalog::save(
+			$post_id,
+			array(
+				'description'   => '',
+				'settings'      => array(),
+				'products'      => array(),
+				'configuration' => $config,
+			)
+		);
 
 		// Version should be stored in meta.
 		$version_meta = get_post_meta( $post_id, Catalog::CTLG_META_VERSION, true );
@@ -1059,14 +1090,27 @@ final class CatalogCrudTest extends TestCase {
 	 */
 	public function testSanitizeConfigurationFullValid(): void {
 		$input = array(
-			'status'     => 'active',
-			'filters'    => array(
-				array( 'type' => 'category', 'value' => 'books' ),
+			'status'    => 'active',
+			'filters'   => array(
+				array(
+					'type'  => 'category',
+					'value' => 'books',
+				),
 			),
-			'sort'       => array( 'key' => 'price', 'direction' => 'desc' ),
-			'selection'  => array( 'offset' => 0, 'limit' => 20 ),
-			'layout'     => array( 'layout' => 'table', 'columns' => 4, 'show_price' => true ),
-			'template'   => array( 'id' => 10 ),
+			'sort'      => array(
+				'key'       => 'price',
+				'direction' => 'desc',
+			),
+			'selection' => array(
+				'offset' => 0,
+				'limit'  => 20,
+			),
+			'layout'    => array(
+				'layout'     => 'table',
+				'columns'    => 4,
+				'show_price' => true,
+			),
+			'template'  => array( 'id' => 10 ),
 		);
 
 		$result = Catalog::sanitize_configuration( $input );
@@ -1104,10 +1148,19 @@ final class CatalogCrudTest extends TestCase {
 	 */
 	public function testSanitizeConfigurationInvalidValuesNormalized(): void {
 		$input = array(
-			'status'     => 'invalid_status',
-			'sort'       => array( 'key' => 'invalid_key', 'direction' => 'invalid_dir' ),
-			'selection'  => array( 'offset' => -5, 'limit' => -10 ),
-			'layout'     => array( 'layout' => 'invalid_layout', 'columns' => 99 ),
+			'status'    => 'invalid_status',
+			'sort'      => array(
+				'key'       => 'invalid_key',
+				'direction' => 'invalid_dir',
+			),
+			'selection' => array(
+				'offset' => -5,
+				'limit'  => -10,
+			),
+			'layout'    => array(
+				'layout'  => 'invalid_layout',
+				'columns' => 99,
+			),
 		);
 
 		$result = Catalog::sanitize_configuration( $input );
@@ -1137,14 +1190,20 @@ final class CatalogCrudTest extends TestCase {
 		self::$catalog_id = $post_id;
 
 		// Set both legacy and new meta.
-		update_post_meta( $post_id, Catalog::META_SETTINGS, wp_json_encode( array(
-			'layout' => 'list',
-			'columns' => 2,
-		) ) );
+		update_post_meta(
+			$post_id,
+			Catalog::META_SETTINGS,
+			wp_json_encode(
+				array(
+					'layout'  => 'list',
+					'columns' => 2,
+				)
+			)
+		);
 
-		$new_config = Catalog::default_configuration();
+		$new_config           = Catalog::default_configuration();
 		$new_config['layout'] = array(
-			'layout' => 'table',
+			'layout'  => 'table',
 			'columns' => 5,
 		);
 		update_post_meta( $post_id, Catalog::CTLG_META_CONFIGURATION, wp_json_encode( $new_config ) );

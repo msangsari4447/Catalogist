@@ -222,12 +222,18 @@ final class Admin {
 	public static function render_pipeline_config_meta_box( \WP_Post $post ): void {
 		wp_nonce_field( self::NONCE_ACTION, self::NONCE_FIELD );
 
-		$data         = Catalog::get_data( $post->ID );
-		$config       = $data['configuration'];
-		$sort         = $config['sort'] ?? array( 'key' => 'title', 'direction' => 'asc' );
-		$selection    = $config['selection'] ?? array( 'offset' => 0, 'limit' => null );
-		$filters      = $config['filters'] ?? array();
-		$template_id  = isset( $config['template']['id'] ) ? intval( $config['template']['id'] ) : 0;
+		$data        = Catalog::get_data( $post->ID );
+		$config      = $data['configuration'];
+		$sort        = $config['sort'] ?? array(
+			'key'       => 'title',
+			'direction' => 'asc',
+		);
+		$selection   = $config['selection'] ?? array(
+			'offset' => 0,
+			'limit'  => null,
+		);
+		$filters     = $config['filters'] ?? array();
+		$template_id = isset( $config['template']['id'] ) ? intval( $config['template']['id'] ) : 0;
 		?>
 		<table class="form-table" role="presentation">
 			<tbody>
@@ -249,7 +255,8 @@ final class Admin {
 								'menu_order' => __( 'Menu Order', 'catalogist' ),
 								'id'         => __( 'ID', 'catalogist' ),
 							);
-							foreach ( $sort_keys as $key => $label ) : ?>
+							foreach ( $sort_keys as $key => $label ) :
+								?>
 								<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $sort['key'], $key ); ?>>
 									<?php echo esc_html( $label ); ?>
 								</option>
@@ -369,11 +376,12 @@ final class Admin {
 							>
 								<?php
 								$statuses = array(
-									'draft'  => __( 'Draft', 'catalogist' ),
-									'active' => __( 'Active', 'catalogist' ),
+									'draft'    => __( 'Draft', 'catalogist' ),
+									'active'   => __( 'Active', 'catalogist' ),
 									'archived' => __( 'Archived', 'catalogist' ),
 								);
-								foreach ( $statuses as $key => $label ) : ?>
+								foreach ( $statuses as $key => $label ) :
+									?>
 									<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $status, $key ); ?>>
 										<?php echo esc_html( $label ); ?>
 									</option>
