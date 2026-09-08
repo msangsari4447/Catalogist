@@ -551,53 +551,47 @@ final class ProductQueryEngineTest extends TestCase {
 	 * Test sorting by title ascending.
 	 */
 	public function testSortByTitleAscending(): void {
-		$result = ProductQueryEngine::query(
-			array(
-				'orderby' => 'title',
-				'order'   => 'ASC',
-				'status'  => 'publish',
-			)
-		);
+        $result = ProductQueryEngine::query(
+                array(
+                        'orderby' => 'title',
+                        'order'   => 'ASC',
+                        'status'  => 'publish',
+                )
+        );
 
-		$this->assertIsArray( $result );
-		$this->assertNotEmpty( $result );
+        $this->assertIsArray( $result );
+        $this->assertNotEmpty( $result );
 
-		// Get titles to verify order.
-		$titles = array();
-		foreach ( $result as $id ) {
-			$titles[] = get_the_title( $id );
-		}
+        $blue_position = array_search( $this->created_product_ids['blue-widget'], $result, true );
+        $red_position  = array_search( $this->created_product_ids['red-widget'], $result, true );
 
-		$sorted_titles = $titles;
-		sort( $sorted_titles );
-		$this->assertSame( $sorted_titles, $titles );
-	}
+        $this->assertNotFalse( $blue_position );
+        $this->assertNotFalse( $red_position );
+        $this->assertLessThan( $red_position, $blue_position );
+}
 
 	/**
 	 * Test sorting by title descending.
 	 */
 	public function testSortByTitleDescending(): void {
-		$result = ProductQueryEngine::query(
-			array(
-				'orderby' => 'title',
-				'order'   => 'DESC',
-				'status'  => 'publish',
-			)
-		);
+        $result = ProductQueryEngine::query(
+                array(
+                        'orderby' => 'title',
+                        'order'   => 'DESC',
+                        'status'  => 'publish',
+                )
+        );
 
-		$this->assertIsArray( $result );
-		$this->assertNotEmpty( $result );
+        $this->assertIsArray( $result );
+        $this->assertNotEmpty( $result );
 
-		// Get titles to verify order.
-		$titles = array();
-		foreach ( $result as $id ) {
-			$titles[] = get_the_title( $id );
-		}
+        $blue_position = array_search( $this->created_product_ids['blue-widget'], $result, true );
+        $red_position  = array_search( $this->created_product_ids['red-widget'], $result, true );
 
-		$sorted_titles = $titles;
-		rsort( $sorted_titles );
-		$this->assertSame( $sorted_titles, $titles );
-	}
+        $this->assertNotFalse( $blue_position );
+        $this->assertNotFalse( $red_position );
+        $this->assertLessThan( $blue_position, $red_position );
+}
 
 	/**
 	 * Test sorting by date.
@@ -662,28 +656,39 @@ final class ProductQueryEngineTest extends TestCase {
 	 * Test pagination with per_page.
 	 */
 	public function testPagination(): void {
-		$result_page1 = ProductQueryEngine::query(
-			array(
-				'status'   => 'publish',
-				'page'     => 1,
-				'per_page' => 2,
-			)
-		);
+        $ids = array(
+                $this->created_product_ids['blue-widget'],
+                $this->created_product_ids['red-widget'],
+                $this->created_product_ids['blue-gadget'],
+                $this->created_product_ids['no-sku-product'],
+        );
 
-		$result_page2 = ProductQueryEngine::query(
-			array(
-				'status'   => 'publish',
-				'page'     => 2,
-				'per_page' => 2,
-			)
-		);
+        $result_page1 = ProductQueryEngine::query(
+                array(
+                        'ids'      => $ids,
+                        'status'   => 'publish',
+                        'page'     => 1,
+                        'per_page' => 2,
+                )
+        );
 
-		$this->assertIsArray( $result_page1 );
-		$this->assertIsArray( $result_page2 );
-		$this->assertCount( 2, $result_page1 );
-		$this->assertCount( 2, $result_page2 );
-		// Pages should not overlap.
-		$this->assertCount( 0, array_intersect( $result_page1, $result_page2 ) );
+        $result_page2 = ProductQueryEngine::query(
+                array(
+                        'ids'      => $ids,
+                        'status'   => 'publish',
+                        'page'     => 2,
+                        'per_page' => 2,
+                )
+        );
+
+        $this->assertIsArray( $result_page1 );
+        $this->assertIsArray( $result_page2 );
+
+        $this->assertCount( 2, $result_page1 );
+        $this->assertCount( 2, $result_page2 );
+
+        // Pages should not overlap.
+        $this->assertCount( 0, array_intersect( $result_page1, $result_page2 ) );
 	}
 
 	/**

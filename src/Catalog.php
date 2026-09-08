@@ -107,7 +107,9 @@ final class Catalog {
 		'asc',
 		'desc',
 	);
-
+	private const ALLOWED_FILTER_TYPES = array(
+    'category',
+	);
 	// --------------------------------------------------------------------
 	// Defaults
 	// --------------------------------------------------------------------
@@ -136,6 +138,9 @@ final class Catalog {
 				'show_price' => true,
 				'show_sku'   => false,
 				'show_stock' => false,
+			),
+			'template' => array(
+    		'id' => null,
 			),
 		);
 	}
@@ -195,9 +200,17 @@ final class Catalog {
 		$config      = get_post_meta( $post_id, self::CTLG_META_CONFIGURATION, true );
 		$version     = get_post_meta( $post_id, self::CTLG_META_VERSION, true );
 		$status      = get_post_meta( $post_id, self::CTLG_META_STATUS, true );
-
+		if ( is_string( $settings ) && '' !== $settings ) {
+		$decoded  = json_decode( $settings, true );
+		$settings = is_array( $decoded ) ? $decoded : array();
+		}
 		// Build configuration from the structured meta key, falling back to legacy.
 		$configuration = self::default_configuration();
+
+		if ( is_string( $config ) && '' !== $config ) {
+    	$decoded = json_decode( $config, true );
+    	$config  = is_array( $decoded ) ? $decoded : null;
+		}
 
 		if ( is_array( $config ) ) {
 			$configuration = self::apply_defaults( $configuration, $config );
@@ -250,18 +263,25 @@ final class Catalog {
 	 * @return array<string, mixed> Merged configuration.
 	 */
 	public static function apply_defaults( array $defaults, array $provided ): array {
-		$result = $defaults;
-		foreach ( $provided as $key => $value ) {
-			if ( array_key_exists( $key, $result ) ) {
-				if ( is_array( $value ) && is_array( $result[ $key ] ) ) {
-					$result[ $key ] = self::apply_defaults( $result[ $key ], $value );
-				} else {
-					$result[ $key ] = $value;
-				}
-			}
-		}
-		return $result;
-	}
+    $result = $defaults;
+
+    foreach ( $provided as $key => $value ) {
+        if ( array_key_exists( $key, $result ) ) {
+            if (
+                is_array( $value )
+                && is_array( $result[ $key ] )
+                && ! array_is_list( $value )
+                && ! array_is_list( $result[ $key ] )
+            ) {
+                $result[ $key ] = self::apply_defaults( $result[ $key ], $value );
+            } else {
+                $result[ $key ] = $value;
+            }
+        }
+    }
+
+    return $result;
+}
 
 	// --------------------------------------------------------------------
 	// Validation
@@ -346,13 +366,14 @@ final class Catalog {
 
 		// Validate type-specific constraints.
 		if ( isset( $filter['type'] ) && '' !== trim( $filter['type'] ) ) {
-			$errors[] = sprintf(
-				// Translators: %1$d is the filter index number. %2$s is the invalid filter type string.
-				__( 'Filter at index %1$d has an invalid type: "%2$s".', 'catalogist' ),
-				$index,
-				$filter['type']
-			);
-		}
+    	if ( ! in_array( $filter['type'], self::ALLOWED_FILTER_TYPES, true ) ) {
+        $errors[] = sprintf(
+            __( 'Filter at index %1$d has an invalid type: "%2$s".', 'catalogist' ),
+            $index,
+            $filter['type']
+        );
+    }
+}
 
 		return $errors;
 	}
@@ -556,7 +577,6 @@ final class Catalog {
 		$description = isset( $input['catalog_description'] )
 			? sanitize_textarea_field( wp_unslash( $input['catalog_description'] ) )
 			: '';
-
 		// Build configuration from input.
 		$config_input = array();
 
@@ -675,7 +695,14 @@ final class Catalog {
 
 		// New structured configuration.
 		$configuration = $data['configuration'] ?? self::default_configuration();
-		$results[]     = update_post_meta( $post_id, self::CTLG_META_CONFIGURATION, $configuration );
+
+		if ( ! isset( $data['configuration'] ) && isset( $data['settings'] ) && is_array( $data['settings'] ) ) {
+    	$configuration['layout'] = array_merge(
+        $configuration['layout'],
+        $data['settings']
+    	);
+		}
+		$results[]		= update_post_meta($post_id,self::CTLG_META_CONFIGURATION,wp_json_encode( $configuration ));
 		$results[]     = update_post_meta( $post_id, self::CTLG_META_VERSION, $configuration['version'] ?? self::CONFIG_VERSION );
 		$results[]     = update_post_meta( $post_id, self::CTLG_META_STATUS, $configuration['status'] ?? 'draft' );
 

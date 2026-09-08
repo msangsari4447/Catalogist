@@ -22,7 +22,7 @@ final class WordPressBaselineTest extends TestCase {
 	public function testCatalogPostTypeIsRegistered(): void {
 		require_once dirname( __DIR__, 2 ) . '/catalogist.php';
 
-		do_action( 'init' );
+		// do_action( 'init' );
 
 		$this->assertTrue( post_type_exists( CatalogPostType::POST_TYPE ) );
 		$this->assertFalse( is_post_type_viewable( CatalogPostType::POST_TYPE ) );

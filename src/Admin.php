@@ -646,9 +646,6 @@ final class Admin {
 			return;
 		}
 
-		// Suppress unused parameter warning.
-		( void ) $update;
-
 		// Sanitize and save.
 		$data = Catalog::sanitize_input( $_POST );
 		Catalog::save( $post_id, $data );

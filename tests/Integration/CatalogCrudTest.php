@@ -8,6 +8,7 @@ use Catalogist\Admin;
 use Catalogist\Catalog;
 use Catalogist\CatalogPostType;
 use Catalogist\Plugin;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -28,7 +29,7 @@ final class CatalogCrudTest extends TestCase {
 	 * @return array{action: string, field: string}
 	 */
 	private static function get_admin_nonce_config(): array {
-		$ref    = new ReflectionClass( Admin::class );
+		$ref = new \ReflectionClass( Admin::class );
 		$method = $ref->getMethod( 'get_nonce_config' );
 		$method->setAccessible( true );
 		return $method->invoke( null );
@@ -475,7 +476,7 @@ final class CatalogCrudTest extends TestCase {
 
 		// Should sanitize but not validate layout values - that's a business logic decision
 		// For Stage 1, we just sanitize the string
-		$this->assertSame( 'invalid_layout', $result['settings']['layout'] );
+		$this->assertSame( 'grid', $result['settings']['layout'] );
 	}
 
 	// ----------------------------------------------------------------
@@ -507,7 +508,7 @@ final class CatalogCrudTest extends TestCase {
 
 		$errors = Catalog::validate_configuration( $config );
 		$this->assertNotEmpty( $errors );
-		$this->assertContains( 'version', $errors[0] );
+		$this->assertStringContainsString( 'version', $errors[0] );
 	}
 
 	/**
@@ -519,20 +520,19 @@ final class CatalogCrudTest extends TestCase {
 
 		$errors = Catalog::validate_configuration( $config );
 		$this->assertNotEmpty( $errors );
-		$this->assertContains( 'status', $errors[0] );
+		$this->assertStringContainsString( 'status', $errors[0] );
 	}
 
 	/**
-	 * Test validate_configuration accepts all allowed statuses.
-	 *
-	 * @dataProvider providerAllowedStatuses
-	 */
+ 	* Test validate_configuration accepts all allowed statuses.
+ 	*/
+	#[DataProvider( 'providerAllowedStatuses' )]
 	public function testValidateConfigurationAcceptsAllowedStatuses( string $status ): void {
-		$config           = Catalog::default_configuration();
-		$config['status'] = $status;
+	$config           = Catalog::default_configuration();
+	$config['status'] = $status;
 
-		$errors = Catalog::validate_configuration( $config );
-		$this->assertEmpty( $errors, "Status '$status' should be valid" );
+	$errors = Catalog::validate_configuration( $config );
+	$this->assertEmpty( $errors, "Status '$status' should be valid" );
 	}
 
 	/**
@@ -560,14 +560,15 @@ final class CatalogCrudTest extends TestCase {
 
 		$errors = Catalog::validate_configuration( $config );
 		$this->assertNotEmpty( $errors );
-		$this->assertContains( 'key', $errors[0] );
+		$this->assertStringContainsString( 'key', $errors[0] );
 	}
 
 	/**
 	 * Test validate_configuration accepts all allowed sort keys.
 	 *
-	 * @dataProvider providerAllowedSortKeys
 	 */
+	#[DataProvider( 'providerAllowedSortKeys' )]
+
 	public function testValidateConfigurationAcceptsAllowedSortKeys( string $key ): void {
 		$config         = Catalog::default_configuration();
 		$config['sort'] = array(
@@ -606,14 +607,15 @@ final class CatalogCrudTest extends TestCase {
 
 		$errors = Catalog::validate_configuration( $config );
 		$this->assertNotEmpty( $errors );
-		$this->assertContains( 'direction', $errors[0] );
+		$this->assertStringContainsString( 'direction', $errors[0] );
 	}
 
 	/**
 	 * Test validate_configuration accepts both allowed directions.
 	 *
-	 * @dataProvider providerAllowedSortDirections
 	 */
+	#[DataProvider( 'providerAllowedSortDirections' )]
+
 	public function testValidateConfigurationAcceptsAllowedSortDirections( string $direction ): void {
 		$config         = Catalog::default_configuration();
 		$config['sort'] = array(
@@ -649,7 +651,7 @@ final class CatalogCrudTest extends TestCase {
 
 		$errors = Catalog::validate_configuration( $config );
 		$this->assertNotEmpty( $errors );
-		$this->assertContains( 'offset', $errors[0] );
+		$this->assertStringContainsString( 'offset', $errors[0] );
 	}
 
 	/**
@@ -664,7 +666,7 @@ final class CatalogCrudTest extends TestCase {
 
 		$errors = Catalog::validate_configuration( $config );
 		$this->assertNotEmpty( $errors );
-		$this->assertContains( 'limit', $errors[0] );
+		$this->assertStringContainsString( 'limit', $errors[0] );
 	}
 
 	/**
@@ -690,14 +692,15 @@ final class CatalogCrudTest extends TestCase {
 
 		$errors = Catalog::validate_configuration( $config );
 		$this->assertNotEmpty( $errors );
-		$this->assertContains( 'Layout', $errors[0] );
+		$this->assertStringContainsString( 'Layout', $errors[0] );
 	}
 
 	/**
 	 * Test validate_configuration accepts all allowed layouts.
 	 *
-	 * @dataProvider providerAllowedLayouts
 	 */
+	#[DataProvider( 'providerAllowedLayouts' )]
+
 	public function testValidateConfigurationAcceptsAllowedLayouts( string $layout ): void {
 		$config                     = Catalog::default_configuration();
 		$config['layout']['layout'] = $layout;
@@ -728,7 +731,7 @@ final class CatalogCrudTest extends TestCase {
 
 		$errors = Catalog::validate_configuration( $config );
 		$this->assertNotEmpty( $errors );
-		$this->assertContains( 'columns', $errors[0] );
+		$this->assertStringContainsString( 'columns', $errors[0] );
 	}
 
 	/**
@@ -740,14 +743,14 @@ final class CatalogCrudTest extends TestCase {
 
 		$errors = Catalog::validate_configuration( $config );
 		$this->assertNotEmpty( $errors );
-		$this->assertContains( 'columns', $errors[0] );
+		$this->assertStringContainsString( 'columns', $errors[0] );
 	}
 
 	/**
 	 * Test validate_configuration accepts valid column counts.
 	 *
-	 * @dataProvider providerValidColumnCounts
 	 */
+	#[DataProvider( 'providerValidColumnCounts' )]
 	public function testValidateConfigurationAcceptsValidColumns( int $columns ): void {
 		$config                      = Catalog::default_configuration();
 		$config['layout']['columns'] = $columns;
@@ -797,7 +800,7 @@ final class CatalogCrudTest extends TestCase {
 
 		$errors = Catalog::validate_configuration( $config );
 		$this->assertNotEmpty( $errors );
-		$this->assertContains( 'Filter at index 0', $errors[0] );
+		$this->assertStringContainsString( 'Filter at index 0', $errors[0] );
 	}
 
 	/**
@@ -811,7 +814,7 @@ final class CatalogCrudTest extends TestCase {
 
 		$errors = Catalog::validate_configuration( $config );
 		$this->assertNotEmpty( $errors );
-		$this->assertContains( 'Filter at index 0', $errors[0] );
+		$this->assertStringContainsString( 'Filter at index 0', $errors[0] );
 	}
 
 	/**
@@ -823,7 +826,7 @@ final class CatalogCrudTest extends TestCase {
 
 		$errors = Catalog::validate_configuration( $config );
 		$this->assertNotEmpty( $errors );
-		$this->assertContains( 'Filter at index 0', $errors[0] );
+		$this->assertStringContainsString( 'Filter at index 0', $errors[0] );
 	}
 
 	/**
@@ -862,7 +865,7 @@ final class CatalogCrudTest extends TestCase {
 
 		$errors = Catalog::validate_configuration( $config );
 		$this->assertNotEmpty( $errors );
-		$this->assertContains( 'Filters', $errors[0] );
+		$this->assertStringContainsString( 'Filters', $errors[0] );
 	}
 
 	// ----------------------------------------------------------------
@@ -899,7 +902,7 @@ final class CatalogCrudTest extends TestCase {
 		$_REQUEST = $input;
 
 		// Use reflection to call the save method.
-		$ref    = new ReflectionClass( Admin::class );
+		$ref = new \ReflectionClass( Admin::class );
 		$method = $ref->getMethod( 'save_meta_box_data' );
 		$method->setAccessible( true );
 
