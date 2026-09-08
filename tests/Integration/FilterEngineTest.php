@@ -926,21 +926,47 @@ final class FilterEngineTest extends TestCase {
 		$tags       = $args['tags'] ?? array();
 		$stock      = $stock_qty > 0 ? 'instock' : 'outofstock';
 
-		// Delete any existing product with this SKU to ensure clean state.
+		// Delete any existing products with this SKU to ensure clean state.
 		if ( '' !== $sku ) {
 			// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key -- SKU lookup in test cleanup is acceptable.
 			$existing = get_posts(
 				array(
-					'post_type'   => 'product',
-					'post_status' => 'any',
-					'meta_key'    => '_sku',
-					'meta_value'  => $sku,
-					'numberposts' => 1,
+					'post_type'      => 'product',
+					'post_status'    => 'any',
+					'meta_key'       => '_sku',
+					'meta_value'     => $sku,
+					'posts_per_page' => -1,
+					'fields'         => 'ids',
 				)
 			);
-			if ( ! empty( $existing ) && is_array( $existing ) ) {
-				wp_delete_post( (int) $existing[0]->ID, true );
+
+			foreach ( $existing as $existing_id ) {
+				wp_delete_post( (int) $existing_id, true );
 			}
+
+			global $wpdb;
+
+			$lookup_ids = $wpdb->get_col(
+				$wpdb->prepare(
+					"SELECT product_id FROM {$wpdb->wc_product_meta_lookup} WHERE sku = %s",
+					$sku
+				)
+			);
+
+			foreach ( $lookup_ids as $lookup_id ) {
+				if ( get_post( (int) $lookup_id ) ) {
+					wp_delete_post( (int) $lookup_id, true );
+				}
+			}
+
+			// Remove orphaned lookup rows.
+			$wpdb->delete(
+				$wpdb->wc_product_meta_lookup,
+				array( 'sku' => $sku ),
+				array( '%s' )
+			);
+
+			wp_cache_flush();
 		}
 
 		// Create product categories if needed.
