@@ -1,109 +1,104 @@
-# Graph Report - Catalogist  (2026-09-06)
+# Graph Report - Catalogist  (2026-09-09)
 
 ## Corpus Check
-- 56 files · ~66,166 words
+- 59 files · ~78,055 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 456 nodes · 770 edges · 18 communities (11 shown, 7 thin omitted)
-- Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
+- 551 nodes · 958 edges · 21 communities (11 shown, 10 thin omitted)
+- Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 26 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Community Hubs (Navigation)
-- Catalog Core
-- Engine Pipeline
-- WordPress Integration
-- Test Infrastructure
-- Stage Reports
-- Agent & Skills
-- Documentation
-- Plugin Bootstrap
-- Variation Engine
-- Stage 1 Foundation
-- Stage 2 Query
-- Stage 3 Variation
-- Stage 4 Filter
-- Product Query
-- Filter Engine
-- Sort Engine
-- Admin Interface
+- Src Productqueryengine
+- Phpunit Framework Testcase
+- Src Sortengine
+- Composer Setup
+- Src Selectionengine
+- Tests Integration Catalogcrudt
+- Tests Integration Filterengine
+- Tests Unit Filterenginetest
+- Src Catalog
+- Composer
+- Src Filterengine
+- Tests Unit Catalogconfiguratio
+- Src Admin
+- Tests Unit Productqueryenginet
+- Phpunit Framework Attributes D
+- Tests Unit Catalogtest
 
 ## God Nodes (most connected - your core abstractions)
+1. `FilterEngine` - 90 edges
+2. `Catalog` - 83 edges
+3. `ProductQueryEngine` - 60 edges
+4. `CatalogCrudTest` - 59 edges
+5. `ProductQueryEngineTest` - 52 edges
+6. `FilterEngineTest` - 47 edges
+7. `SortEngine` - 43 edges
+8. `VariationEngine` - 42 edges
+9. `SelectionEngine` - 41 edges
+10. `VariationEngineTest` - 34 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `ProductQueryEngine` ----> `Integration/ProductQueryEngineTest.php`  [EXTRACTED]
-   →   _Bridges community 0 → community 6_
-- `SortEngine` ----> `Integration/SelectionEngineTest.php`  [EXTRACTED]
-   →   _Bridges community 1 → community 3_
-- `SortEngineTest` ----> `PHPUnit\Framework\TestCase`  [EXTRACTED]
-   →   _Bridges community 1 → community 6_
-- `VariationEngine` ----> `Integration/VariationEngineTest.php`  [EXTRACTED]
-   →   _Bridges community 2 → community 6_
-- `SelectionEngine` ----> `Unit/SelectionEngineTest.php`  [EXTRACTED]
-   →   _Bridges community 3 → community 6_
+- `CatalogCrudTest` --inherits--> `PHPUnit\Framework\TestCase`  [EXTRACTED]
+  tests/Integration/CatalogCrudTest.php →   _Bridges community 5 → community 1_
+- `FilterEngineTest` --inherits--> `PHPUnit\Framework\TestCase`  [EXTRACTED]
+  tests/Integration/FilterEngineTest.php →   _Bridges community 6 → community 1_
+- `ProductQueryEngineTest` --inherits--> `PHPUnit\Framework\TestCase`  [EXTRACTED]
+  tests/Integration/ProductQueryEngineTest.php →   _Bridges community 0 → community 1_
+- `SelectionEngineTest` --inherits--> `PHPUnit\Framework\TestCase`  [EXTRACTED]
+  tests/Integration/SelectionEngineTest.php →   _Bridges community 4 → community 1_
+- `SortEngineTest` --inherits--> `PHPUnit\Framework\TestCase`  [EXTRACTED]
+  tests/Integration/SortEngineTest.php →   _Bridges community 2 → community 1_
 
 ## Import Cycles
 - None detected.
 
-## Communities (18 total, 7 thin omitted)
+## Communities (21 total, 10 thin omitted)
 
-### Community 0 - "Catalog Core"
-Cohesion: 0.05
-Nodes (3): ProductQueryEngine, ProductQueryEngineTest, ProductQueryEngine.php
-
-### Community 1 - "Engine Pipeline"
+### Community 1 - "Phpunit Framework Testcase"
 Cohesion: 0.06
-Nodes (7): SortEngine, SortEngineTest, SortEngineTest, SortEngine.php, Integration/SortEngineTest.php, Unit/SortEngineTest.php, WC_Product
+Nodes (5): PHPUnit\Framework\TestCase, VariationEngine, VariationEngineTest, BaselineTest, VariationEngineTest
 
-### Community 2 - "WordPress Integration"
+### Community 2 - "Src Sortengine"
 Cohesion: 0.06
-Nodes (5): VariationEngine, VariationEngineTest, VariationEngineTest, VariationEngine.php, Unit/VariationEngineTest.php
+Nodes (4): SortEngine, SortEngineTest, SortEngineTest, WC_Product
 
-### Community 3 - "Test Infrastructure"
+### Community 3 - "Composer Setup"
+Cohesion: 0.08
+Nodes (21): checkParams(), checkPlatform(), displayHelp(), ErrorHandler, getHomeDir(), getIniMessage(), getOptValue(), getPlatformIssues() (+13 more)
+
+### Community 4 - "Src Selectionengine"
 Cohesion: 0.07
-Nodes (5): SelectionEngine, SelectionEngineTest, SelectionEngineTest, SelectionEngine.php, Integration/SelectionEngineTest.php
+Nodes (3): SelectionEngine, SelectionEngineTest, SelectionEngineTest
 
-### Community 4 - "Stage Reports"
-Cohesion: 0.07
-Nodes (9): Admin, Catalog, CatalogCrudTest, CatalogTest, Admin.php, Catalog.php, CatalogCrudTest.php, CatalogTest.php (+1 more)
-
-### Community 6 - "Documentation"
-Cohesion: 0.07
-Nodes (15): CatalogPostType, Plugin, WordPressBaselineTest, BaselineTest, ProductQueryEngineTest, PHPUnit\Framework\TestCase, CatalogPostType.php, Plugin.php (+7 more)
-
-### Community 8 - "Product Query"
+### Community 9 - "Composer"
 Cohesion: 0.09
-Nodes (22): composer.json, dealerdirect/phpcodesniffer-composer-installer, authors, autoload, autoload-dev, psr-4, psr-4, config (+14 more)
+Nodes (21): dealerdirect/phpcodesniffer-composer-installer, authors, autoload, autoload-dev, psr-4, psr-4, config, allow-plugins (+13 more)
 
-### Community 10 - "Filter Engine"
-Cohesion: 0.28
-Nodes (17): Stage Reporter Agent, AGENTS.md — Catalogist Agent Instructions, README.md — Catalogist Project Overview, Catalogist Stage Verification, CLAUDE.md — Catalogist Development Instructions, Catalogist Stage Verification Skill, Graphify Skill, Development Prompt (prompt.txt) (+9 more)
-
-### Community 11 - "Sort Engine"
-Cohesion: 0.38
-Nodes (7): WordPress Elementor Skill, Gutenberg Blocks Reference, Hooks & Filters Reference, Performance & Security Reference, Plugin Architecture Reference, Theme Development Reference, WordPress Pro Skill
-
-### Community 13 - "Admin Interface"
-Cohesion: 0.50
-Nodes (4): WordPress Playground Skill, WordPress Playground CLI Reference, WordPress Playground Debugging Reference, WordPress Playground Website Reference
+### Community 14 - "Phpunit Framework Attributes D"
+Cohesion: 0.17
+Nodes (4): PHPUnit\Framework\Attributes\DataProvider, CatalogPostType, Plugin, WordPressBaselineTest
 
 ## Knowledge Gaps
-- **7 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **13 isolated node(s):** `name`, `description`, `type`, `authors`, `phpunit/phpunit` (+8 more)
+  These have ≤1 connection - possible missing edges or undocumented components.
+- **10 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Should `Catalog Core` be split into smaller, more focused modules?**
+- **Why does `ProductQueryEngineTest` connect `Src Productqueryengine` to `Phpunit Framework Testcase`?**
+  _High betweenness centrality (0.182) - this node is a cross-community bridge._
+- **Why does `CatalogCrudTest` connect `Tests Integration Catalogcrudt` to `Src Catalog`, `Phpunit Framework Testcase`, `Src Admin`, `Phpunit Framework Attributes D`?**
+  _High betweenness centrality (0.166) - this node is a cross-community bridge._
+- **Why does `FilterEngine` connect `Src Filterengine` to `Phpunit Framework Testcase`, `Src Sortengine`, `Src Selectionengine`, `Tests Integration Filterengine`, `Tests Unit Filterenginetest`, `Tests Integration Filterengine`?**
+  _High betweenness centrality (0.122) - this node is a cross-community bridge._
+- **Are the 5 inferred relationships involving `Catalog` (e.g. with `.render_pipeline_config_meta_box()` and `.render_products_meta_box()`) actually correct?**
+  _`Catalog` has 5 INFERRED edges - model-reasoned connections that need verification._
+- **What connects `name`, `description`, `type` to the rest of the system?**
+  _13 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `Src Productqueryengine` be split into smaller, more focused modules?**
   _Cohesion score 0.05268065268065268 - nodes in this community are weakly interconnected._
-- **Should `Engine Pipeline` be split into smaller, more focused modules?**
-  _Cohesion score 0.06038961038961039 - nodes in this community are weakly interconnected._
-- **Should `WordPress Integration` be split into smaller, more focused modules?**
-  _Cohesion score 0.06219426974143955 - nodes in this community are weakly interconnected._
-- **Should `Test Infrastructure` be split into smaller, more focused modules?**
-  _Cohesion score 0.06588235294117648 - nodes in this community are weakly interconnected._
-- **Should `Stage Reports` be split into smaller, more focused modules?**
-  _Cohesion score 0.06859903381642513 - nodes in this community are weakly interconnected._
-- **Should `Agent & Skills` be split into smaller, more focused modules?**
-  _Cohesion score 0.058823529411764705 - nodes in this community are weakly interconnected._
-- **Should `Documentation` be split into smaller, more focused modules?**
-  _Cohesion score 0.06628787878787878 - nodes in this community are weakly interconnected._
+- **Should `Phpunit Framework Testcase` be split into smaller, more focused modules?**
+  _Cohesion score 0.055191256830601096 - nodes in this community are weakly interconnected._
