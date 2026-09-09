@@ -29,7 +29,7 @@ final class CatalogCrudTest extends TestCase {
 	 * @return array{action: string, field: string}
 	 */
 	private static function get_admin_nonce_config(): array {
-		$ref = new \ReflectionClass( Admin::class );
+		$ref    = new \ReflectionClass( Admin::class );
 		$method = $ref->getMethod( 'get_nonce_config' );
 		$method->setAccessible( true );
 		return $method->invoke( null );
@@ -524,15 +524,15 @@ final class CatalogCrudTest extends TestCase {
 	}
 
 	/**
- 	* Test validate_configuration accepts all allowed statuses.
- 	*/
+	* Test validate_configuration accepts all allowed statuses.
+	*/
 	#[DataProvider( 'providerAllowedStatuses' )]
 	public function testValidateConfigurationAcceptsAllowedStatuses( string $status ): void {
-	$config           = Catalog::default_configuration();
-	$config['status'] = $status;
+		$config           = Catalog::default_configuration();
+		$config['status'] = $status;
 
-	$errors = Catalog::validate_configuration( $config );
-	$this->assertEmpty( $errors, "Status '$status' should be valid" );
+		$errors = Catalog::validate_configuration( $config );
+		$this->assertEmpty( $errors, "Status '$status' should be valid" );
 	}
 
 	/**
@@ -902,7 +902,7 @@ final class CatalogCrudTest extends TestCase {
 		$_REQUEST = $input;
 
 		// Use reflection to call the save method.
-		$ref = new \ReflectionClass( Admin::class );
+		$ref    = new \ReflectionClass( Admin::class );
 		$method = $ref->getMethod( 'save_meta_box_data' );
 		$method->setAccessible( true );
 

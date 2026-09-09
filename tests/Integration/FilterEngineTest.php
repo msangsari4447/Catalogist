@@ -919,134 +919,134 @@ final class FilterEngineTest extends TestCase {
 	 * @return int The created product ID.
 	 */
 	private function create_product( string $product_type, string $title, array $args = array() ): int {
-	$sku        = $args['sku'] ?? '';
-	$price      = $args['price'] ?? '0';
-	$stock_qty  = $args['stock_qty'] ?? 10;
-	$categories = $args['categories'] ?? array();
-	$tags       = $args['tags'] ?? array();
-	$stock      = $stock_qty > 0 ? 'instock' : 'outofstock';
+		$sku        = $args['sku'] ?? '';
+		$price      = $args['price'] ?? '0';
+		$stock_qty  = $args['stock_qty'] ?? 10;
+		$categories = $args['categories'] ?? array();
+		$tags       = $args['tags'] ?? array();
+		$stock      = $stock_qty > 0 ? 'instock' : 'outofstock';
 
-	// Delete any existing products with this SKU to ensure clean state.
-	if ( '' !== $sku ) {
-	global $wpdb;
-
-	// Delete products using this SKU.
-	// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key -- Test fixture cleanup.
-	$existing_ids = get_posts(
-		array(
-			'post_type'      => 'product',
-			'post_status'    => 'any',
-			'meta_key'       => '_sku',
-			'meta_value'     => $sku,
-			'posts_per_page' => -1,
-			'fields'         => 'ids',
-		)
-	);
-
-	foreach ( $existing_ids as $existing_id ) {
-		wp_delete_post( (int) $existing_id, true );
-	}
-
-	// Remove ALL WooCommerce lookup rows for this SKU,
-	// including orphaned rows.
-	$wpdb->delete(
-		$wpdb->wc_product_meta_lookup,
-		array( 'sku' => $sku ),
-		array( '%s' )
-	);
-
-	wp_cache_flush();
-	}
-
-	// Create product categories if needed.
-	$term_ids = array();
-
-	foreach ( $categories as $cat_slug ) {
-		$term = get_term_by( 'slug', $cat_slug, 'product_cat' );
-
-		if ( ! $term || is_wp_error( $term ) ) {
-			$term = wp_insert_term( $cat_slug, 'product_cat' );
-		}
-
-		if ( ! is_wp_error( $term ) ) {
-			$term_ids[] = (int) $term->term_id;
-		}
-	}
-
-	// Create product tags if needed.
-	$tag_term_ids = array();
-
-	foreach ( $tags as $tag_slug ) {
-		$term = get_term_by( 'slug', $tag_slug, 'product_tag' );
-
-		if ( ! $term || is_wp_error( $term ) ) {
-			$term = wp_insert_term( $tag_slug, 'product_tag' );
-		}
-
-		if ( ! is_wp_error( $term ) ) {
-			$tag_term_ids[] = (int) $term->term_id;
-		}
-	}
-
-	// Insert product post.
-	$product_id = wp_insert_post(
-		array(
-			'post_title'   => $title,
-			'post_type'    => 'product',
-			'post_status'  => 'publish',
-			'post_content' => '',
-		),
-		true
-	);
-
-	if ( is_wp_error( $product_id ) ) {
-		return 0;
-	}
-
-	// Set product data via WooCommerce.
-	$product = wc_get_product( $product_id );
-
-	if ( $product ) {
+		// Delete any existing products with this SKU to ensure clean state.
 		if ( '' !== $sku ) {
-			$product->set_sku( $sku );
+			global $wpdb;
+
+			// Delete products using this SKU.
+		// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key -- Test fixture cleanup.
+			$existing_ids = get_posts(
+				array(
+					'post_type'      => 'product',
+					'post_status'    => 'any',
+					'meta_key'       => '_sku',
+					'meta_value'     => $sku,
+					'posts_per_page' => -1,
+					'fields'         => 'ids',
+				)
+			);
+
+			foreach ( $existing_ids as $existing_id ) {
+				wp_delete_post( (int) $existing_id, true );
+			}
+
+			// Remove ALL WooCommerce lookup rows for this SKU,
+			// including orphaned rows.
+			$wpdb->delete(
+				$wpdb->wc_product_meta_lookup,
+				array( 'sku' => $sku ),
+				array( '%s' )
+			);
+
+			wp_cache_flush();
 		}
 
-		$product->set_stock_status( $stock );
-		$product->set_regular_price( $price );
-		$product->set_price( $price );
+		// Create product categories if needed.
+		$term_ids = array();
 
-		$product->save();
+		foreach ( $categories as $cat_slug ) {
+			$term = get_term_by( 'slug', $cat_slug, 'product_cat' );
 
-		// Set product type after WooCommerce product save.
-		wp_set_object_terms(
-			$product_id,
-			$product_type,
-			'product_type'
+			if ( ! $term || is_wp_error( $term ) ) {
+				$term = wp_insert_term( $cat_slug, 'product_cat' );
+			}
+
+			if ( ! is_wp_error( $term ) ) {
+				$term_ids[] = (int) $term->term_id;
+			}
+		}
+
+		// Create product tags if needed.
+		$tag_term_ids = array();
+
+		foreach ( $tags as $tag_slug ) {
+			$term = get_term_by( 'slug', $tag_slug, 'product_tag' );
+
+			if ( ! $term || is_wp_error( $term ) ) {
+				$term = wp_insert_term( $tag_slug, 'product_tag' );
+			}
+
+			if ( ! is_wp_error( $term ) ) {
+				$tag_term_ids[] = (int) $term->term_id;
+			}
+		}
+
+		// Insert product post.
+		$product_id = wp_insert_post(
+			array(
+				'post_title'   => $title,
+				'post_type'    => 'product',
+				'post_status'  => 'publish',
+				'post_content' => '',
+			),
+			true
 		);
 
-		wp_cache_flush();
-	}
+		if ( is_wp_error( $product_id ) ) {
+			return 0;
+		}
 
-	// Set categories.
-	if ( ! empty( $term_ids ) ) {
-		wp_set_object_terms(
-			$product_id,
-			$term_ids,
-			'product_cat'
-		);
-	}
+		// Set product data via WooCommerce.
+		$product = wc_get_product( $product_id );
 
-	// Set tags.
-	if ( ! empty( $tag_term_ids ) ) {
-		wp_set_object_terms(
-			$product_id,
-			$tag_term_ids,
-			'product_tag'
-		);
-	}
+		if ( $product ) {
+			if ( '' !== $sku ) {
+				$product->set_sku( $sku );
+			}
 
-	return $product_id;
-}
+			$product->set_stock_status( $stock );
+			$product->set_regular_price( $price );
+			$product->set_price( $price );
+
+			$product->save();
+
+			// Set product type after WooCommerce product save.
+			wp_set_object_terms(
+				$product_id,
+				$product_type,
+				'product_type'
+			);
+
+			wp_cache_flush();
+		}
+
+		// Set categories.
+		if ( ! empty( $term_ids ) ) {
+			wp_set_object_terms(
+				$product_id,
+				$term_ids,
+				'product_cat'
+			);
+		}
+
+		// Set tags.
+		if ( ! empty( $tag_term_ids ) ) {
+			wp_set_object_terms(
+				$product_id,
+				$tag_term_ids,
+				'product_tag'
+			);
+		}
+
+		return $product_id;
+	}
 
 	/**
 	 * Assert two arrays are the same regardless of order.
