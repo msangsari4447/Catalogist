@@ -626,6 +626,8 @@ final class Admin {
 	 * @param bool    $update   Whether this is an update.
 	 */
 	public static function save_meta_box_data( int $post_id, \WP_Post $post, bool $update ): void {
+		unset( $update );
+
 		// Verify nonce.
 		if ( ! isset( $_POST[ self::NONCE_FIELD ] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST[ self::NONCE_FIELD ] ) ), self::NONCE_ACTION ) ) {
 			return;

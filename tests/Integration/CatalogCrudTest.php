@@ -37,7 +37,6 @@ final class CatalogCrudTest extends TestCase {
 
 	public static function setUpBeforeClass(): void {
 		require_once dirname( __DIR__, 2 ) . '/catalogist.php';
-		//do_action( 'init' );
 	}
 
 	/**

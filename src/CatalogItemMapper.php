@@ -33,16 +33,19 @@ final class CatalogItemMapper {
 		}
 
 		// Get variation-specific data if applicable.
-		$parent_id     = null;
-		$title         = $product->get_name();
-		$sku           = $product->get_sku();
-		$regular_price = $product->get_regular_price();
-		$sale_price    = $product->get_sale_price();
-		$price         = $product->get_price();
-		$stock_status  = $product->get_stock_status();
-		$image_url     = self::get_main_image_url( $product );
-		$permalink     = $product->get_permalink();
-		$slug          = $product->get_slug();
+		$parent_id         = null;
+		$title             = $product->get_name();
+		$sku               = $product->get_sku();
+		$regular_price_raw = $product->get_regular_price();
+		$sale_price_raw    = $product->get_sale_price();
+		$price_raw         = $product->get_price();
+		$regular_price     = '' !== $regular_price_raw ? (float) $regular_price_raw : null;
+		$sale_price        = '' !== $sale_price_raw ? (float) $sale_price_raw : null;
+		$price             = '' !== $price_raw ? (float) $price_raw : null;
+		$stock_status      = $product->get_stock_status();
+		$image_url         = self::get_main_image_url( $product );
+		$permalink         = $product->get_permalink();
+		$slug              = $product->get_slug();
 
 		// For variations, use parent product for most fields.
 		if ( 'variation' === $type ) {

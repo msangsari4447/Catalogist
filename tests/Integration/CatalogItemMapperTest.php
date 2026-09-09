@@ -7,11 +7,9 @@ namespace Catalogist;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Unit tests for CatalogItemMapper.
+ * Integration tests for CatalogItemMapper.
  *
- * Note: These are integration-style unit tests because mapping
- * depends heavily on WooCommerce and WordPress objects.
- * They should be run within the WordPress/WooCommerce environment.
+ * Runs inside the WordPress/WooCommerce environment.
  */
 final class CatalogItemMapperTest extends TestCase {
 
@@ -38,21 +36,30 @@ final class CatalogItemMapperTest extends TestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		// Mock context.
 		$this->catalog_id = 100;
 		$this->context    = new CatalogContext( $this->catalog_id, 'en_US', 'USD' );
 
-		// Ensure WC is loaded and create mock data.
-		// In the integration environment, we actually create products.
-		$product          = WC_Helper_Product::create_simple_product();
-		$this->product_id = $product->get_id();
+		// Create a simple product using WooCommerce's public API.
+		$product = new \WC_Product_Simple();
+		$product->set_name( 'Test Product' );
+		$product->set_sku( 'TEST-SIMPLE-' . uniqid() );
+		$product->set_regular_price( '10.00' );
+		$product->set_price( '10.00' );
+		$product->set_status( 'publish' );
+		$this->product_id = $product->save();
 
-		$variation          = WC_Helper_Product::create_variation( $this->product_id );
-		$this->variation_id = $variation->get_id();
+		// Create a variation using WooCommerce's public API.
+		$variation = new \WC_Product_Variation();
+		$variation->set_parent_id( $this->product_id );
+		$variation->set_regular_price( '12.00' );
+		$variation->set_price( '12.00' );
+		$variation->set_status( 'publish' );
+		$this->variation_id = $variation->save();
 	}
 
 	public function testMapSimpleProduct(): void {
 		$product = wc_get_product( $this->product_id );
+
 		$this->assertInstanceOf( \WC_Product::class, $product );
 
 		$catalog_item = CatalogItemMapper::map_product( $product, $this->context );
@@ -62,12 +69,13 @@ final class CatalogItemMapperTest extends TestCase {
 		$this->assertSame( 'simple', $catalog_item->type );
 		$this->assertSame( $product->get_name(), $catalog_item->title );
 		$this->assertSame( $product->get_sku(), $catalog_item->sku );
-		$this->assertSame( $product->get_price(), $catalog_item->price );
+		$this->assertSame( (float) $product->get_price(), $catalog_item->price );
 		$this->assertSame( $this->context, $catalog_item->context );
 	}
 
 	public function testMapVariation(): void {
 		$variation = wc_get_product( $this->variation_id );
+
 		$this->assertInstanceOf( \WC_Product_Variation::class, $variation );
 
 		$catalog_item = CatalogItemMapper::map_product( $variation, $this->context );
@@ -75,8 +83,19 @@ final class CatalogItemMapperTest extends TestCase {
 		$this->assertInstanceOf( CatalogItem::class, $catalog_item );
 		$this->assertSame( $this->variation_id, $catalog_item->id );
 		$this->assertSame( 'variation', $catalog_item->type );
-		$this->assertNotNull( $catalog_item->parent_id );
-		// Ensure it uses the variation's own name.
+		$this->assertSame( $this->product_id, $catalog_item->parent_id );
 		$this->assertSame( $variation->get_name(), $catalog_item->title );
+	}
+
+	protected function tearDown(): void {
+		if ( $this->variation_id > 0 ) {
+			wp_delete_post( $this->variation_id, true );
+		}
+
+		if ( $this->product_id > 0 ) {
+			wp_delete_post( $this->product_id, true );
+		}
+
+		parent::tearDown();
 	}
 }

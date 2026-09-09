@@ -1,0 +1,6 @@
+--- a/tests/Integration/bootstrap.php
++++ b/tests/Integration/bootstrap.php
+@@
+- require_once '/var/www/html/wp-load.php';
++ // added comment
++ require_once '/var/www/html/wp-load.php';

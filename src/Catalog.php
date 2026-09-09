@@ -368,6 +368,7 @@ final class Catalog {
 		if ( isset( $filter['type'] ) && '' !== trim( $filter['type'] ) ) {
 			if ( ! in_array( $filter['type'], self::ALLOWED_FILTER_TYPES, true ) ) {
 				$errors[] = sprintf(
+					// translators: %1$d is the filter index, %2$s is the invalid filter type.
 					__( 'Filter at index %1$d has an invalid type: "%2$s".', 'catalogist' ),
 					$index,
 					$filter['type']
