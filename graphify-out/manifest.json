@@ -12,10 +12,10 @@
     "semantic_hash": "9aac8a1726215ebd7e10e1dfaf1a9914"
   },
   "composer.json": {
-    "mtime": 1788377093.0,
-    "seen": 1788691867.3001614,
-    "ast_hash": "03bd764cd97374d860267954f69f4d0b",
-    "semantic_hash": "03bd764cd97374d860267954f69f4d0b"
+    "mtime": 1788856763.881212,
+    "seen": 1789155993.367277,
+    "ast_hash": "00c421bb1229659dced4c17b7598e6ec",
+    "semantic_hash": ""
   },
   "generate_html.py": {
     "mtime": 1788520768.0,
@@ -30,16 +30,16 @@
     "semantic_hash": "c4dd701686ce01369ef66f85b7c0973e"
   },
   "src/Admin.php": {
-    "mtime": 1788534457.0,
-    "seen": 1788691867.3001614,
-    "ast_hash": "7097e9c35caa6f2dd1293e678bf3fbb0",
-    "semantic_hash": "7097e9c35caa6f2dd1293e678bf3fbb0"
+    "mtime": 1789032317.7721777,
+    "seen": 1789155993.367277,
+    "ast_hash": "ff3511326be41842215ed3e9863fc9de",
+    "semantic_hash": ""
   },
   "src/Catalog.php": {
-    "mtime": 1788422118.0,
-    "seen": 1788691867.3001614,
-    "ast_hash": "3800237e8af03cae920a13de08024e9d",
-    "semantic_hash": "3800237e8af03cae920a13de08024e9d"
+    "mtime": 1789031974.1636589,
+    "seen": 1789155993.367277,
+    "ast_hash": "1dcbf03c5093de9449dec388169c5ede",
+    "semantic_hash": ""
   },
   "src/CatalogPostType.php": {
     "mtime": 1788547367.0,
@@ -48,10 +48,10 @@
     "semantic_hash": "4a7df7d2d1df66a4abe2070ee991fb5c"
   },
   "src/Plugin.php": {
-    "mtime": 1788422118.0,
-    "seen": 1788691867.3001614,
-    "ast_hash": "9e5d5f1c2f617f6d3b82c41f2c8b3e12",
-    "semantic_hash": "9e5d5f1c2f617f6d3b82c41f2c8b3e12"
+    "mtime": 1789031755.6154938,
+    "seen": 1789155993.367277,
+    "ast_hash": "9dcf95d9740d63ed1ee5cd5136c27e43",
+    "semantic_hash": ""
   },
   "src/ProductQueryEngine.php": {
     "mtime": 1788544706.0,
@@ -66,16 +66,16 @@
     "semantic_hash": "0d4821b2bfcc2150a3851c5e651093bd"
   },
   "tests/Integration/CatalogCrudTest.php": {
-    "mtime": 1788534449.0,
-    "seen": 1788691867.3001614,
-    "ast_hash": "2d6b5eb06066efcb9850b7a4ea7c6510",
-    "semantic_hash": "2d6b5eb06066efcb9850b7a4ea7c6510"
+    "mtime": 1789032469.3310266,
+    "seen": 1789155993.367277,
+    "ast_hash": "6301eea4d0bb7ecf083ad1f348b289ac",
+    "semantic_hash": ""
   },
   "tests/Integration/ProductQueryEngineTest.php": {
-    "mtime": 1788547013.0,
-    "seen": 1788691867.3001614,
-    "ast_hash": "d200e4991aafd84468938a604f355774",
-    "semantic_hash": "d200e4991aafd84468938a604f355774"
+    "mtime": 1788943722.1241324,
+    "seen": 1789155993.367277,
+    "ast_hash": "5a90beec376247557d5e072e612b46ff",
+    "semantic_hash": ""
   },
   "tests/Integration/VariationEngineTest.php": {
     "mtime": 1788551615.0,
@@ -84,10 +84,10 @@
     "semantic_hash": "101469fbcdbe83403f2a6b72030e72a5"
   },
   "tests/Integration/WordPressBaselineTest.php": {
-    "mtime": 1788547367.0,
-    "seen": 1788691867.3001614,
-    "ast_hash": "869a4b603d682073873ec2062106357f",
-    "semantic_hash": "869a4b603d682073873ec2062106357f"
+    "mtime": 1789032469.39886,
+    "seen": 1789155993.367277,
+    "ast_hash": "730910bdfbd5a366c617417dfa22fc0b",
+    "semantic_hash": ""
   },
   "tests/Integration/bootstrap.php": {
     "mtime": 1788534458.0,
@@ -102,10 +102,10 @@
     "semantic_hash": "10c76270bd198b51580f9c26dc3903af"
   },
   "tests/Unit/CatalogTest.php": {
-    "mtime": 1788534458.0,
-    "seen": 1788691867.3001614,
-    "ast_hash": "55b8c66118da3f35803788a3579a8305",
-    "semantic_hash": "55b8c66118da3f35803788a3579a8305"
+    "mtime": 1788703611.1982298,
+    "seen": 1789155993.367277,
+    "ast_hash": "d516ca80f5387fbc9f4b790fe1e0c731",
+    "semantic_hash": ""
   },
   "tests/Unit/ProductQueryEngineTest.php": {
     "mtime": 1788543313.0,
@@ -258,10 +258,10 @@
     "semantic_hash": "cc29e0365d18ab87e75336e45fca5d31"
   },
   "src/FilterEngine.php": {
-    "mtime": 1788603216.0,
-    "seen": 1788691867.3001614,
-    "ast_hash": "844a2e05aa802ce729871ac3a597ef55",
-    "semantic_hash": "844a2e05aa802ce729871ac3a597ef55"
+    "mtime": 1788693707.8328624,
+    "seen": 1789155993.367277,
+    "ast_hash": "e94bb22787ba835a1a70651d0b55b0ef",
+    "semantic_hash": ""
   },
   "src/SelectionEngine.php": {
     "mtime": 1788614272.0,
@@ -276,10 +276,10 @@
     "semantic_hash": "42cb7873e818993d0632e9f01609a9f6"
   },
   "tests/Integration/FilterEngineTest.php": {
-    "mtime": 1788603753.0,
-    "seen": 1788691867.3001614,
-    "ast_hash": "88cf79dcb82461363a24aaf5ba5d0956",
-    "semantic_hash": "88cf79dcb82461363a24aaf5ba5d0956"
+    "mtime": 1788943721.7233212,
+    "seen": 1789155993.367277,
+    "ast_hash": "d213aefc059c56938edfad4a4f8f28c0",
+    "semantic_hash": ""
   },
   "tests/Integration/SelectionEngineTest.php": {
     "mtime": 1788689807.8274806,
@@ -334,5 +334,137 @@
     "seen": 1788691867.301165,
     "ast_hash": "1a4dea397d4fe48186d77ddddbb7e7b3",
     "semantic_hash": "1a4dea397d4fe48186d77ddddbb7e7b3"
+  },
+  "bootstrap.php": {
+    "mtime": 1789127662.8335867,
+    "seen": 1789155993.367277,
+    "ast_hash": "a8a46a9cd5a7de9db3d6905231e9d643",
+    "semantic_hash": ""
+  },
+  "composer-setup.php": {
+    "mtime": 1788858445.881711,
+    "seen": 1789155993.367277,
+    "ast_hash": "454ed70df56cec5c73b2aa38e673350f",
+    "semantic_hash": ""
+  },
+  "src/CatalogContext.php": {
+    "mtime": 1788949241.883645,
+    "seen": 1789155993.367277,
+    "ast_hash": "1261d883afa91d8155ef998ee9ab1853",
+    "semantic_hash": ""
+  },
+  "src/CatalogItem.php": {
+    "mtime": 1788949241.7349226,
+    "seen": 1789155993.367277,
+    "ast_hash": "e9a7989e807c2aed00a22795a13ef542",
+    "semantic_hash": ""
+  },
+  "src/CatalogItemMapper.php": {
+    "mtime": 1789031624.5342567,
+    "seen": 1789155993.367277,
+    "ast_hash": "cd5360239129aac203fbd6ad52e101df",
+    "semantic_hash": ""
+  },
+  "src/PrintEngine.php": {
+    "mtime": 1789155696.019757,
+    "seen": 1789155993.367277,
+    "ast_hash": "12952c100eb896e6bf8ec69a9f82c1ea",
+    "semantic_hash": ""
+  },
+  "src/Renderer.php": {
+    "mtime": 1789125648.4134269,
+    "seen": 1789155993.367277,
+    "ast_hash": "d32e6d6dc9c5f45a855ba99871d4113b",
+    "semantic_hash": ""
+  },
+  "src/Template.php": {
+    "mtime": 1789031678.1111474,
+    "seen": 1789155993.367277,
+    "ast_hash": "488d2e83828c47e9387cc9ea27b12f4a",
+    "semantic_hash": ""
+  },
+  "src/TemplatePostType.php": {
+    "mtime": 1789031718.3913968,
+    "seen": 1789155993.367277,
+    "ast_hash": "0b407cceb0123e16872f7420d4b627f6",
+    "semantic_hash": ""
+  },
+  "tests/Integration/CatalogItemMapperTest.php": {
+    "mtime": 1789028897.6348712,
+    "seen": 1789155993.367277,
+    "ast_hash": "df34ecac922afccad1cf05cb086386e0",
+    "semantic_hash": ""
+  },
+  "tests/Integration/TemplateTest.php": {
+    "mtime": 1789032594.4437249,
+    "seen": 1789155993.367277,
+    "ast_hash": "3d95c42ba3c34976e56197c9d85f510b",
+    "semantic_hash": ""
+  },
+  "tests/Unit/CatalogConfigurationTest.php": {
+    "mtime": 1788783895.6267962,
+    "seen": 1789155993.367277,
+    "ast_hash": "42f4d2c210d532bc9de6484205460eab",
+    "semantic_hash": ""
+  },
+  "tests/Unit/CatalogItemTest.php": {
+    "mtime": 1788949242.231464,
+    "seen": 1789155993.367277,
+    "ast_hash": "5cd7925e719a73aceee95a4d385a2064",
+    "semantic_hash": ""
+  },
+  "tests/Unit/PrintEngineTest.php": {
+    "mtime": 1789155696.5175388,
+    "seen": 1789155993.367277,
+    "ast_hash": "f65e1aaf22553bb670e0a05c35439116",
+    "semantic_hash": ""
+  },
+  "tests/Unit/RendererTest.php": {
+    "mtime": 1789126282.7941756,
+    "seen": 1789155993.367277,
+    "ast_hash": "e481475bf764992ba00d61be68cdacf9",
+    "semantic_hash": ""
+  },
+  "tests/Unit/TemplateTest.php": {
+    "mtime": 1789032657.8429868,
+    "seen": 1789155993.367277,
+    "ast_hash": "c0be9d0570da2fcfaaebae0d3a2dfdd2",
+    "semantic_hash": ""
+  },
+  "report/D\uf03awordpresswp-contentpluginsCatalogistreportstage-7-catalog-item-engine.md": {
+    "mtime": 1789031264.5609882,
+    "seen": 1789155993.367277,
+    "ast_hash": "5b150f985b2386e022c5b73915de2807",
+    "semantic_hash": ""
+  },
+  "report/stage-6-catalog-configuration.md": {
+    "mtime": 1788943379.330049,
+    "seen": 1789155993.367277,
+    "ast_hash": "29a68e9fefb1d496b16829c2a2e27a37",
+    "semantic_hash": ""
+  },
+  "report/stage-7-catalog-item-engine.md": {
+    "mtime": 1789031264.8981802,
+    "seen": 1789155993.367277,
+    "ast_hash": "843461819d36b43594eb17b0db7e69d9",
+    "semantic_hash": ""
+  },
+  "report/stage-8-template-engine.md": {
+    "mtime": 1789042367.9335306,
+    "seen": 1789155993.367277,
+    "ast_hash": "b9231d7c6865871132c43d159bcef908",
+    "semantic_hash": ""
+  },
+  "report/stage-9-rendering-engine.md": {
+    "mtime": 1789139450.356915,
+    "seen": 1789155993.367277,
+    "ast_hash": "828943f244a672511c9533315501fba0",
+    "semantic_hash": ""
+  },
+  "test.txt": {
+    "mtime": 1789031264.8986812,
+    "seen": 1789155993.367277,
+    "ast_hash": "4c414e312d65a070c99f49899ccf2c62",
+    "semantic_hash": ""
   }
 }
